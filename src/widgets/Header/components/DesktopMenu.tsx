@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function MainNav() {
+export default function DesktopMenu() {
 	const links = [
 		{ to: '/', title: 'Home' },
 		{ to: '/products', title: 'Products' },
@@ -10,7 +10,7 @@ export default function MainNav() {
 	];
 
 	return (
-		<div className="bg-primary text-white">
+		<div className="hidden bg-primary text-white md:block">
 			<div className="container">
 				<ul className="-mx-5 flex">
 					{links.map(({ title, to }) => (
