@@ -1,5 +1,5 @@
 import { ProductApiResponse } from '@/shared/types';
-import AttributeList from '@/features/product/components/AttributeList';
+import AttributeList from '@/features/singleProduct/components/AttributeList';
 import {
 	Card,
 	CardContent,

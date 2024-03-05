@@ -1,5 +1,5 @@
 import { Attribute } from '../types';
-import { ProductApiResponse, VariantApiResponse } from './../../../shared/types/index';
+import { ProductApiResponse, VariantApiResponse } from '../../../shared/types/index';
 import { create } from 'zustand';
 
 interface ProductState {

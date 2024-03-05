@@ -48,9 +48,9 @@ export default function ProductGallery({ product }: Props) {
 						>
 							<Image
 								src={v.imgPath}
-								width={30}
-								height={30}
-								className="h-auto w-auto object-contain"
+								width={100}
+								height={100}
+								className="h-full w-auto object-contain"
 								alt={'Variant image'}
 							/>
 						</li>

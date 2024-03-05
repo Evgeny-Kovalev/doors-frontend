@@ -1,6 +1,9 @@
 'use client';
 
-import { getGroupedAttributes, getPossibleVariants } from '@/features/product/helpers';
+import {
+	getGroupedAttributes,
+	getPossibleVariants,
+} from '@/features/singleProduct/helpers';
 import { VariantApiResponse } from '@/shared/types';
 import { cn } from '@/shared/ui/utils';
 import { Trash } from 'lucide-react';
