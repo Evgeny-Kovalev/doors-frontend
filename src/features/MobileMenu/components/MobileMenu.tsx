@@ -9,10 +9,10 @@ import MobileMenuSubHeader from './SubHeader';
 import { Menu } from 'lucide-react';
 
 interface MobileMenuProps {
-	data: MenuItem[];
+	items: MenuItem[];
 }
 
-export default function MobileMenu({ data }: MobileMenuProps) {
+export default function MobileMenu({ items }: MobileMenuProps) {
 	const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore();
 
 	return (
@@ -31,7 +31,7 @@ export default function MobileMenu({ data }: MobileMenuProps) {
 						Каталог
 					</div>
 					<div className="flex-col justify-center">
-						<MobileMenuItems data={data} />
+						<MobileMenuItems items={items} />
 					</div>
 				</>
 			)}

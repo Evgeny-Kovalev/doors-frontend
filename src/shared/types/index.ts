@@ -20,3 +20,11 @@ export type ProductApiResponse = {
 	isVisible: boolean;
 	variants: VariantApiResponse[];
 };
+export type CategoryApiResponse = {
+	id: number;
+	name: string;
+	imgUrl: string;
+	description: string;
+	isVisible: boolean;
+	parentCategoryId: number;
+};

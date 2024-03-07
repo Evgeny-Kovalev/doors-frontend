@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { type MenuItem } from '../types';
 
 interface MenuItemsProps {
-	data: MenuItem[];
+	items: MenuItem[];
 }
 
-export default function MenuItems({ data }: MenuItemsProps) {
-	const [itemsToShow, setItemsToShow] = useState(data);
-	const [itemsStack, setItemsStack] = useState([data]);
+export default function MenuItems({ items }: MenuItemsProps) {
+	const [itemsToShow, setItemsToShow] = useState(items);
+	const [itemsStack, setItemsStack] = useState([items]);
 
 	const changeMenuItems = (newItemsToShow: MenuItem[], newItemsStack: MenuItem[][]) => {
 		setItemsToShow(newItemsToShow);
