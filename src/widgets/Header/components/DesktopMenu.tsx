@@ -3,9 +3,9 @@ import Link from 'next/link';
 export default function DesktopMenu() {
 	const links = [
 		{ to: '/', title: 'Home' },
-		{ to: '/products', title: 'Products' },
-		{ to: '/products/1', title: 'Product 1' },
-		{ to: '/products/2', title: 'Product 2' },
+		{ to: '/shop', title: 'Shop' },
+		{ to: '/categories/1', title: 'Category 1' },
+		{ to: '/categories/2', title: 'Category 2' },
 		{ to: '/contacts', title: 'Contacts' },
 	];
 

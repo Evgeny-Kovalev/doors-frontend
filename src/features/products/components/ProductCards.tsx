@@ -15,7 +15,7 @@ export default function ProductCards({ products }: ProductListProps) {
 						key={product.id}
 						className="transition-transform duration-500 hover:-translate-y-2"
 					>
-						<Link href={'products/' + product.id}>
+						<Link href={'/products/' + product.id}>
 							<ProductCard className="hover:shadow-md" product={product} />
 						</Link>
 					</li>
