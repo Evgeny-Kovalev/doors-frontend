@@ -6,7 +6,7 @@ export type AttributeApiResponse = {
 
 export type VariantApiResponse = {
 	id: number;
-	imgPath: string;
+	imgUrl: string;
 	price: number;
 	discountPrice?: number;
 	attributes: AttributeApiResponse[];
@@ -15,7 +15,7 @@ export type VariantApiResponse = {
 export type ProductApiResponse = {
 	id: number;
 	name: string;
-	imgPath: string;
+	imgUrl: string;
 	description: string;
 	isVisible: boolean;
 	variants: VariantApiResponse[];

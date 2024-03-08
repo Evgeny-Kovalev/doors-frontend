@@ -1,5 +1,9 @@
 import MobileMenu from './components/MobileMenu';
 import ToggleButton from './components/ToggleButton';
-import { type MenuItem } from './types';
+import { type CategoryMenuItem } from './types';
 
-export { MobileMenu, ToggleButton as MobileMenuToggleButton, type MenuItem };
+export {
+	MobileMenu,
+	ToggleButton as MobileMenuToggleButton,
+	type CategoryMenuItem as MenuItem,
+};

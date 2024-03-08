@@ -1,6 +1,6 @@
-export type MenuItem = {
+export type CategoryMenuItem = {
 	// id: string;
 	id: number;
 	label: string;
-	items?: MenuItem[];
+	items?: CategoryMenuItem[];
 };

@@ -1,5 +1,4 @@
 import { ProductApiResponse } from '@/shared/types';
-import { PRODUCT } from '../../../features/singleProduct/mock';
 import ProductSummary from '@/features/singleProduct/components/ProductSummary';
 import ProductGallery from '@/features/singleProduct/components/ProductGallery';
 import ProductContent from '@/features/singleProduct/components/ProductContent';
@@ -31,7 +30,7 @@ export default async function Page({ params }: PageProps) {
 				</div>
 			</div>
 			<div>
-				<ProductContent product={PRODUCT} />
+				<ProductContent product={product} />
 			</div>
 		</div>
 	);

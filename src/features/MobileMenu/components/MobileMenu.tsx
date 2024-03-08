@@ -1,6 +1,6 @@
 'use client';
 
-import { type MenuItem } from '../types';
+import { type CategoryMenuItem } from '../types';
 import { useMobileMenuStore } from '../store';
 import { cn } from '@/shared/ui/utils';
 import MobileMenuItems from './MenuItems';
@@ -9,7 +9,7 @@ import MobileMenuSubHeader from './SubHeader';
 import { Menu } from 'lucide-react';
 
 interface MobileMenuProps {
-	items: MenuItem[];
+	items: CategoryMenuItem[];
 }
 
 export default function MobileMenu({ items }: MobileMenuProps) {

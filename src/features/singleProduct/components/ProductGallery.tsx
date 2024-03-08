@@ -16,7 +16,7 @@ export default function ProductGallery({ product }: Props) {
 
 	const [selectedImgPath, setSelectedImgPath] = useState<string | null>(null);
 
-	useEffect(() => setSelectedImgPath(activeVariant?.imgPath ?? null), [activeVariant]);
+	useEffect(() => setSelectedImgPath(activeVariant?.imgUrl ?? null), [activeVariant]);
 
 	return (
 		<Card className="flex flex-col pt-6">
@@ -24,7 +24,7 @@ export default function ProductGallery({ product }: Props) {
 				<div className="relative flex h-[70vh] items-center justify-center">
 					<Image
 						className="object-contain"
-						src={selectedImgPath ?? product.imgPath}
+						src={selectedImgPath ?? product.imgUrl}
 						sizes="500px"
 						fill
 						priority
@@ -39,7 +39,7 @@ export default function ProductGallery({ product }: Props) {
 							key={v.id}
 							onClick={() => {
 								console.log('set', v);
-								setSelectedImgPath(v.imgPath);
+								setSelectedImgPath(v.imgUrl);
 							}}
 							className={cn(
 								'relative flex h-20 w-20 cursor-pointer items-center justify-center bg-gray-300 opacity-50 transition-opacity hover:opacity-100',
@@ -47,7 +47,7 @@ export default function ProductGallery({ product }: Props) {
 							)}
 						>
 							<Image
-								src={v.imgPath}
+								src={v.imgUrl}
 								width={100}
 								height={100}
 								className="h-full w-auto object-contain"

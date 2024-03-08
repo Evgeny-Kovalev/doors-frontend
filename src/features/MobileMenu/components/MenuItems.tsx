@@ -1,22 +1,25 @@
 'use client';
 
 import { useState } from 'react';
-import { type MenuItem } from '../types';
+import { type CategoryMenuItem } from '../types';
 
 interface MenuItemsProps {
-	items: MenuItem[];
+	items: CategoryMenuItem[];
 }
 
 export default function MenuItems({ items }: MenuItemsProps) {
 	const [itemsToShow, setItemsToShow] = useState(items);
 	const [itemsStack, setItemsStack] = useState([items]);
 
-	const changeMenuItems = (newItemsToShow: MenuItem[], newItemsStack: MenuItem[][]) => {
+	const changeMenuItems = (
+		newItemsToShow: CategoryMenuItem[],
+		newItemsStack: CategoryMenuItem[][],
+	) => {
 		setItemsToShow(newItemsToShow);
 		setItemsStack(newItemsStack);
 	};
 
-	const moveToNext = (targetItem: MenuItem) => {
+	const moveToNext = (targetItem: CategoryMenuItem) => {
 		const newItems = itemsToShow.find((item) => item.id === targetItem.id);
 
 		if (newItems && newItems.items && newItems.items.length > 0) {

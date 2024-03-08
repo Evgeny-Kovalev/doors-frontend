@@ -13,7 +13,7 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 			<Card className={cn(className)} {...props}>
 				<CardContent className="relative px-0 pb-3">
 					<Image
-						src={product.imgPath}
+						src={product.imgUrl}
 						className="h-auto w-full"
 						sizes="100vw"
 						width={0}
