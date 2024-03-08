@@ -1,4 +1,5 @@
 import ProductCards from '@/features/products/components/ProductCards';
+import PageContainer from '@/shared/components/layout/PageContainer';
 import { ProductApiResponse } from '@/shared/types';
 
 const fetchProducts = async (): Promise<ProductApiResponse[]> => {
@@ -10,10 +11,8 @@ export default async function Page() {
 	const products: ProductApiResponse[] = await fetchProducts();
 
 	return (
-		<div className="container">
-			<div className="py-5">
-				<ProductCards products={products} />
-			</div>
-		</div>
+		<PageContainer>
+			<ProductCards products={products} />
+		</PageContainer>
 	);
 }

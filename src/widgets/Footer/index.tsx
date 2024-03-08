@@ -1,3 +1,5 @@
+import PageContainer from '@/shared/components/layout/PageContainer';
+
 export default function Footer() {
-	return <div className=" container py-5 text-center">FOOTER</div>;
+	return <PageContainer className="text-center">FOOTER</PageContainer>;
 }
