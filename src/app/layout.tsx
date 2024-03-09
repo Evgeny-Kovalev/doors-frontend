@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter, Montserrat } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import './globals.css';
 import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
-// const montserrat = Montserrat({ subsets: ["latin"] });
+const roboto = Roboto({
+	subsets: ['latin'],
+	weight: ['100', '300', '400', '500', '700', '900'],
+});
 
 export const metadata: Metadata = {
 	title: 'Двери \u2013 Входные и межкомнатные',
@@ -19,10 +21,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body className={roboto.className}>
 				<Header />
 				<div className="min-h-96 bg-gray-100 pb-14">{children}</div>
-				<div className="bg-gray-900 text-white">
+				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
 			</body>
