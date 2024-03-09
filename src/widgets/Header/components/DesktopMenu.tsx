@@ -1,12 +1,19 @@
+import { MAIN_CATEGORIES } from '@/shared/constants';
 import Link from 'next/link';
 
 export default function DesktopMenu() {
-	const links = [
-		{ to: '/', title: 'Home' },
-		{ to: '/shop', title: 'Shop' },
-		{ to: '/categories/1', title: 'Category 1' },
-		{ to: '/categories/2', title: 'Category 2' },
-		{ to: '/contacts', title: 'Contacts' },
+	const links: { to: string; title: string }[] = [
+		{ to: '/', title: 'Главная' },
+		{ to: '/shop', title: 'Каталог' },
+		{
+			to: `/categories/${MAIN_CATEGORIES.exterior.id}`,
+			title: MAIN_CATEGORIES.exterior.label,
+		},
+		{
+			to: `/categories/${MAIN_CATEGORIES.interior.id}`,
+			title: MAIN_CATEGORIES.interior.label,
+		},
+		{ to: '/contacts', title: 'Контакты' },
 	];
 
 	return (
@@ -17,7 +24,7 @@ export default function DesktopMenu() {
 						<li key={title}>
 							<Link
 								href={to}
-								className="block px-5 py-3 transition hover:text-yellow-500"
+								className="block px-5 py-3 transition hover:text-yellow-400"
 							>
 								{title}
 							</Link>
