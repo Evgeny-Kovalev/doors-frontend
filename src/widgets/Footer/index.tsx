@@ -1,7 +1,7 @@
 import PageContainer from '@/shared/components/layout/PageContainer';
 import Logo from '../Header/components/Logo';
 import Link from 'next/link';
-import { MAIN_CATEGORIES } from '@/shared/constants';
+import { MAIN_CATEGORIES, SHOP_INFO } from '@/shared/constants';
 import { Clock, MapPin, Phone } from 'lucide-react';
 import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
 
@@ -47,10 +47,7 @@ export default function Footer() {
 						<h5 className="mb-2 text-sm font-bold tracking-wider">Адрес</h5>
 						<div className="flex items-center">
 							<MapPin className="mr-3 h-full max-h-4 w-full max-w-4 self-center " />
-							<span>
-								г. Гомель, пр-кт Космонавтов 61а, ТЦ &quot;КосмоСтар&quot;, 2 этаж
-								павильон 4
-							</span>
+							<span>{SHOP_INFO.adress}</span>
 						</div>
 					</div>
 				</div>
