@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import './globals.css';
-import Header from '@/widgets/Header';
 import Footer from '@/widgets/Footer';
+import Header from '@/widgets/Header/components/Header';
+import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
+import './globals.css';
 
 const roboto = Roboto({
 	subsets: ['latin'],
@@ -27,6 +28,7 @@ export default function RootLayout({
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
+				<ScrollToTopButton />
 			</body>
 		</html>
 	);
