@@ -10,11 +10,7 @@ interface ToggleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
 export default function ToggleButton({ className, ...props }: ToggleButtonProps) {
 	const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore();
 	return (
-		<Button
-			className={cn('md:hidden', className)}
-			{...props}
-			onClick={toggleMobileMenu}
-		>
+		<Button className={cn(className)} {...props} onClick={toggleMobileMenu}>
 			{isMobileMenuOpen ? <X /> : <Menu />}
 		</Button>
 	);

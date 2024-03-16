@@ -1,6 +1,13 @@
+'use client';
+import ProductCardsSlider from '@/features/products/components/ProductCardsSlider';
 import PageContainer from '@/shared/components/layout/PageContainer';
-import Image from 'next/image';
+import MainBanners from '@/widgets/MainBanners';
 
 export default function Home() {
-	return <PageContainer>SHOP MAIN PAGE</PageContainer>;
+	return (
+		<PageContainer>
+			<MainBanners className="mb-10" />
+			{/* <ProductCardsSlider /> */}
+		</PageContainer>
+	);
 }

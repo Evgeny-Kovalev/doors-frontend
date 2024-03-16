@@ -17,19 +17,13 @@ export function findNodeById<Node, IdType>(
 	trees: TreeNode<Node & { id: IdType }>[],
 	id: IdType,
 ): TreeNode<Node> | null {
-	let result: TreeNode<Node> | null = null;
+	const stack: TreeNode<Node & { id: IdType }>[] = [...trees];
 
-	for (const tree of trees) {
-		if (tree.id === id) {
-			return tree;
-		}
-
-		if (tree.children && tree.children.length > 0) {
-			tree.children.some((node) => {
-				result = findNodeById(tree.children, id);
-				return result;
-			});
-		}
+	while (stack.length > 0) {
+		const item = stack[0];
+		if (item.id === id) return item;
+		stack.shift();
+		stack.push(...item.children);
 	}
-	return result;
+	return null;
 }
