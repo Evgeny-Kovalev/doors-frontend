@@ -6,11 +6,11 @@ type Props = {
 };
 export default function ProductDescription({ product }: Props) {
 	return (
-		<Card className="mt-5">
-			<CardHeader>
-				<CardTitle>Product Description</CardTitle>
+		<Card className="border-none px-0">
+			<CardHeader className="px-0">
+				<CardTitle>Описание</CardTitle>
 			</CardHeader>
-			<CardContent>
+			<CardContent className="px-0">
 				<p>{product.description}</p>
 			</CardContent>
 		</Card>

@@ -10,12 +10,12 @@ interface Props {
 
 export default function ProductContent({ product }: Props) {
 	return (
-		<Card className="mt-5">
+		<Card>
 			<CardContent className="pt-6">
 				<Tabs defaultValue="description">
 					<TabsList>
-						<TabsTrigger value="description">Description</TabsTrigger>
-						<TabsTrigger value="details">Details</TabsTrigger>
+						<TabsTrigger value="description">Описание</TabsTrigger>
+						<TabsTrigger value="details">Характеристики</TabsTrigger>
 					</TabsList>
 					<TabsContent value="description">
 						<ProductDescription product={product} />

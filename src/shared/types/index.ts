@@ -19,6 +19,7 @@ export type ProductApiResponse = {
 	description: string;
 	isVisible: boolean;
 	variants: VariantApiResponse[];
+	params: AttributeApiResponse[];
 };
 export type CategoryApiResponse = {
 	id: number;
