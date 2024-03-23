@@ -12,8 +12,8 @@ export default function ProductParamsTable({ params }: ProductParamsTableProps) 
 			<TableBody>
 				{params.map((param, i) => (
 					<TableRow key={param.id} className={cn({ 'bg-muted/50': i % 2 !== 0 })}>
-						<TableCell className="font-medium">{param.name}</TableCell>
-						<TableCell>{param.value}</TableCell>
+						<TableCell className="font-medium">{param.key.label}</TableCell>
+						<TableCell>{param.value.value}</TableCell>
 					</TableRow>
 				))}
 			</TableBody>

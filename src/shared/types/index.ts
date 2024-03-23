@@ -1,7 +1,15 @@
 export type AttributeApiResponse = {
 	id: number;
-	name: string;
-	value: string;
+	key: {
+		id: number;
+		value: string;
+		label: string;
+		imgUrl: string | null;
+	};
+	value: {
+		id: number;
+		value: string;
+	};
 };
 
 export type VariantApiResponse = {

@@ -97,31 +97,31 @@ export default function AttributeList({ variants, className, ...rest }: Props) {
 				{Object.values(groupedAttributes).map((a) => {
 					return (
 						<li
-							key={a.name}
+							key={a.key}
 							className="mb-3 flex items-center justify-start gap-5 last:mb-0"
 						>
-							<div className="w-16 text-gray-600">{a.name}</div>
+							<div className="w-16 text-gray-600">{a.label}</div>
 							<ul className="flex gap-5">
 								{a.values.map((value) => {
 									const isPossible = isPossibleToSelectAttribute({
-										key: a.name,
+										key: a.key,
 										value,
 									});
 									return (
-										<li key={a.name + value}>
+										<li key={a.key + value}>
 											<button
 												className={cn(
 													'relative overflow-hidden rounded-lg px-4 py-2 text-center shadow-[0_0_0_1px_rgba(0,0,0,.3)]',
 													{
 														'shadow-[0_0_0_2px_rgba(0,0,0,.9)]':
 															isAttributeSelectedWithValue({
-																key: a.name,
+																key: a.key,
 																value,
 															}),
 													},
 												)}
 												onClick={() =>
-													onAttributeClick({ key: a.name, value })
+													onAttributeClick({ key: a.key, value })
 												}
 												disabled={!isPossible}
 											>

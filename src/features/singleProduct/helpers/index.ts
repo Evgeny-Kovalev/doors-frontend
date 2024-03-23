@@ -7,12 +7,15 @@ import { Attribute } from '../types';
 
 export const getAttributesWithValues = (product: ProductApiResponse) => {
 	return product.variants.reduce(
-		(acc: { [key: string]: { name: string; values: string[] } }, v) => {
+		(acc: { [key: string]: { key: string; label: string; values: string[] } }, v) => {
 			v.attributes.forEach((attr) => {
-				const key = attr.name;
+				const key = attr.key.value;
 				acc[key] = {
-					name: attr.name,
-					values: acc[key]?.values ? [...acc[key].values, attr.value] : [attr.value],
+					key: attr.key.value,
+					label: attr.key.label,
+					values: acc[key]?.values
+						? [...acc[key].values, attr.value.value]
+						: [attr.value.value],
 				};
 			});
 			return acc;
@@ -23,14 +26,17 @@ export const getAttributesWithValues = (product: ProductApiResponse) => {
 
 export const getGroupedAttributes = (variants: VariantApiResponse[]) => {
 	return variants.reduce(
-		(acc: { [key: string]: { name: string; values: string[] } }, v) => {
+		(acc: { [key: string]: { key: string; label: string; values: string[] } }, v) => {
 			v.attributes.forEach((attr) => {
-				const key = attr.name;
+				const key = attr.key.value;
 				acc[key] = {
-					name: attr.name,
+					key: attr.key.value,
+					label: attr.key.label,
 					values: Array.from(
 						new Set(
-							acc[key]?.values ? [...acc[key].values, attr.value] : [attr.value],
+							acc[key]?.values
+								? [...acc[key].values, attr.value.value]
+								: [attr.value.value],
 						),
 					),
 				};
@@ -60,7 +66,7 @@ export const getPossibleVariants = (
 	const [validVariants, indvalid] = partitionArr(variants, (variant) => {
 		return selectedAttributes.every((sa) => {
 			return variant.attributes.some((a: AttributeApiResponse) => {
-				return a.name === sa.key && a.value === sa.value;
+				return a.key.value === sa.key && a.value.value === sa.value;
 			});
 		});
 	});
