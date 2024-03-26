@@ -3,10 +3,12 @@ import ProductSummary from '@/features/singleProduct/components/ProductSummary';
 import ProductGallery from '@/features/singleProduct/components/ProductGallery';
 import ProductContent from '@/features/singleProduct/components/ProductContent';
 import PageContainer from '@/shared/components/layout/PageContainer';
+import { notFound } from 'next/navigation';
 
-const fetchProduct = async (id: string): Promise<ProductApiResponse> => {
+const fetchProduct = async (id: string): Promise<ProductApiResponse | null> => {
 	const res = await fetch(`${process.env.API_URL}/products/${id}`);
-	const product: ProductApiResponse = await res.json();
+	if (!res.ok) return null;
+	const product = await res.json();
 	return product;
 };
 
@@ -19,19 +21,20 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
 	const product = await fetchProduct(params.id);
+	if (!product) return notFound();
 
 	return (
 		<PageContainer>
-			<div className="flex gap-5">
-				<div className="w-1/2">
+			<div className="grid grid-cols-2 gap-5">
+				<div className="col-span-2 lg:col-span-1">
 					<ProductGallery product={product} />
 				</div>
-				<div className="w-1/2">
+				<div className="col-span-2 lg:col-span-1">
 					<ProductSummary product={product} />
 				</div>
-			</div>
-			<div>
-				<ProductContent product={product} />
+				<div className="col-span-2">
+					<ProductContent product={product} />
+				</div>
 			</div>
 		</PageContainer>
 	);

@@ -23,13 +23,17 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 					/>
 				</CardContent>
 				<CardFooter>
-					<div className="mx-auto text-center">
-						<CardTitle className="text-md mb-2 hover:text-accent">
+					<div className="mx-auto w-full text-center">
+						<CardTitle className="mb-2 text-sm hover:text-accent sm:text-base">
 							{product.name}
 						</CardTitle>
-						<div className="text-md mb-2 font-bold text-accent">Цену уточняйте</div>
-						<div className="text-md mb-2 font-bold">(за комплект)</div>
-						<Button>Подробнее</Button>
+						<div className="mb-2 text-sm font-bold text-accent sm:text-base">
+							Цену уточняйте
+						</div>
+						<div className="mb-3 text-sm font-bold sm:text-base">(за комплект)</div>
+						<Button className="w-full text-sm sm:text-base" size={'sm'}>
+							Подробнее
+						</Button>
 					</div>
 				</CardFooter>
 			</Card>

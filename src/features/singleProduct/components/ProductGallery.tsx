@@ -56,7 +56,7 @@ export default function ProductGallery({ product }: Props) {
 				>
 					{product.variants.map((v, i) => (
 						<SwiperSlide key={v.id}>
-							<div className="relative flex h-[70vh] items-center justify-center">
+							<div className="relative flex h-[50vh] items-center justify-center md:h-[70vh]">
 								<Image
 									className="object-contain"
 									src={v.imgUrl}
@@ -74,7 +74,13 @@ export default function ProductGallery({ product }: Props) {
 				<Swiper
 					onSwiper={setThumbsSwiper}
 					spaceBetween={10}
-					slidesPerView={6}
+					breakpoints={{
+						640: { slidesPerView: 4 },
+						768: { slidesPerView: 5 },
+						1024: { slidesPerView: 5 },
+						1280: { slidesPerView: 6 },
+					}}
+					slidesPerView={3}
 					modules={[Navigation, Thumbs]}
 					navigation
 					className="w-full"

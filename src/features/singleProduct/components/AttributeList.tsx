@@ -96,12 +96,9 @@ export default function AttributeList({ variants, className, ...rest }: Props) {
 			<ul className={cn(className)}>
 				{Object.values(groupedAttributes).map((a) => {
 					return (
-						<li
-							key={a.key}
-							className="mb-3 flex items-center justify-start gap-5 last:mb-0"
-						>
-							<div className="w-16 text-gray-600">{a.label}</div>
-							<ul className="flex gap-5">
+						<li key={a.key} className="mb-5 last:mb-0">
+							<div className="mb-2 font-bold">{a.label}</div>
+							<ul className="flex flex-wrap gap-2">
 								{a.values.map((value) => {
 									const isPossible = isPossibleToSelectAttribute({
 										key: a.key,
@@ -111,7 +108,7 @@ export default function AttributeList({ variants, className, ...rest }: Props) {
 										<li key={a.key + value}>
 											<button
 												className={cn(
-													'relative overflow-hidden rounded-lg px-4 py-2 text-center shadow-[0_0_0_1px_rgba(0,0,0,.3)]',
+													'relative overflow-hidden rounded-lg px-4 py-2 text-center shadow-[0_0_0_1px_rgba(0,0,0,.15)]',
 													{
 														'shadow-[0_0_0_2px_rgba(0,0,0,.9)]':
 															isAttributeSelectedWithValue({
@@ -145,7 +142,7 @@ export default function AttributeList({ variants, className, ...rest }: Props) {
 			</ul>
 			{selectedAttributes.length > 0 && (
 				<span
-					className="ml-5 mt-2 inline-flex cursor-pointer items-center justify-center gap-1 text-sm text-gray-600 hover:underline"
+					className="mt-3 inline-flex cursor-pointer items-center justify-center gap-1 text-sm text-gray-600 hover:underline"
 					onClick={() => setSelectedAttributes([])}
 				>
 					<Trash width={13} height={13} />

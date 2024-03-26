@@ -7,7 +7,7 @@ export default function PageTitle({ children, className, ...props }: PageTitlePr
 	return (
 		<h1
 			className={cn(
-				'mb-5 scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl',
+				'mb-10 scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl',
 				className,
 			)}
 			{...props}

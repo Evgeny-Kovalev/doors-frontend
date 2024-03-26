@@ -1,7 +1,6 @@
-import PageContainer from '@/shared/components/layout/PageContainer';
 import PageTitle from '@/shared/components/layout/PageTitle';
 import { SHOP_INFO } from '@/shared/constants';
-import { Box } from '@/shared/ui/box';
+import BoxContainer from '@/shared/components/layout/BoxContainer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,8 +10,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
 	return (
-		<PageContainer>
-			<Box className="grid grid-cols-2 gap-5">
+		<BoxContainer>
+			<div className="grid grid-cols-2 gap-5">
 				<div className="col-span-2 lg:col-span-1">
 					<PageTitle>Контактная информация</PageTitle>
 					<ul className="flex flex-col gap-5">
@@ -37,7 +36,7 @@ export default async function Page() {
 						height="400"
 					></iframe>
 				</div>
-			</Box>
-		</PageContainer>
+			</div>
+		</BoxContainer>
 	);
 }

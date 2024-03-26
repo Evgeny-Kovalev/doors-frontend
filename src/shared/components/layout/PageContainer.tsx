@@ -8,7 +8,7 @@ export default function PageContainer({
 	...props
 }: PageContainerProps) {
 	return (
-		<div className={cn('container py-5', className)} {...props}>
+		<div className={cn('container px-2 py-5 sm:px-4', className)} {...props}>
 			{children}
 		</div>
 	);
