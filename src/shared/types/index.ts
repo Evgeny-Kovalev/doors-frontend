@@ -12,6 +12,18 @@ export type AttributeApiResponse = {
 	};
 };
 
+export interface Paginated<T> {
+	data: T[];
+	meta: {
+		page: number;
+		limit: number;
+		itemCount: number;
+		pageCount: number;
+		hasPreviousPage: boolean;
+		hasNextPage: boolean;
+	};
+}
+
 export type VariantApiResponse = {
 	id: number;
 	imgUrl: string;
