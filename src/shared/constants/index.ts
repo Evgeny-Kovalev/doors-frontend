@@ -1,11 +1,15 @@
+import { CategoryType } from '../types';
+
 export const MAIN_CATEGORIES = {
 	interior: {
 		id: 1,
 		label: 'Двери межкомнатные',
+		type: CategoryType.interiorDoors,
 	},
 	exterior: {
 		id: 2,
 		label: 'Двери входные',
+		type: CategoryType.exteriorDoors,
 	},
 };
 

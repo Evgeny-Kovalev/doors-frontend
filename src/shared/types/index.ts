@@ -38,9 +38,17 @@ export type ProductApiResponse = {
 	imgUrl: string;
 	description: string;
 	isVisible: boolean;
+
+	category: CategoryApiResponse;
 	variants: VariantApiResponse[];
 	params: AttributeApiResponse[];
 };
+
+export enum CategoryType {
+	interiorDoors = 'interiorDoors',
+	exteriorDoors = 'exteriorDoors',
+}
+
 export type CategoryApiResponse = {
 	id: number;
 	name: string;
@@ -48,4 +56,6 @@ export type CategoryApiResponse = {
 	description: string;
 	isVisible: boolean;
 	parentCategoryId: number;
+
+	categoryType: CategoryType;
 };

@@ -11,7 +11,7 @@ export default function ProductDescription({ product }: Props) {
 				<CardTitle>Описание</CardTitle>
 			</CardHeader>
 			<CardContent className="px-0">
-				<p>{product.description}</p>
+				<p>{product.category.description}</p>
 			</CardContent>
 		</Card>
 	);
