@@ -27,7 +27,7 @@ export interface Paginated<T> {
 export type VariantApiResponse = {
 	id: number;
 	imgUrl: string;
-	price: number;
+	price?: number;
 	discountPrice?: number;
 	attributes: AttributeApiResponse[];
 };

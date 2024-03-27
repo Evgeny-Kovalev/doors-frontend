@@ -1,3 +1,5 @@
+import { getPriceLabel } from '@/features/singleProduct/helpers/price';
+import { MAIN_CATEGORIES } from '@/shared/constants';
 import { ProductApiResponse } from '@/shared/types';
 import { Button } from '@/shared/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/shared/ui/card';
@@ -7,7 +9,10 @@ import Image from 'next/image';
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
 	product: ProductApiResponse;
 }
+
 export default function ProductCard({ product, className, ...props }: ProductCardProps) {
+	const priceLabel = getPriceLabel(product);
+
 	return (
 		<>
 			<Card className={cn(className)} {...props}>
@@ -28,9 +33,13 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 							{product.name}
 						</CardTitle>
 						<div className="mb-2 text-sm font-bold text-accent sm:text-base">
-							Цену уточняйте
+							{priceLabel}
 						</div>
-						<div className="mb-3 text-sm font-bold sm:text-base">(за комплект)</div>
+						{product.category.categoryType === MAIN_CATEGORIES.interior.type && (
+							<div className="mb-3 text-sm font-bold sm:text-base">
+								(за комплект)
+							</div>
+						)}
 						<Button className="w-full text-sm sm:text-base" size={'sm'}>
 							Подробнее
 						</Button>

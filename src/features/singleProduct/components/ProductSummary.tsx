@@ -1,9 +1,13 @@
+'use client';
+
 import { ProductApiResponse } from '@/shared/types';
 import AttributeList from '@/features/singleProduct/components/AttributeList';
 import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
 import { MAIN_CATEGORIES } from '@/shared/constants';
 import { cn } from '@/shared/ui/utils';
 import { PriceDetails } from './PriceDetails';
+import { useProductStore } from '../store';
+import { getPriceLabel, getPriceLabelByVariant } from '../helpers/price';
 
 type Props = {
 	product: ProductApiResponse;
@@ -11,7 +15,13 @@ type Props = {
 export default function ProductSummary({ product }: Props) {
 	const isInteriorType = product.category.categoryType === MAIN_CATEGORIES.interior.type;
 
-	const priceLabel = isInteriorType ? `Цена за\xa0комплект` : 'Цена';
+	const priceDescription = isInteriorType ? `Цена за\xa0комплект` : 'Цена';
+
+	const { activeVariant } = useProductStore();
+
+	const priceLabel = activeVariant
+		? getPriceLabelByVariant(activeVariant)
+		: getPriceLabel(product);
 
 	return (
 		<Card>
@@ -26,8 +36,8 @@ export default function ProductSummary({ product }: Props) {
 					})}
 				>
 					<div className="flex items-end">
-						<div className="mr-3 text-foreground">{priceLabel}:</div>
-						<div className="text-3xl font-bold leading-none">352 руб</div>
+						<div className="mr-3 text-foreground">{priceDescription}:</div>
+						<div className="text-3xl font-bold leading-none">{priceLabel}</div>
 					</div>
 					{isInteriorType && <PriceDetails />}
 				</div>
