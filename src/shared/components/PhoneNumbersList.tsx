@@ -10,7 +10,7 @@ export default function PhoneNumbersList({ className }: PhoneNumbersListProps) {
 			{SHOP_INFO.phones.map((phone) => (
 				<li key={phone.label} className="mb-1 flex items-center last:mb-0">
 					<Phone height={15} width={15} className="mr-2 self-center " />
-					<a className="hover:text-accent" href={'tel:' + phone.tel}>
+					<a className="hover:text-primary-accent" href={'tel:' + phone.tel}>
 						{phone.label}
 					</a>
 				</li>

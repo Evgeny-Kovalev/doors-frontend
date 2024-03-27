@@ -36,7 +36,10 @@ export default function Footer() {
 						<ul className="ml-4 list-disc">
 							{Object.values(MAIN_CATEGORIES).map(({ id, label }) => (
 								<li className="mb-2 last:mb-0" key={id}>
-									<Link className="hover:text-accent" href={`/categories/${id}`}>
+									<Link
+										className="hover:text-primary-accent"
+										href={`/categories/${id}`}
+									>
 										{label}
 									</Link>
 								</li>

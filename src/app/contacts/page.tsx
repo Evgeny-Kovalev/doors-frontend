@@ -21,7 +21,10 @@ export default async function Page() {
 						{SHOP_INFO.phones.map((phone) => (
 							<li key={phone.label}>
 								<b>Тел:</b>{' '}
-								<a href={'tel:' + phone.tel} className="hover:text-accent">
+								<a
+									href={'tel:' + phone.tel}
+									className="hover:text-primary-accent"
+								>
 									{phone.label}
 								</a>
 							</li>

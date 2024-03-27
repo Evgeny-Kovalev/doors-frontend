@@ -27,7 +27,8 @@ export const MenuItem = ({
 							depthLevel === 1,
 					},
 					{
-						'py-3 pl-5 pr-2 hover:bg-accent hover:text-white': depthLevel > 1,
+						'hover:bg-primary-accent py-3 pl-5 pr-2 hover:text-white':
+							depthLevel > 1,
 					},
 				)}
 				href={item.link}

@@ -23,7 +23,7 @@ export default function CategoryItem({ category }: CategoryItemProps) {
 					/>
 				</CardHeader>
 				<CardFooter className="p-2 !pt-0 sm:p-3 md:p-4 lg:p-6">
-					<CardTitle className="mx-auto text-center text-lg transition-colors hover:text-accent sm:text-xl md:text-2xl">
+					<CardTitle className="hover:text-primary-accent mx-auto text-center text-lg transition-colors sm:text-xl md:text-2xl">
 						{category.name}
 					</CardTitle>
 				</CardFooter>

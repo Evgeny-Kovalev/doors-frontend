@@ -29,10 +29,10 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 				</CardContent>
 				<CardFooter>
 					<div className="mx-auto w-full text-center">
-						<CardTitle className="mb-2 text-sm hover:text-accent sm:text-base">
+						<CardTitle className="mb-2 text-sm hover:text-primary-accent sm:text-base">
 							{product.name}
 						</CardTitle>
-						<div className="mb-2 text-sm font-bold text-accent sm:text-base">
+						<div className="mb-2 text-sm font-bold text-primary-accent sm:text-base">
 							{priceLabel}
 						</div>
 						{product.category.categoryType === MAIN_CATEGORIES.interior.type && (

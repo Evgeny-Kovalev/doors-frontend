@@ -37,7 +37,9 @@ export default function ProductSummary({ product }: Props) {
 				>
 					<div className="flex items-end">
 						<div className="mr-3 text-foreground">{priceDescription}:</div>
-						<div className="text-3xl font-bold leading-none">{priceLabel}</div>
+						<div className="text-3xl font-bold leading-none text-primary-accent">
+							{priceLabel}
+						</div>
 					</div>
 					{isInteriorType && <PriceDetails />}
 				</div>
