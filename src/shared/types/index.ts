@@ -39,7 +39,9 @@ export type ProductApiResponse = {
 	description: string;
 	isVisible: boolean;
 
-	category: CategoryApiResponse;
+	mainCategory: CategoryApiResponse;
+
+	categories: CategoryApiResponse[];
 	variants: VariantApiResponse[];
 	params: AttributeApiResponse[];
 };

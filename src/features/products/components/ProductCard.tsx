@@ -5,6 +5,7 @@ import { Button } from '@/shared/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/shared/ui/card';
 import { cn } from '@/shared/ui/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
 	product: ProductApiResponse;
@@ -14,7 +15,7 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 	const priceLabel = getPriceLabel(product);
 
 	return (
-		<>
+		<Link href={'/products/' + product.id}>
 			<Card className={cn(className)} {...props}>
 				<CardContent className="relative px-0 pb-3">
 					<Image
@@ -35,7 +36,8 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 						<div className="mb-2 text-sm font-bold text-primary-accent sm:text-base">
 							{priceLabel}
 						</div>
-						{product.category.categoryType === MAIN_CATEGORIES.interior.type && (
+						{product.mainCategory.categoryType ===
+							MAIN_CATEGORIES.interior.type && (
 							<div className="mb-3 text-sm font-bold sm:text-base">
 								(за комплект)
 							</div>
@@ -46,6 +48,6 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 					</div>
 				</CardFooter>
 			</Card>
-		</>
+		</Link>
 	);
 }

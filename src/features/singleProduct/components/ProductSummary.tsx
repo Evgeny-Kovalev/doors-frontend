@@ -13,7 +13,8 @@ type Props = {
 	product: ProductApiResponse;
 };
 export default function ProductSummary({ product }: Props) {
-	const isInteriorType = product.category.categoryType === MAIN_CATEGORIES.interior.type;
+	const isInteriorType =
+		product.mainCategory.categoryType === MAIN_CATEGORIES.interior.type;
 
 	const priceDescription = isInteriorType ? `Цена за\xa0комплект` : 'Цена';
 
@@ -45,7 +46,7 @@ export default function ProductSummary({ product }: Props) {
 				</div>
 			</CardContent>
 			<CardFooter>
-				Категории: ProfilDoors серия U Модерн, Двери межкомнатные, Экошпон
+				Категории: {product.categories.map((cat) => cat.name).join(', ')}
 			</CardFooter>
 		</Card>
 	);

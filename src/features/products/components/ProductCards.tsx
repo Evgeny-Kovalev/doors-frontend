@@ -1,6 +1,5 @@
 import { ProductApiResponse } from '@/shared/types';
 import ProductCard from './ProductCard';
-import Link from 'next/link';
 
 interface ProductListProps {
 	products: ProductApiResponse[];
@@ -15,9 +14,7 @@ export default function ProductCards({ products }: ProductListProps) {
 						key={product.id}
 						className="transition-transform duration-500 hover:-translate-y-2"
 					>
-						<Link href={'/products/' + product.id}>
-							<ProductCard className="hover:shadow-md" product={product} />
-						</Link>
+						<ProductCard className="hover:shadow-md" product={product} />
 					</li>
 				);
 			})}

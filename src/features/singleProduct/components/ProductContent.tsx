@@ -1,8 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
-import ProductDescription from './ProductDescription';
-import ProductDetails from './ProductDetails';
 import { ProductApiResponse } from '@/shared/types';
-import { Card, CardContent } from '@/shared/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
+import ProductParamsTable from './ProductParamsTable';
 
 interface Props {
 	product: ProductApiResponse;
@@ -10,21 +9,35 @@ interface Props {
 
 export default function ProductContent({ product }: Props) {
 	return (
-		<Card>
-			<CardContent className="pt-6">
-				<Tabs defaultValue="description">
-					<TabsList>
-						<TabsTrigger value="description">Описание</TabsTrigger>
-						<TabsTrigger value="details">Характеристики</TabsTrigger>
-					</TabsList>
-					<TabsContent value="description">
-						<ProductDescription product={product} />
-					</TabsContent>
-					<TabsContent value="details">
-						<ProductDetails product={product} />
-					</TabsContent>
-				</Tabs>
-			</CardContent>
-		</Card>
+		<Tabs defaultValue="description">
+			<TabsList>
+				<TabsTrigger value="description">Описание</TabsTrigger>
+				<TabsTrigger value="details">Характеристики</TabsTrigger>
+			</TabsList>
+			<TabsContent value="description">
+				<Card>
+					<CardHeader className="px-7">
+						<CardTitle>Описание</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<p className="whitespace-pre-line">
+							{product.mainCategory.description}
+						</p>
+					</CardContent>
+				</Card>
+			</TabsContent>
+			<TabsContent value="details">
+				<Card>
+					<CardHeader className="px-7">
+						<CardTitle>Характеристики</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<div className="rounded-lg border xl:w-2/3">
+							<ProductParamsTable params={product.params} />
+						</div>
+					</CardContent>
+				</Card>
+			</TabsContent>
+		</Tabs>
 	);
 }

@@ -22,7 +22,7 @@ const fetchProducts = async (
 ): Promise<Paginated<ProductApiResponse> | null> => {
 	const params = new URLSearchParams();
 
-	params.set('categoryId', categoryId.toString());
+	params.set('categoryIds', categoryId.toString());
 	page && params.set('page', page.toString());
 	limit && params.set('limit', limit.toString());
 
@@ -66,18 +66,20 @@ export default async function Page({ params, searchParams }: PageProps) {
 				</>
 			)}
 			{products.length > 0 ? (
-				<ProductCards products={products} />
+				<>
+					<ProductCards products={products} />
+					<PaginationControls
+						limit={limit}
+						currentPage={currentPage}
+						hasNextPage={meta.hasNextPage}
+						hasPrevPage={meta.hasPreviousPage}
+						totalPages={meta.pageCount}
+					/>
+				</>
 			) : (
 				// !TODO
 				<div>There are no products in this category yet</div>
 			)}
-			<PaginationControls
-				limit={limit}
-				currentPage={currentPage}
-				hasNextPage={meta.hasNextPage}
-				hasPrevPage={meta.hasPreviousPage}
-				totalPages={meta.pageCount}
-			/>
 		</BoxContainer>
 	);
 }
