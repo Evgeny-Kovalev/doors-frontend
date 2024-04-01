@@ -61,3 +61,11 @@ export type CategoryApiResponse = {
 
 	categoryType: CategoryType;
 };
+
+export type CollectionApiResponse = {
+	id: number;
+	title: string;
+
+	categories: CategoryApiResponse[];
+	products: ProductApiResponse[];
+};
