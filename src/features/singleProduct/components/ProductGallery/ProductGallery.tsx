@@ -3,7 +3,7 @@
 import { ProductApiResponse } from '@/shared/types';
 import { Card, CardContent, CardFooter } from '@/shared/ui/card';
 import Image from 'next/image';
-import { useProductStore } from '../store';
+import { useProductStore } from '../../store';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react';
 import { Navigation, Thumbs } from 'swiper/modules';
@@ -12,6 +12,7 @@ import { cn } from '@/shared/ui/utils';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+import { ProductGallerySkeleton } from './ProductGallerySkeleton';
 
 type Props = {
 	product: ProductApiResponse;
@@ -38,8 +39,7 @@ export default function ProductGallery({ product }: Props) {
 
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
-	//TODO: create skeleton
-	if (!isLoaded) return <div>LOading...</div>;
+	if (!isLoaded) return <ProductGallerySkeleton />;
 
 	return (
 		<Card className="flex flex-col pt-6">

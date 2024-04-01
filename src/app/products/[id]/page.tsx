@@ -1,6 +1,6 @@
 import { ProductApiResponse } from '@/shared/types';
 import ProductSummary from '@/features/singleProduct/components/ProductSummary';
-import ProductGallery from '@/features/singleProduct/components/ProductGallery';
+import ProductGallery from '@/features/singleProduct/components/ProductGallery/ProductGallery';
 import ProductContent from '@/features/singleProduct/components/ProductContent';
 import PageContainer from '@/shared/components/layout/PageContainer';
 import { notFound } from 'next/navigation';
@@ -16,7 +16,6 @@ type PageProps = {
 	params: {
 		id: string;
 	};
-	// searchParams?: any;
 };
 
 export default async function Page({ params }: PageProps) {
