@@ -24,11 +24,12 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={roboto.className}>
 				<Header />
-				<div className="min-h-96 bg-gray-100 pb-14">{children}</div>
+				<div className="min-h-96 bg-muted/40 pb-14">{children}</div>
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
 				<ScrollToTopButton />
+				<div id="portal" />
 			</body>
 		</html>
 	);
