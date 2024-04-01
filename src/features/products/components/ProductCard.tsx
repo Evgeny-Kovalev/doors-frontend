@@ -22,9 +22,11 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 						src={product.imgUrl}
 						className="h-auto w-full"
 						sizes="100vw"
-						width={0}
-						height={0}
+						width={600}
+						height={1200}
 						alt="Product image"
+						placeholder="blur"
+						blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
 						priority
 					/>
 				</CardContent>

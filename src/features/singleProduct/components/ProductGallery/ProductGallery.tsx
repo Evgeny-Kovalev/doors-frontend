@@ -64,6 +64,8 @@ export default function ProductGallery({ product }: Props) {
 									fill
 									priority
 									alt="Product image"
+									placeholder="blur"
+									blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
 								/>
 							</div>
 						</SwiperSlide>

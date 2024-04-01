@@ -16,14 +16,14 @@ export default function CategoryItem({ category }: CategoryItemProps) {
 						className="h-auto w-full duration-300 hover:-translate-y-1"
 						src={category.imgUrl}
 						sizes="400px"
-						width={0}
-						height={0}
+						width={500}
+						height={500}
 						alt="Category image"
 						priority
 					/>
 				</CardHeader>
 				<CardFooter className="p-2 !pt-0 sm:p-3 md:p-4 lg:p-6">
-					<CardTitle className="hover:text-primary-accent mx-auto text-center text-lg transition-colors sm:text-xl md:text-2xl">
+					<CardTitle className="mx-auto text-center text-lg transition-colors hover:text-primary-accent sm:text-xl md:text-2xl">
 						{category.name}
 					</CardTitle>
 				</CardFooter>
