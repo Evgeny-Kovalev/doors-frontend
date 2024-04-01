@@ -13,7 +13,7 @@ export const MenuList = ({
 }) => {
 	const level = depthLevel + 1;
 	return (
-		<ul className={cn('shadow-lg', className)}>
+		<ul className={cn(className)}>
 			{items.map((item) => (
 				<MenuItem key={item.link} item={item} depthLevel={level} />
 			))}

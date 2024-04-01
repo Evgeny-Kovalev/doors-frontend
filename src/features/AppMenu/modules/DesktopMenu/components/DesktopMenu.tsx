@@ -33,7 +33,12 @@ export const DesktopMenu = ({ categories }: DesktopMenuProps) => {
 	];
 
 	return (
-		<nav className={cn(styles.nav, 'hidden bg-primary lg:block')}>
+		<nav
+			className={cn(
+				styles.nav,
+				'sticky top-0 z-20 hidden bg-primary shadow-lg lg:block',
+			)}
+		>
 			<div className="container">
 				<MenuList className="flex gap-5" items={menuItems} />
 			</div>

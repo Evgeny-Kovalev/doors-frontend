@@ -27,7 +27,7 @@ export const MenuItem = ({
 							depthLevel === 1,
 					},
 					{
-						'hover:bg-primary-accent py-3 pl-5 pr-2 hover:text-white':
+						'py-3 pl-5 pr-2 hover:bg-primary-accent hover:text-white':
 							depthLevel > 1,
 					},
 				)}
@@ -42,7 +42,7 @@ export const MenuItem = ({
 				<MenuList
 					className={cn(
 						styles.submenu,
-						'absolute left-full top-0 z-50 hidden w-auto bg-white',
+						'absolute left-full top-0 z-50 hidden w-auto bg-white shadow-lg',
 						{ 'left-0 top-full': depthLevel === 1 },
 					)}
 					items={item.children}
