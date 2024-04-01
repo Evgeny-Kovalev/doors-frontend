@@ -8,6 +8,7 @@ import { cn } from '@/shared/ui/utils';
 import { PriceDetails } from './PriceDetails';
 import { useProductStore } from '../store';
 import { getPriceLabel, getPriceLabelByVariant } from '../helpers/price';
+import Link from 'next/link';
 
 type Props = {
 	product: ProductApiResponse;
@@ -45,8 +46,21 @@ export default function ProductSummary({ product }: Props) {
 					{isInteriorType && <PriceDetails />}
 				</div>
 			</CardContent>
-			<CardFooter>
-				Категории: {product.categories.map((cat) => cat.name).join(', ')}
+			<CardFooter className="whitespace-break-spaces">
+				Категории:{' '}
+				<span className="inline-flex flex-wrap">
+					{product.categories.map((cat, i) => (
+						<span key={cat.id}>
+							<Link
+								className="hover:text-primary-accent"
+								href={`/categories/${cat.id}`}
+							>
+								{cat.name}
+							</Link>
+							{i !== product.categories.length - 1 && <span>, </span>}
+						</span>
+					))}
+				</span>
 			</CardFooter>
 		</Card>
 	);
