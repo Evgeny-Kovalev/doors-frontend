@@ -4,13 +4,7 @@ import ProductGallery from '@/features/singleProduct/components/ProductGallery/P
 import ProductContent from '@/features/singleProduct/components/ProductContent';
 import PageContainer from '@/shared/components/layout/PageContainer';
 import { notFound } from 'next/navigation';
-
-const fetchProduct = async (id: string): Promise<ProductApiResponse | null> => {
-	const res = await fetch(`${process.env.API_URL}/products/${id}`);
-	if (!res.ok) return null;
-	const product = await res.json();
-	return product;
-};
+import { fetchProduct } from '@/shared/api';
 
 type PageProps = {
 	params: {

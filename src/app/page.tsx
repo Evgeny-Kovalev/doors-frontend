@@ -1,17 +1,8 @@
 import { CategoryCard } from '@/features/categories/components/CategoryCard';
 import { ProductCardsSlider } from '@/features/products/components/ProductCardsSlider';
+import { fetchCollection } from '@/shared/api';
 import PageContainer from '@/shared/components/layout/PageContainer';
-import { CollectionApiResponse } from '@/shared/types';
 import MainBanners from '@/widgets/MainBanners';
-
-const fetchCollection = async (
-	collectionId: number,
-): Promise<CollectionApiResponse | null> => {
-	const res = await fetch(`${process.env.API_URL}/collections/${collectionId}`);
-	if (!res.ok) return null;
-	const collection: CollectionApiResponse = await res.json();
-	return collection;
-};
 
 export default async function Home() {
 	const [

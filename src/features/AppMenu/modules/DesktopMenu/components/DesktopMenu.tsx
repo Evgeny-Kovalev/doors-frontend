@@ -4,8 +4,7 @@ import { MenuList } from './MenuList';
 import { CategoryApiResponse } from '@/shared/types';
 
 import styles from './styles.module.css';
-import { TreeNode, arrayToTree } from '@/shared/utils';
-import { treeToMenuItems } from '@/features/AppMenu/helpers';
+import { categoriesToMenuItems } from '@/features/AppMenu/helpers';
 import { IMenuItem } from '@/features/AppMenu/types';
 
 interface DesktopMenuProps {
@@ -13,17 +12,14 @@ interface DesktopMenuProps {
 }
 
 export const DesktopMenu = ({ categories }: DesktopMenuProps) => {
-	const categoriesTree: TreeNode<CategoryApiResponse>[] =
-		arrayToTree<CategoryApiResponse>(categories, null, 'parentCategoryId');
-
-	const categoriesForMenu = categoriesTree
+	const categoriesForMenu = categories
 		.filter((cat) => MAIN_NAV.categoriesIds.includes(cat.id))
 		.sort((a, b) => {
 			return (
 				MAIN_NAV.categoriesIds.indexOf(a.id) - MAIN_NAV.categoriesIds.indexOf(b.id)
 			);
 		});
-	const categoriesMenuItems = treeToMenuItems(categoriesForMenu);
+	const categoriesMenuItems = categoriesToMenuItems(categoriesForMenu);
 
 	const menuItems: IMenuItem[] = [
 		{ label: 'Главная', link: '/' },

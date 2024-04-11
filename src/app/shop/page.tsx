@@ -1,12 +1,6 @@
 import CategoryList from '@/features/categories/components/CategoryList';
+import { fetchCategories } from '@/shared/api';
 import PageContainer from '@/shared/components/layout/PageContainer';
-import { CategoryApiResponse } from '@/shared/types';
-
-const fetchCategories = async (): Promise<CategoryApiResponse[]> => {
-	const res = await fetch(`${process.env.API_URL}/categories`);
-	const categories: CategoryApiResponse[] = await res.json();
-	return categories;
-};
 
 interface PageProps {}
 

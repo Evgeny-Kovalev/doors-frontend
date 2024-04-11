@@ -14,8 +14,7 @@ type Props = {
 	product: ProductApiResponse;
 };
 export default function ProductSummary({ product }: Props) {
-	const isInteriorType =
-		product.mainCategory.categoryType === MAIN_CATEGORIES.interior.type;
+	const isInteriorType = product.category.categoryType === MAIN_CATEGORIES.interior.type;
 
 	const priceDescription = isInteriorType ? `Цена за\xa0комплект` : 'Цена';
 
@@ -34,10 +33,10 @@ export default function ProductSummary({ product }: Props) {
 				<AttributeList variants={product.variants} />
 				<div
 					className={cn('mt-5 flex flex-col gap-5 rounded-lg border p-5', {
-						'w-full md:w-1/2': !isInteriorType,
+						'w-full': !isInteriorType,
 					})}
 				>
-					<div className="flex items-end">
+					<div className="flex items-center sm:items-end">
 						<div className="mr-3 text-foreground">{priceDescription}:</div>
 						<div className="text-3xl font-bold leading-none text-primary-accent">
 							{priceLabel}
@@ -46,22 +45,24 @@ export default function ProductSummary({ product }: Props) {
 					{isInteriorType && <PriceDetails />}
 				</div>
 			</CardContent>
-			<CardFooter className="whitespace-break-spaces">
-				Категории:{' '}
-				<span className="inline-flex flex-wrap">
-					{product.categories.map((cat, i) => (
-						<span key={cat.id}>
-							<Link
-								className="hover:text-primary-accent"
-								href={`/categories/${cat.id}`}
-							>
-								{cat.name}
-							</Link>
-							{i !== product.categories.length - 1 && <span>, </span>}
-						</span>
-					))}
-				</span>
-			</CardFooter>
+			{/* {categories.length > 0 && (
+				<CardFooter className="whitespace-break-spaces">
+					Категории:{' '}
+					<span className="inline-flex flex-wrap">
+						{categories.map((cat, i) => (
+							<span key={cat.id}>
+								<Link
+									className="hover:text-primary-accent"
+									href={`/categories/${cat.id}`}
+								>
+									{cat.name}
+								</Link>
+								{i !== categories.length - 1 && <span>, </span>}
+							</span>
+						))}
+					</span>
+				</CardFooter>
+			)} */}
 		</Card>
 	);
 }

@@ -30,7 +30,7 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 						priority
 					/>
 				</CardContent>
-				<CardFooter>
+				<CardFooter className="p-2 sm:p-2 sm:pt-0">
 					<div className="mx-auto w-full text-center">
 						<CardTitle className="mb-2 text-sm hover:text-primary-accent sm:text-base">
 							{product.name}
@@ -38,8 +38,7 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 						<div className="mb-2 text-sm font-bold text-primary-accent sm:text-base">
 							{priceLabel}
 						</div>
-						{product.mainCategory.categoryType ===
-							MAIN_CATEGORIES.interior.type && (
+						{product.category.categoryType === MAIN_CATEGORIES.interior.type && (
 							<div className="mb-3 text-sm font-bold sm:text-base">
 								(за комплект)
 							</div>

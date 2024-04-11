@@ -20,9 +20,7 @@ export default function ProductContent({ product }: Props) {
 						<CardTitle>Описание</CardTitle>
 					</CardHeader>
 					<CardContent>
-						<p className="whitespace-pre-line">
-							{product.mainCategory.description}
-						</p>
+						<p className="whitespace-pre-line">{product.category.description}</p>
 					</CardContent>
 				</Card>
 			</TabsContent>
