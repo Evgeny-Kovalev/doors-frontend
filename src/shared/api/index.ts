@@ -5,14 +5,18 @@ import {
 	ProductApiResponse,
 } from '../types';
 
-export const fetchCategories = async (): Promise<CategoryApiResponse[]> => {
+export const fetchCategories = async (): Promise<CategoryApiResponse[] | null> => {
 	const res = await fetch(`${process.env.API_URL}/categories`);
+	if (!res.ok) return null;
 	const categories: CategoryApiResponse[] = await res.json();
 	return categories;
 };
 
-export const fetchCategory = async (id: string): Promise<CategoryApiResponse> => {
-	const res = await fetch(`${process.env.API_URL}/categories/${id}`);
+export const fetchCategory = async (
+	slug: string,
+): Promise<CategoryApiResponse | null> => {
+	const res = await fetch(`${process.env.API_URL}/categories/${slug}`);
+	if (!res.ok) return null;
 	const category: CategoryApiResponse = await res.json();
 	return category;
 };
@@ -34,8 +38,8 @@ export const fetchProducts = async (
 	return products;
 };
 
-export const fetchProduct = async (id: string): Promise<ProductApiResponse | null> => {
-	const res = await fetch(`${process.env.API_URL}/products/${id}`);
+export const fetchProduct = async (slug: string): Promise<ProductApiResponse | null> => {
+	const res = await fetch(`${process.env.API_URL}/products/${slug}`);
 	if (!res.ok) return null;
 	const product = await res.json();
 	return product;

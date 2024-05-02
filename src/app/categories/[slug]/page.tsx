@@ -6,17 +6,40 @@ import BoxContainer from '@/shared/components/layout/BoxContainer';
 import PageTitle from '@/shared/components/layout/PageTitle';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
 import { Separator } from '@/shared/ui/separator';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { limitMetadataDescription } from '@/shared/utils';
 
 interface PageProps {
 	params: {
-		id: string;
+		slug: string;
 	};
 	searchParams: { [key: string]: string | string[] | undefined };
 }
 
+export async function generateMetadata({
+	params: { slug },
+}: PageProps): Promise<Metadata | null> {
+	const category = await fetchCategory(slug);
+	if (!category) return null;
+
+	const { description } = category;
+
+	return {
+		title: category.name,
+		description: limitMetadataDescription(description),
+
+		openGraph: {
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category.slug}`,
+			tags: [category.name],
+		},
+	};
+}
+
 export default async function Page({ params, searchParams }: PageProps) {
-	const category = await fetchCategory(params.id);
+	console.log(params.slug, 123);
+
+	const category = await fetchCategory(params.slug);
 
 	if (!category) return notFound();
 

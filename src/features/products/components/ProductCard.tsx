@@ -15,7 +15,7 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 	const priceLabel = getPriceLabel(product);
 
 	return (
-		<Link href={'/products/' + product.id}>
+		<Link href={'/products/' + product.slug}>
 			<Card className={cn(className)} {...props}>
 				<CardContent className="relative px-0 pb-3">
 					<Image

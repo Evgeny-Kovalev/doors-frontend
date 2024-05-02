@@ -10,7 +10,7 @@ interface CategoryCardProps {
 
 export const CategoryCard = ({ category }: CategoryCardProps) => {
 	return (
-		<Link href={`/categories/${category.id}`}>
+		<Link href={`/categories/${category.slug}`}>
 			<Box className="group flex items-center gap-4 transition-transform duration-500 hover:-translate-y-2 hover:shadow-md">
 				<Image
 					className="w-1/3"

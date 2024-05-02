@@ -1,19 +1,41 @@
-import { ProductApiResponse } from '@/shared/types';
 import ProductSummary from '@/features/singleProduct/components/ProductSummary';
 import ProductGallery from '@/features/singleProduct/components/ProductGallery/ProductGallery';
 import ProductContent from '@/features/singleProduct/components/ProductContent';
 import PageContainer from '@/shared/components/layout/PageContainer';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { fetchProduct } from '@/shared/api';
+import { limitMetadataDescription } from '@/shared/utils';
 
 type PageProps = {
 	params: {
-		id: string;
+		slug: string;
 	};
 };
 
+export async function generateMetadata({
+	params: { slug },
+}: PageProps): Promise<Metadata | null> {
+	const product = await fetchProduct(slug);
+	if (!product) return null;
+
+	const description = product.category.description;
+
+	return {
+		title: {
+			absolute: product.name + ' | Двери',
+		},
+		description: limitMetadataDescription(description),
+
+		openGraph: {
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/products/${product.slug}`,
+			tags: [product.name, ...product.params.map((p) => p.key.label)],
+		},
+	};
+}
+
 export default async function Page({ params }: PageProps) {
-	const product = await fetchProduct(params.id);
+	const product = await fetchProduct(params.slug);
 	if (!product) return notFound();
 
 	return (

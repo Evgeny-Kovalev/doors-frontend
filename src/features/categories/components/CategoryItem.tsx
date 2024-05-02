@@ -10,7 +10,7 @@ interface CategoryItemProps {
 export default function CategoryItem({ category }: CategoryItemProps) {
 	return (
 		<Card className="transition-shadow duration-300 hover:shadow-lg">
-			<Link href={`/categories/${category.id}`}>
+			<Link href={`/categories/${category.slug}`}>
 				<CardHeader className="relative p-2 sm:p-3 md:p-4 lg:p-6">
 					<Image
 						className="h-auto w-full duration-300 hover:-translate-y-1"

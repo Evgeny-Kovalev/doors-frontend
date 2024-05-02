@@ -34,6 +34,7 @@ export type VariantApiResponse = {
 
 export type ProductApiResponse = {
 	id: number;
+	slug: string;
 	name: string;
 	imgUrl: string;
 	description: string;
@@ -53,6 +54,7 @@ export enum CategoryType {
 export interface Category {
 	id: number;
 	name: string;
+	slug: string;
 	imgUrl: string;
 	description: string;
 	isVisible: boolean;

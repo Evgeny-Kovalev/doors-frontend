@@ -3,11 +3,13 @@ import { CategoryType } from '../types';
 export const MAIN_CATEGORIES = {
 	interior: {
 		id: 1,
+		slug: 'dveri-mezhkomnatnye',
 		label: 'Двери межкомнатные',
 		type: CategoryType.interiorDoors,
 	},
 	exterior: {
 		id: 2,
+		slug: 'dveri-vhodnye',
 		label: 'Двери входные',
 		type: CategoryType.exteriorDoors,
 	},
@@ -24,15 +26,25 @@ export const SHOP_INFO = {
 export const MAIN_PAGE = {
 	banner: {
 		slides: [
-			{ urlTo: `/categories/${MAIN_CATEGORIES.exterior.id}`, imgName: 'slide-3.jpg' },
-			{ urlTo: `/categories/${MAIN_CATEGORIES.interior.id}`, imgName: 'slide-2.jpg' },
+			{
+				urlTo: `/categories/${MAIN_CATEGORIES.interior.slug}`,
+				imgName: 'banner_large_1.webp',
+			},
+			{
+				urlTo: `/categories/${MAIN_CATEGORIES.exterior.slug}`,
+				imgName: 'banner_large_2.webp',
+			},
+			{
+				urlTo: null,
+				imgName: 'banner_large_3.webp',
+			},
 		],
 		items: [
 			{
-				urlTo: `/categories/${MAIN_CATEGORIES.exterior.id}`,
-				imgName: 'banner-small-1.jpg',
+				urlTo: `/categories/${MAIN_CATEGORIES.exterior.slug}`,
+				imgName: 'banner_small_1.webp',
 			},
-			{ urlTo: null, imgName: 'banner-small-1.jpg' },
+			{ urlTo: null, imgName: 'banner_small_2.webp' },
 		],
 	},
 };
@@ -42,3 +54,4 @@ export const MAIN_NAV = {
 };
 
 export const PRODUCT_PER_PAGE = 20;
+export const DESCRIPTION_MAX_LEN = 200;

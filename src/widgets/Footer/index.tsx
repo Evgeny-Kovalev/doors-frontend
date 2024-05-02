@@ -34,11 +34,11 @@ export default function Footer() {
 					<div className="hidden xl:col-span-1 xl:block">
 						<h5 className="mb-2 text-sm font-bold tracking-wider">Каталог</h5>
 						<ul className="ml-4 list-disc">
-							{Object.values(MAIN_CATEGORIES).map(({ id, label }) => (
-								<li className="mb-2 last:mb-0" key={id}>
+							{Object.values(MAIN_CATEGORIES).map(({ slug, label }) => (
+								<li className="mb-2 last:mb-0" key={slug}>
 									<Link
 										className="hover:text-primary-accent"
-										href={`/categories/${id}`}
+										href={`/categories/${slug}`}
 									>
 										{label}
 									</Link>
