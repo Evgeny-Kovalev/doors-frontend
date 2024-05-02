@@ -8,6 +8,7 @@ import { Menu } from 'lucide-react';
 import CategoryMobileNav from './CategoryMobileNav';
 import { CategoryApiResponse } from '@/shared/types';
 import { categoriesToMenuItems } from '../../../helpers';
+import { IMenuItem } from '@/features/AppMenu/types';
 
 interface MobileMenuProps {
 	categories: CategoryApiResponse[];
@@ -16,7 +17,7 @@ interface MobileMenuProps {
 export default function MobileMenu({ categories }: MobileMenuProps) {
 	const { isMobileMenuOpen } = useMobileMenuStore();
 
-	const menuItems = categoriesToMenuItems(categories);
+	const menuItems: IMenuItem[] = categoriesToMenuItems(categories);
 
 	return (
 		<div

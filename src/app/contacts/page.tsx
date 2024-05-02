@@ -4,8 +4,10 @@ import BoxContainer from '@/shared/components/layout/BoxContainer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Contacts',
-	description: 'Contacts',
+	title: 'Контакты',
+	openGraph: {
+		url: `${process.env.NEXT_PUBLIC_BASE_URL}/contacts`,
+	},
 };
 
 export default async function Page() {
