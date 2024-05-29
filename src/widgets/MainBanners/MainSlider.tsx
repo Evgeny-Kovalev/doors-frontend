@@ -26,14 +26,14 @@ export default function MainSlider({}: MainSliderProps) {
 
 	return (
 		<Slider className='cursor-pointer" h-full w-full' {...settings}>
-			{MAIN_PAGE.banner.slides.slice(0, 8).map((slide) => (
+			{MAIN_PAGE.banner.slides.slice(0, 8).map(({ imgUrl }) => (
 				<Image
-					key={slide.imgName}
+					key={imgUrl}
 					width={1400}
 					height={700}
 					priority
 					className="z-0 h-full w-full object-cover"
-					src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${slide.imgName}`}
+					src={imgUrl}
 					alt="Slider item"
 				/>
 			))}

@@ -12,9 +12,9 @@ export default function MainBanners({ className, ...props }: MainBannersProps) {
 			<div className="relative col-span-12 row-span-2 object-fill lg:col-span-8">
 				<MainSlider />
 			</div>
-			{MAIN_PAGE.banner.items.map(({ imgName, urlTo }) => (
+			{MAIN_PAGE.banner.items.map(({ imgUrl, urlTo }) => (
 				<div
-					key={imgName + urlTo}
+					key={imgUrl}
 					className="relative col-span-12 object-fill sm:col-span-6 lg:col-span-4"
 				>
 					{urlTo ? (
@@ -24,7 +24,7 @@ export default function MainBanners({ className, ...props }: MainBannersProps) {
 								height={500}
 								priority
 								className="h-full w-full"
-								src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${imgName}`}
+								src={imgUrl}
 								alt="Banner item"
 							/>
 						</Link>
@@ -34,7 +34,7 @@ export default function MainBanners({ className, ...props }: MainBannersProps) {
 							height={500}
 							priority
 							className="h-full w-full"
-							src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${imgName}`}
+							src={imgUrl}
 							alt="Banner item"
 						/>
 					)}

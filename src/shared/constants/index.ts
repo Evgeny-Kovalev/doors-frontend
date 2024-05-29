@@ -28,23 +28,26 @@ export const MAIN_PAGE = {
 		slides: [
 			{
 				urlTo: `/categories/${MAIN_CATEGORIES.interior.slug}`,
-				imgName: 'banner_large_1.webp',
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_1.webp`,
 			},
 			{
 				urlTo: `/categories/${MAIN_CATEGORIES.exterior.slug}`,
-				imgName: 'banner_large_2.webp',
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_2.webp`,
 			},
 			{
 				urlTo: null,
-				imgName: 'banner_large_3.webp',
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_3.webp`,
 			},
 		],
 		items: [
 			{
 				urlTo: `/categories/${MAIN_CATEGORIES.exterior.slug}`,
-				imgName: 'banner_small_1.webp',
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_small_1.webp`,
 			},
-			{ urlTo: null, imgName: 'banner_small_2.webp' },
+			{ 
+				urlTo: null,
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_small_2.webp`,
+			},
 		],
 	},
 };
