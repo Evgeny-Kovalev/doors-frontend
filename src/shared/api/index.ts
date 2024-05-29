@@ -22,13 +22,13 @@ export const fetchCategory = async (
 };
 
 export const fetchProducts = async (
-	categoryId: number,
+	categorySlug: string,
 	page?: number,
 	limit?: number,
 ): Promise<Paginated<ProductApiResponse> | null> => {
 	const params = new URLSearchParams();
 
-	params.set('categoryId', categoryId.toString());
+	params.set('categorySlug', categorySlug);
 	page && params.set('page', page.toString());
 	limit && params.set('limit', limit.toString());
 

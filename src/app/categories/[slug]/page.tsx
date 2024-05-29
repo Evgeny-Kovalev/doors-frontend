@@ -37,8 +37,6 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
-	console.log(params.slug, 123);
-
 	const category = await fetchCategory(params.slug);
 
 	if (!category) return notFound();
@@ -46,7 +44,7 @@ export default async function Page({ params, searchParams }: PageProps) {
 	const currentPage = Number(searchParams['page'] ?? '1');
 	const limit = Number(searchParams['limit'] ?? PRODUCT_PER_PAGE);
 
-	const productsRes = await fetchProducts(category.id, currentPage, limit);
+	const productsRes = await fetchProducts(category.slug, currentPage, limit);
 
 	if (!productsRes) return notFound();
 
