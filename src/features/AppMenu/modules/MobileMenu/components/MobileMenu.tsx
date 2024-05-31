@@ -9,6 +9,7 @@ import CategoryMobileNav from './CategoryMobileNav';
 import { CategoryApiResponse } from '@/shared/types';
 import { categoriesToMenuItems } from '../../../helpers';
 import { IMenuItem } from '@/features/AppMenu/types';
+import { useEffect } from 'react';
 
 interface MobileMenuProps {
 	categories: CategoryApiResponse[];
@@ -24,6 +25,12 @@ export default function MobileMenu({ categories }: MobileMenuProps) {
 			link: '/contacts',
 		},
 	];
+
+	useEffect(() => {
+		isMobileMenuOpen
+			? (document.body.style.overflow = 'hidden')
+			: (document.body.style.overflow = 'auto');
+	}, [isMobileMenuOpen]);
 
 	return (
 		<div
