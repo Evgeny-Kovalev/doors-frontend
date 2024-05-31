@@ -17,7 +17,13 @@ interface MobileMenuProps {
 export default function MobileMenu({ categories }: MobileMenuProps) {
 	const { isMobileMenuOpen } = useMobileMenuStore();
 
-	const menuItems: IMenuItem[] = categoriesToMenuItems(categories);
+	const menuItems: IMenuItem[] = [
+		...categoriesToMenuItems(categories),
+		{
+			label: 'Контакты',
+			link: '/contacts',
+		},
+	];
 
 	return (
 		<div
