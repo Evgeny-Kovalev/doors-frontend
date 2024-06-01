@@ -72,7 +72,7 @@ export default async function Page({ params, searchParams }: PageProps) {
 				</>
 			) : (
 				// !TODO
-				<div>There are no products in this category yet</div>
+				<div>Здесь еще нет товаров</div>
 			)}
 		</BoxContainer>
 	);
