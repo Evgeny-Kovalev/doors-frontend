@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import Footer from '@/widgets/Footer';
 import Header from '@/widgets/Header/components/Header';
 import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
+import { openGraph } from './shared-metadata';
 import './globals.css';
 
 const roboto = Roboto({
@@ -30,19 +31,11 @@ export const metadata: Metadata = {
 
 	metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
 	openGraph: {
+		...openGraph,
 		siteName: 'Двери \u2013 Входные и межкомнатные',
 		type: 'website',
 		locale: 'ru_RU',
 		url: process.env.NEXT_PUBLIC_BASE_URL,
-		images: [
-			{
-				url: `/logo_large.webp`,
-				width: 1200,
-				height: 630,
-				alt: 'Двери \u2013 Входные и межкомнатные',
-				type: 'image/webp',
-			},
-		],
 	},
 	twitter: {
 		card: 'summary_large_image',
@@ -80,38 +73,13 @@ export const metadata: Metadata = {
 	// },
 	icons: {
 		icon: [
-			{
-				url: '/favicon.ico',
-				type: 'image/x-icon',
-			},
-			{
-				url: '/favicon-16x16.png',
-				sizes: '16x16',
-				type: 'image/png',
-			},
-			{
-				url: '/favicon-32x32.png',
-				sizes: '32x32',
-				type: 'image/png',
-			},
-			{
-				url: '/android-chrome-192x192.png',
-				sizes: '192x192',
-				type: 'image/png',
-			},
+			{ url: '/favicon.ico', type: 'image/x-icon' },
+			{ url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+			{ url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+			{ url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
 		],
-		shortcut: [
-			{
-				url: '/favicon.ico',
-				type: 'image/x-icon',
-			},
-		],
-		apple: [
-			{
-				url: '/apple-touch-icon.png',
-				type: 'image/png',
-			},
-		],
+		shortcut: [{ url: '/favicon.ico', type: 'image/x-icon' }],
+		apple: [{ url: '/apple-touch-icon.png', type: 'image/png' }],
 	},
 };
 

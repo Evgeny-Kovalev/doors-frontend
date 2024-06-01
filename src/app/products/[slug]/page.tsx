@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { fetchProduct } from '@/shared/api';
 import { limitMetadataDescription } from '@/shared/utils';
+import { openGraph } from '@/app/shared-metadata';
 
 type PageProps = {
 	params: {
@@ -28,6 +29,7 @@ export async function generateMetadata({
 		description: limitMetadataDescription(description),
 
 		openGraph: {
+			...openGraph,
 			url: `${process.env.NEXT_PUBLIC_BASE_URL}/products/${product.slug}`,
 			tags: [product.name, ...product.params.map((p) => p.key.label)],
 		},

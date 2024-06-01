@@ -2,6 +2,16 @@ import CategoryList from '@/features/categories/components/CategoryList';
 import { fetchCategories } from '@/shared/api';
 import PageContainer from '@/shared/components/layout/PageContainer';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+import { openGraph } from '../shared-metadata';
+
+export const metadata: Metadata = {
+	title: 'Контакты',
+	openGraph: {
+		...openGraph,
+		url: `${process.env.NEXT_PUBLIC_BASE_URL}/shop`,
+	},
+};
 
 interface PageProps {}
 

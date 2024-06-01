@@ -9,6 +9,7 @@ import { Separator } from '@/shared/ui/separator';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { limitMetadataDescription } from '@/shared/utils';
+import { openGraph } from '@/app/shared-metadata';
 
 interface PageProps {
 	params: {
@@ -30,6 +31,7 @@ export async function generateMetadata({
 		description: limitMetadataDescription(description),
 
 		openGraph: {
+			...openGraph,
 			url: `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category.slug}`,
 			tags: [category.name],
 		},
