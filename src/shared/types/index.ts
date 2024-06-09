@@ -9,6 +9,7 @@ export type AttributeApiResponse = {
 	value: {
 		id: number;
 		value: string;
+		imgUrl: string | null;
 	};
 };
 

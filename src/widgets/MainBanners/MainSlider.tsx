@@ -15,7 +15,7 @@ export default function MainSlider({}: MainSliderProps) {
 	const settings: Settings = {
 		dots: false,
 		infinite: true,
-		speed: 500,
+		speed: 800,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		autoplay: true,

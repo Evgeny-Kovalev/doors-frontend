@@ -1,149 +1,125 @@
 'use client';
 
-import {
-	getGroupedAttributes,
-	getPossibleVariants,
-} from '@/features/singleProduct/helpers';
 import { VariantApiResponse } from '@/shared/types';
-import { cn } from '@/shared/ui/utils';
-import { Trash } from 'lucide-react';
-import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useProductStore } from '../store';
-import { Attribute } from '../types';
+import { Trash } from 'lucide-react';
+import { cn } from '@/shared/ui/utils';
+import {
+	getParamsObjectFromVariants,
+	filterVariants,
+	getVariantByAttributes,
+} from '../helpers/attributes';
 
-interface Props extends React.HTMLAttributes<HTMLUListElement> {
+interface AttributeListProps {
 	variants: VariantApiResponse[];
 }
 
-//TODO: refactor this code later
-export default function AttributeList({ variants, className, ...rest }: Props) {
-	const groupedAttributes = useMemo(() => getGroupedAttributes(variants), [variants]);
+export default function AttributeList({ variants }: AttributeListProps) {
+	const { setActiveVariant } = useProductStore();
+	const [selectedItems, setSelectedItems] = useState<{ [key: string]: string }>({});
+	const selectedItemsKeys = Object.keys(selectedItems);
 
-	const { selectedAttributes, setSelectedAttributes, activeVariant, setActiveVariant } =
-		useProductStore();
-
-	const [possibleAttributes, setPossibleAttributes] = useState(groupedAttributes);
-
-	const onAttributeClick = useCallback(
-		(data: Attribute) => {
-			const { key, value } = data;
-
-			const attributeIdx = selectedAttributes.findIndex((a) => a.key === key);
-
-			if (attributeIdx >= 0) {
-				const isValueNew = selectedAttributes[attributeIdx].value != value;
-				if (isValueNew) {
-					// remove old attribute and add new
-					setSelectedAttributes([
-						...selectedAttributes.filter((a) => a.key !== key && a.value != value),
-						data,
-					]);
-				} else {
-					// remove attribute
-					setSelectedAttributes(
-						selectedAttributes.filter((a) => a.key !== key && a.value != value),
-					);
-				}
-			} else {
-				// add attribute
-				setSelectedAttributes([...selectedAttributes, data]);
-			}
-		},
-
-		[selectedAttributes, setSelectedAttributes],
+	const paramsObjectDefault = useMemo(
+		() => getParamsObjectFromVariants(variants),
+		[variants],
 	);
 
-	useLayoutEffect(() => {
-		const validVariants = getPossibleVariants(variants, selectedAttributes);
-		const groupedAttributes = getGroupedAttributes(validVariants);
-
-		if (
-			validVariants.length === 1 &&
-			selectedAttributes.length ===
-				Object.keys(getGroupedAttributes(variants)).length /* all attributes */
-		) {
-			setActiveVariant(validVariants[0]);
+	const updateSelectedItems = (key: string, value: string) => {
+		if (selectedItems[key] && selectedItems[key] === value) {
+			setSelectedItems((prev) => {
+				const prevCopy = { ...prev };
+				delete prevCopy[key];
+				return prevCopy;
+			});
 		} else {
-			if (!!activeVariant) setActiveVariant(null);
+			setSelectedItems((prev) => ({
+				...prev,
+				[key]: value,
+			}));
 		}
-		setPossibleAttributes(groupedAttributes);
-	}, [activeVariant, selectedAttributes, setActiveVariant, variants]);
-
-	const isAttributeSelectedWithValue = useCallback(
-		({ key, value }: Attribute) => {
-			const isSelected = selectedAttributes.find(
-				(a) => a.key === key && a.value === value,
-			);
-			return isSelected;
-		},
-		[selectedAttributes],
-	);
-
-	const isAttributeKeySelected = ({ key, value }: Attribute) => {
-		return selectedAttributes.findIndex((a) => a.key === key && a.value !== value) >= 0;
 	};
 
-	const isPossibleToSelectAttribute = ({ key, value }: Attribute) => {
-		if (possibleAttributes[key].values.includes(value)) {
-			return true;
+	const onItemClick = (key: string, value: string) => updateSelectedItems(key, value);
+
+	const paramsObject = useMemo(
+		() => getParamsObjectFromVariants(filterVariants(variants, selectedItems)),
+		[selectedItems, variants],
+	);
+
+	useEffect(() => {
+		if (selectedItemsKeys.length === Object.keys(paramsObjectDefault).length) {
+			const selectedVariant = getVariantByAttributes(variants, selectedItems);
+			selectedVariant && setActiveVariant(selectedVariant);
 		} else {
-			return false;
+			setActiveVariant(null);
 		}
+	}, [
+		paramsObjectDefault,
+		selectedItems,
+		selectedItemsKeys.length,
+		setActiveVariant,
+		variants,
+	]);
+
+	const isPossibleToSelectAttribute = (key: string, value: string) => {
+		return !(
+			paramsObject[key] &&
+			!paramsObject[key].values.some((v) => v.value == value) &&
+			!(
+				selectedItemsKeys.length === 1 &&
+				selectedItems[key] &&
+				selectedItems[key] != value
+			)
+		);
 	};
 
 	return (
 		<>
-			<ul className={cn(className)}>
-				{Object.values(groupedAttributes).map((a) => {
-					return (
-						<li key={a.key} className="mb-5 last:mb-0">
-							<div className="mb-2 font-bold">{a.label}</div>
-							<ul className="flex flex-wrap gap-2">
-								{a.values.map((value) => {
-									const isPossible = isPossibleToSelectAttribute({
-										key: a.key,
-										value,
-									});
+			<ul>
+				{Object.entries(paramsObjectDefault)
+					.sort(([key1], [key2]) => key1.localeCompare(key2))
+					.map(([key, param]) => (
+						<li key={param.key.value} className="mb-5 last:mb-0">
+							<div className="mb-2 font-bold">{param.key.label}:</div>
+							<div className="flex flex-wrap gap-2">
+								{param.values.map(({ imgUrl, value }) => {
+									const isDisabled = !isPossibleToSelectAttribute(key, value);
+
 									return (
-										<li key={a.key + value}>
-											<button
-												className={cn(
-													'relative overflow-hidden rounded-lg px-4 py-2 text-center shadow-[0_0_0_1px_rgba(0,0,0,.15)]',
-													{
-														'shadow-[0_0_0_2px_rgba(0,0,0,.9)]':
-															isAttributeSelectedWithValue({
-																key: a.key,
-																value,
-															}),
-													},
-												)}
-												onClick={() =>
-													onAttributeClick({ key: a.key, value })
-												}
-												disabled={!isPossible}
-											>
-												{isPossible ? (
-													value
-												) : (
-													<>
-														<span className="absolute bottom-0 left-0 right-0 top-1/2 h-[1px] w-full rotate-45 bg-red-600"></span>
-														<span className="absolute bottom-0 left-0 right-0 top-1/2 h-[1px] w-full -rotate-45 bg-red-600"></span>
-														<span className="opacity-25">{value}</span>
-													</>
-												)}
-											</button>
-										</li>
+										<button
+											key={value}
+											className={cn(
+												'relative overflow-hidden rounded-lg px-4 py-2 text-center shadow-[0_0_0_1px_rgba(0,0,0,.15)]',
+												{
+													'shadow-[0_0_0_2px_rgba(0,0,0,.9)]':
+														selectedItems[key] &&
+														selectedItems[key] === value,
+												},
+											)}
+											onClick={() => onItemClick(key, value)}
+											disabled={isDisabled}
+										>
+											{isDisabled ? (
+												<>
+													<span className="absolute bottom-0 left-0 right-0 top-1/2 h-[1px] w-full rotate-45 bg-red-600"></span>
+													<span className="absolute bottom-0 left-0 right-0 top-1/2 h-[1px] w-full -rotate-45 bg-red-600"></span>
+													<span className="opacity-25">{value}</span>
+												</>
+											) : (
+												value
+											)}
+										</button>
 									);
 								})}
-							</ul>
+							</div>
 						</li>
-					);
-				})}
+					))}
 			</ul>
-			{selectedAttributes.length > 0 && (
+			{selectedItemsKeys.length > 0 && (
 				<span
 					className="mt-3 inline-flex cursor-pointer items-center justify-center gap-1 text-sm text-gray-600 hover:underline"
-					onClick={() => setSelectedAttributes([])}
+					onClick={() => setSelectedItems({})}
 				>
 					<Trash width={13} height={13} />
 					Очистить
