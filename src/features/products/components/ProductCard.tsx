@@ -16,7 +16,7 @@ export default function ProductCard({ product, className, ...props }: ProductCar
 
 	return (
 		<Link href={'/products/' + product.slug}>
-			<Card className={cn(className)} {...props}>
+			<Card className={cn('rounded-t-none', className)} {...props}>
 				<CardContent className="relative px-0 pb-3">
 					<Image
 						src={product.imgUrl}

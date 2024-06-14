@@ -6,7 +6,7 @@ import { ButtonNext, ButtonPrev } from './NavButtons';
 import { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import { SliderSkeleton } from './SliderSkeleton';
+import { ProductsCardsSkeleton } from '../ProductsCardsSkeleton';
 import 'swiper/css';
 
 interface ProductCardsSliderProps {
@@ -22,7 +22,7 @@ export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
 
 	const swiperRef = useRef<SwiperClass>();
 
-	if (!isLoaded) return <SliderSkeleton />;
+	if (!isLoaded) return <ProductsCardsSkeleton />;
 
 	return (
 		<div className="relative">

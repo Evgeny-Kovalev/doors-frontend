@@ -21,16 +21,18 @@ export const fetchCategory = async (
 	return category;
 };
 
-export const fetchProducts = async (
-	categorySlug: string,
-	page?: number,
-	limit?: number,
-): Promise<Paginated<ProductApiResponse> | null> => {
+export const fetchProducts = async (args?: {
+	categorySlug?: string;
+	q?: string;
+	page?: number;
+	limit?: number;
+}): Promise<Paginated<ProductApiResponse> | null> => {
 	const params = new URLSearchParams();
 
-	params.set('categorySlug', categorySlug);
-	page && params.set('page', page.toString());
-	limit && params.set('limit', limit.toString());
+	args?.q && params.set('q', args.q);
+	args?.categorySlug && params.set('categorySlug', args.categorySlug);
+	args?.page && params.set('page', args.page.toString());
+	args?.limit && params.set('limit', args.limit.toString());
 
 	const res = await fetch(`${process.env.API_URL}/products?` + params);
 	if (!res.ok) return null;

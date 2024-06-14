@@ -11,6 +11,7 @@ import {
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import { usePagination } from '@/shared/hooks/usePagination';
 import { cn } from '@/shared/ui/utils';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 interface PaginationControlsProps {
 	hasNextPage: boolean;
@@ -36,13 +37,23 @@ export default function PaginationControls({
 		siblings: isSmallDevice ? 1 : isMediumDevice ? 2 : 3,
 	});
 
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const createPageURL = (pageNumber: number) => {
+		const params = new URLSearchParams(searchParams);
+		params.set('page', pageNumber.toString());
+		params.set('limit', limit.toString());
+		return `${pathname}?${params.toString()}`;
+	};
+
 	return (
 		<Pagination className="mt-5">
 			<PaginationContent>
 				<PaginationItem>
 					<PaginationPrevious
 						className={cn({ 'pointer-events-none': !hasPrevPage })}
-						href={`?page=${currentPage - 1}&limit=${limit}`}
+						href={createPageURL(currentPage - 1)}
 					/>
 				</PaginationItem>
 				{pages.map((p, i) => (
@@ -50,7 +61,7 @@ export default function PaginationControls({
 						<PaginationLink
 							className={cn({ 'pointer-events-none': p === currentPage })}
 							isActive={p === currentPage}
-							href={`?page=${p}&limit=${limit}`}
+							href={createPageURL(p)}
 						>
 							{p}
 						</PaginationLink>
@@ -59,7 +70,7 @@ export default function PaginationControls({
 				<PaginationItem>
 					<PaginationNext
 						className={cn({ 'pointer-events-none': !hasNextPage })}
-						href={`?page=${currentPage + 1}&limit=${limit}`}
+						href={createPageURL(currentPage + 1)}
 					/>
 				</PaginationItem>
 			</PaginationContent>

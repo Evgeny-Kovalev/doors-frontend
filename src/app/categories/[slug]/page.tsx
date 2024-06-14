@@ -46,7 +46,11 @@ export default async function Page({ params, searchParams }: PageProps) {
 	const currentPage = Number(searchParams['page'] ?? '1');
 	const limit = Number(searchParams['limit'] ?? PRODUCT_PER_PAGE);
 
-	const productsRes = await fetchProducts(category.slug, currentPage, limit);
+	const productsRes = await fetchProducts({
+		categorySlug: category.slug,
+		page: currentPage,
+		limit,
+	});
 
 	if (!productsRes) return notFound();
 
