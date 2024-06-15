@@ -1,6 +1,7 @@
 import PaginationControls from '@/features/products/components/PaginationControls';
 import ProductCards from '@/features/products/components/ProductCards';
 import { fetchProducts } from '@/shared/api';
+import { AlertDestructive } from '@/shared/components/Alert';
 
 interface ProductSearchResultsProps {
 	q: string;
@@ -15,8 +16,7 @@ export default async function ProductSearchResults({
 }: ProductSearchResultsProps) {
 	const res = await fetchProducts({ q, limit, page: currentPage });
 
-	// !TODO
-	if (!res) return <div>Erorr</div>;
+	if (!res) return <AlertDestructive>Не удалось загрузить товары</AlertDestructive>;
 
 	const { data: products, meta } = res;
 
