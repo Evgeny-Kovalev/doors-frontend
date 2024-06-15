@@ -4,6 +4,8 @@ import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
 import SearchBox from '@/widgets/Header/components/SearchBox';
 import { Clock } from 'lucide-react';
 import { useMobileMenuStore } from '../store';
+import { Suspense } from 'react';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 interface SubHeaderProps {}
 
@@ -26,7 +28,9 @@ export default function SubHeader({}: SubHeaderProps) {
 				</ul>
 				<PhoneNumbersList className="text-nowrap text-sm" />
 			</div>
-			<SearchBox onSearchButtonClick={toggleMobileMenu} className="mb-3" />
+			<Suspense fallback={<Skeleton className="mb-3 h-10" />}>
+				<SearchBox onSearchButtonClick={toggleMobileMenu} className="mb-3" />
+			</Suspense>
 		</div>
 	);
 }

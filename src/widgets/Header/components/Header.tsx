@@ -4,6 +4,8 @@ import SearchBox from './SearchBox';
 import { MobileMenuToggleButton } from '@/features/AppMenu/modules/MobileMenu';
 import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
 import AppMenu from '@/features/AppMenu/AppMenu';
+import { Suspense } from 'react';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 export default function Header() {
 	return (
@@ -11,7 +13,9 @@ export default function Header() {
 			<div className="border-b border-b-gray-200 py-3 lg:border-none">
 				<div className="container flex items-center justify-between gap-3 ">
 					<Logo />
-					<SearchBox className="hidden w-1/3 flex-shrink lg:flex" />
+					<Suspense fallback={<Skeleton className="hidden h-10 w-1/3 lg:block" />}>
+						<SearchBox className="hidden w-1/3 flex-shrink lg:flex" />
+					</Suspense>
 					<ul className="hidden text-sm md:block">
 						<li className="mb-1 flex items-center">
 							<Clock className="mr-3 h-full max-h-4 w-full max-w-4 self-center " />
