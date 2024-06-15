@@ -45,24 +45,15 @@ export default function ProductSummary({ product }: Props) {
 					{isInteriorType && <PriceDetails />}
 				</div>
 			</CardContent>
-			{/* {categories.length > 0 && (
-				<CardFooter className="whitespace-break-spaces">
-					Категории:{' '}
-					<span className="inline-flex flex-wrap">
-						{categories.map((cat, i) => (
-							<span key={cat.id}>
-								<Link
-									className="hover:text-primary-accent"
-									href={`/categories/${cat.id}`}
-								>
-									{cat.name}
-								</Link>
-								{i !== categories.length - 1 && <span>, </span>}
-							</span>
-						))}
-					</span>
-				</CardFooter>
-			)} */}
+			<CardFooter className="whitespace-break-spaces">
+				<span className="font-bold">Категория: </span>
+				<Link
+					className="hover:text-primary-accent"
+					href={`/categories/${product.category.slug}`}
+				>
+					{product.category.name}
+				</Link>
+			</CardFooter>
 		</Card>
 	);
 }
