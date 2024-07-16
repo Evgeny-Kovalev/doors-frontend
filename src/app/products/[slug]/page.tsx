@@ -1,12 +1,12 @@
-import ProductSummary from '@/features/singleProduct/components/ProductSummary';
-import ProductGallery from '@/features/singleProduct/components/ProductGallery/ProductGallery';
-import ProductContent from '@/features/singleProduct/components/ProductContent';
-import PageContainer from '@/shared/components/layout/PageContainer';
-import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import { fetchProduct } from '@/shared/api';
 import { limitMetadataDescription } from '@/shared/utils';
 import { openGraph } from '@/app/shared-metadata';
+import PageContainer from '@/shared/components/layout/PageContainer';
+
+import { ProductGallery, ProductSummary, ProductContent } from '@/widgets/single-product';
 
 type PageProps = {
 	params: {

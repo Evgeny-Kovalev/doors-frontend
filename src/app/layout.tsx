@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 import { Roboto } from 'next/font/google';
-import Footer from '@/widgets/Footer';
-import Header from '@/widgets/Header/components/Header';
-import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
+
 import { openGraph } from './shared-metadata';
+import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
+
+import { Footer } from '@/widgets/Footer';
+import { Header } from '@/widgets/Header';
+
 import './globals.css';
 
 const roboto = Roboto({
@@ -25,7 +28,6 @@ export const metadata: Metadata = {
 		default: 'Двери \u2013 Входные и межкомнатные',
 		template: '%s | Двери \u2013 Входные и межкомнатные',
 	},
-
 	description:
 		'Купить входные и межкомнатные двери в Гомеле. 💰 Выгодные цены. ✅ Доставка по всему Гомелю. 💰 Наличный и резналичный расчет. ✅ Рассрочка. ✅ Широкий ассортимент дверей в каталоге.',
 

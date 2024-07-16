@@ -1,8 +1,9 @@
-import { CategoryCard } from '@/features/categories/components/CategoryCard';
-import { ProductCardsSlider } from '@/features/products/components/ProductCardsSlider';
 import { fetchCollection } from '@/shared/api';
 import PageContainer from '@/shared/components/layout/PageContainer';
-import MainBanners from '@/widgets/MainBanners';
+
+import { ProductCardsSlider } from '@/widgets/products/ProductsSlider';
+import { MainBanners } from '@/widgets/MainBanners';
+import { CategoryCard } from '@/entities/category';
 
 export default async function Home() {
 	const [

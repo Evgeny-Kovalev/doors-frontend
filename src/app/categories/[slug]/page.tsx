@@ -1,15 +1,17 @@
-import CategoryList from '@/features/categories/components/CategoryList';
-import PaginationControls from '@/features/products/components/PaginationControls';
-import ProductCards from '@/features/products/components/ProductCards';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+import { openGraph } from '@/app/shared-metadata';
 import { fetchCategory, fetchProducts } from '@/shared/api';
 import BoxContainer from '@/shared/components/layout/BoxContainer';
 import PageTitle from '@/shared/components/layout/PageTitle';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
 import { Separator } from '@/shared/ui/separator';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { limitMetadataDescription } from '@/shared/utils';
-import { openGraph } from '@/app/shared-metadata';
+
+import { CategoryList } from '@/widgets/categories';
+import { ProductCards } from '@/widgets/products/ProductCards';
+import { PaginationControls } from '@/shared/components/PaginationControls';
 
 interface PageProps {
 	params: {
