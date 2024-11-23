@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Roboto } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import { openGraph } from './shared-metadata';
 import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
@@ -94,6 +95,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ru">
+			<GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />
 			<body className={roboto.className}>
 				<Header />
 				<div className="min-h-[500px] bg-muted/40 pb-14">{children}</div>
