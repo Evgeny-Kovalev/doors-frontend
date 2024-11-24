@@ -11,7 +11,7 @@ export default function NotFound() {
 	return (
 		<div className="min-w-screen flex min-h-screen items-center justify-center">
 			<div className="text-center">
-				<h2>404</h2>
+				<h1>404</h1>
 				<p>Страница не найдена</p>
 				<Link className="text-primary" href="/">
 					На главную
