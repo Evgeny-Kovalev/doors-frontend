@@ -1,7 +1,8 @@
+import { Metadata } from 'next';
+
 import PageTitle from '@/shared/components/layout/PageTitle';
 import { SHOP_INFO } from '@/shared/constants';
 import BoxContainer from '@/shared/components/layout/BoxContainer';
-import { Metadata } from 'next';
 import { openGraph } from '../shared-metadata';
 
 export const metadata: Metadata = {

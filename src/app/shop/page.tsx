@@ -1,9 +1,11 @@
-import CategoryList from '@/features/categories/components/CategoryList';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import { fetchCategories } from '@/shared/api';
 import PageContainer from '@/shared/components/layout/PageContainer';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
 import { openGraph } from '../shared-metadata';
+
+import { CategoryList } from '@/widgets/categories';
 
 export const metadata: Metadata = {
 	title: 'Контакты',

@@ -1,13 +1,23 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
 import BoxContainer from '@/shared/components/layout/BoxContainer';
 import PageTitle from '@/shared/components/layout/PageTitle';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
-import { Suspense } from 'react';
-import ProductSearchResults from './ProductSearchResults';
-import { ProductsCardsSkeleton } from '@/features/products/components/ProductsCardsSkeleton';
+
+import { ProductSearchResults } from '@/widgets/products/ProductSearchResults';
+import { ProductsCardsSkeleton } from '@/widgets/products/ProductCards';
 
 type PageProps = {
 	searchParams: { [key: string]: string | undefined };
+};
+
+export const metadata: Metadata = {
+	robots: {
+		index: false,
+		follow: false,
+	},
 };
 
 export default async function Page({ searchParams }: PageProps) {

@@ -1,11 +1,11 @@
 import PageContainer from '@/shared/components/layout/PageContainer';
-import Logo from '../Header/components/Logo';
+import { Logo } from '@/shared/components/Logo';
 import Link from 'next/link';
 import { MAIN_CATEGORIES, SHOP_INFO } from '@/shared/constants';
 import { Clock, MapPin, Phone } from 'lucide-react';
 import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
 
-export default function Footer() {
+export const Footer = () => {
 	return (
 		<>
 			<div className="container">
@@ -63,4 +63,4 @@ export default function Footer() {
 			</div>
 		</>
 	);
-}
+};
