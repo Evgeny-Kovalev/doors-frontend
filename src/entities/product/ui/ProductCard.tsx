@@ -7,14 +7,14 @@ import { Button } from '@/shared/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/shared/ui/card';
 import { cn } from '@/shared/ui/utils';
 
-import { getPriceLabel } from '../lib';
+import { getPriceText } from '../lib';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
 	product: ProductApiResponse;
 }
 
 export const ProductCard = ({ product, className, ...props }: ProductCardProps) => {
-	const priceLabel = getPriceLabel(product);
+	const priceText = getPriceText(product);
 
 	return (
 		<Link href={'/products/' + product.slug}>
@@ -38,7 +38,7 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 							{product.name}
 						</CardTitle>
 						<div className="mb-2 text-sm font-bold text-primary-accent sm:text-base">
-							{priceLabel}
+							{priceText}
 						</div>
 						{product.category.categoryType === MAIN_CATEGORIES.interior.type && (
 							<div className="mb-3 text-sm font-bold sm:text-base">

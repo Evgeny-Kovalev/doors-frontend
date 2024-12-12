@@ -1,2 +1,2 @@
 export { ProductCard } from './ui/ProductCard';
-export * from './lib';
+export { getPriceText, getPriceTextByVariant } from './lib';
