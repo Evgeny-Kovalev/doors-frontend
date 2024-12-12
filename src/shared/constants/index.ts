@@ -1,17 +1,19 @@
 import { CategoryType } from '../types';
 
-export const MAIN_CATEGORIES = {
+export const MAIN_CATEGORIES: {
+	[key: string]: { id: number; slug: string; label: string; type: CategoryType };
+} = {
 	interior: {
 		id: 1,
 		slug: 'dveri-mezhkomnatnye',
 		label: 'Двери межкомнатные',
-		type: CategoryType.interiorDoors,
+		type: 'interiorDoors',
 	},
 	exterior: {
 		id: 2,
 		slug: 'dveri-vhodnye',
 		label: 'Двери входные',
-		type: CategoryType.exteriorDoors,
+		type: 'exteriorDoors',
 	},
 };
 

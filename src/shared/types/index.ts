@@ -25,6 +25,8 @@ export interface Paginated<T> {
 	};
 }
 
+export type PriceType = 'full' | 'doorLeafOnly';
+
 export type VariantApiResponse = {
 	id: number;
 	imgUrl: string;
@@ -40,6 +42,7 @@ export type ProductApiResponse = {
 	imgUrl: string;
 	description: string;
 	isVisible: boolean;
+	priceType: PriceType;
 
 	category: CategoryApiResponse;
 
@@ -47,10 +50,7 @@ export type ProductApiResponse = {
 	params: AttributeApiResponse[];
 };
 
-export enum CategoryType {
-	interiorDoors = 'interiorDoors',
-	exteriorDoors = 'exteriorDoors',
-}
+export type CategoryType = 'interiorDoors' | 'exteriorDoors';
 
 export interface Category {
 	id: number;

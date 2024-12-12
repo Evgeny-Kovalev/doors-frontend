@@ -14,7 +14,7 @@ const getProductPrice = (product: ProductApiResponse) => {
 	};
 };
 
-export const getPriceLabel = (product: ProductApiResponse) => {
+export const getPriceText = (product: ProductApiResponse) => {
 	const price = getProductPrice(product);
 
 	if (!price) return 'Цену уточняйте';
@@ -26,7 +26,7 @@ export const getPriceLabel = (product: ProductApiResponse) => {
 	return `${min}руб - ${max}руб`;
 };
 
-export const getPriceLabelByVariant = (variant: VariantApiResponse) => {
+export const getPriceTextByVariant = (variant: VariantApiResponse) => {
 	if (!variant.price) return 'Цену уточняйте';
 	return `${variant.price}руб`;
 };
