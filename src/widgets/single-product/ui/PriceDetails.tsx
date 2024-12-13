@@ -22,9 +22,13 @@ const PRICE_DESCRIPTION: {
 		doorOnlySample: 'Цена',
 	},
 	interiorDoors: {
-		full: `Цена за\xa0комплект`,
-		fullSample: `Цена за\xa0комплект`,
-		doorOnlySample: `Цена за{'\xa0'} ${(<b>полотно</b>)}`,
+		full: 'Цена за\xa0комплект',
+		fullSample: 'Цена за\xa0комплект',
+		doorOnlySample: (
+			<>
+				Цена за&nbsp;<b>полотно</b>
+			</>
+		),
 	},
 };
 
