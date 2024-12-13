@@ -21,7 +21,7 @@ export const SearchBox = ({ className, onSearchButtonClick, ...props }: Props) =
 	const updateSearchParams = () => {
 		if (!value) return;
 
-		const params = new URLSearchParams(searchParams);
+		const params = new URLSearchParams(searchParams.toString());
 		params.set('page', '1');
 		params.set('q', value);
 		onSearchButtonClick && onSearchButtonClick();

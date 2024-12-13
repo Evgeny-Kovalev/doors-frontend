@@ -8,7 +8,7 @@ import { openGraph } from '../shared-metadata';
 import { CategoryList } from '@/widgets/categories';
 
 export const metadata: Metadata = {
-	title: 'Контакты',
+	title: 'Каталог',
 	openGraph: {
 		...openGraph,
 		url: `${process.env.NEXT_PUBLIC_BASE_URL}/shop`,
