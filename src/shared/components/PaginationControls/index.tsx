@@ -41,7 +41,7 @@ export const PaginationControls = ({
 	const searchParams = useSearchParams();
 
 	const createPageURL = (pageNumber: number) => {
-		const params = new URLSearchParams(searchParams);
+		const params = new URLSearchParams(searchParams.toString());
 		params.set('page', pageNumber.toString());
 		params.set('limit', limit.toString());
 		return `${pathname}?${params.toString()}`;

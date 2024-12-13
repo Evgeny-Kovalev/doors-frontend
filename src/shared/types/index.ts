@@ -25,7 +25,7 @@ export interface Paginated<T> {
 	};
 }
 
-export type PriceType = 'full' | 'doorLeafOnly';
+export type ProductType = 'full' | 'fullSample' | 'doorOnlySample';
 
 export type VariantApiResponse = {
 	id: number;
@@ -42,7 +42,7 @@ export type ProductApiResponse = {
 	imgUrl: string;
 	description: string;
 	isVisible: boolean;
-	priceType: PriceType;
+	productType: ProductType;
 
 	category: CategoryApiResponse;
 
