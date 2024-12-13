@@ -40,9 +40,11 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 						<div className="mb-2 text-sm font-bold text-primary-accent sm:text-base">
 							{priceText}
 						</div>
-						{product.category.categoryType === MAIN_CATEGORIES.interior.type && (
+						{product.category.categoryType === 'interiorDoors' && (
 							<div className="mb-3 text-sm font-bold sm:text-base">
-								(за комплект)
+								{product.productType === 'doorOnlySample'
+									? 'полотно'
+									: 'за комплект'}
 							</div>
 						)}
 						<Button className="w-full text-sm sm:text-base" size={'sm'}>
