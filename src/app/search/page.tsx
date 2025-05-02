@@ -10,7 +10,7 @@ import { ProductSearchResults } from '@/widgets/products/ProductSearchResults';
 import { ProductsCardsSkeleton } from '@/widgets/products/ProductCards';
 
 type PageProps = {
-	searchParams: { [key: string]: string | undefined };
+	searchParams: Promise<{ [key: string]: string | undefined }>;
 };
 
 export const metadata: Metadata = {
@@ -20,13 +20,14 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function Page({ searchParams }: PageProps) {
-	const currentPage = Number(searchParams['page'] ?? '1');
-	const limit = Number(searchParams['limit'] ?? PRODUCT_PER_PAGE);
+export default async function Page(props: PageProps) {
+    const searchParams = await props.searchParams;
+    const currentPage = Number(searchParams['page'] ?? '1');
+    const limit = Number(searchParams['limit'] ?? PRODUCT_PER_PAGE);
 
-	if (!searchParams['q']) return notFound();
+    if (!searchParams['q']) return notFound();
 
-	return (
+    return (
 		<BoxContainer>
 			<PageTitle>Результаты по запросу: {searchParams['q']}</PageTitle>
 			<Suspense

@@ -9,20 +9,22 @@ import { PRODUCT_PER_PAGE } from '@/shared/constants';
 import { Separator } from '@/shared/ui/separator';
 import { limitMetadataDescription } from '@/shared/utils';
 
+import { PaginationControls } from '@/shared/components/PaginationControls';
 import { CategoryList } from '@/widgets/categories';
 import { ProductCards } from '@/widgets/products/ProductCards';
-import { PaginationControls } from '@/shared/components/PaginationControls';
 
 interface PageProps {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
-	searchParams: { [key: string]: string | string[] | undefined };
+	}>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export async function generateMetadata({
-	params: { slug },
-}: PageProps): Promise<Metadata | null> {
+export async function generateMetadata(props: PageProps): Promise<Metadata | null> {
+	const params = await props.params;
+
+	const { slug } = params;
+
 	const category = await fetchCategory(slug);
 	if (!category) return null;
 
@@ -39,8 +41,17 @@ export async function generateMetadata({
 		},
 	};
 }
+//TODO: add generateStaticParams with children categories
 
-export default async function Page({ params, searchParams }: PageProps) {
+// export async function generateStaticParams() {
+// 	const categories = await fetchCategories();
+// 	if (!categories) return [];
+// 	return categories.map((category) => ({ slug: category.slug }));
+// }
+
+export default async function Page(props: PageProps) {
+	const searchParams = await props.searchParams;
+	const params = await props.params;
 	const category = await fetchCategory(params.slug);
 
 	if (!category) return notFound();

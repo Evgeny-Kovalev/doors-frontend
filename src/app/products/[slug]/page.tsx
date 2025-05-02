@@ -9,14 +9,16 @@ import PageContainer from '@/shared/components/layout/PageContainer';
 import { ProductGallery, ProductSummary, ProductContent } from '@/widgets/single-product';
 
 type PageProps = {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 };
 
-export async function generateMetadata({
-	params: { slug },
-}: PageProps): Promise<Metadata | null> {
+export async function generateMetadata(props: PageProps): Promise<Metadata | null> {
+	const params = await props.params;
+
+	const { slug } = params;
+
 	const product = await fetchProduct(slug);
 	if (!product) return null;
 
@@ -36,7 +38,8 @@ export async function generateMetadata({
 	};
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page(props: PageProps) {
+	const params = await props.params;
 	const product = await fetchProduct(params.slug);
 	if (!product) return notFound();
 
