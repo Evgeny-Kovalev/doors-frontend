@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { fetchProduct } from '@/shared/api';
+import { fetchProduct, fetchProducts } from '@/shared/api';
 import { limitMetadataDescription } from '@/shared/utils';
 import { openGraph } from '@/app/shared-metadata';
 import PageContainer from '@/shared/components/layout/PageContainer';
 
 import { ProductGallery, ProductSummary, ProductContent } from '@/widgets/single-product';
+import { ProductApiResponse } from '@/shared/types';
 
 type PageProps = {
 	params: Promise<{
@@ -36,6 +37,26 @@ export async function generateMetadata(props: PageProps): Promise<Metadata | nul
 			tags: [product.name, ...product.params.map((p) => p.key.label)],
 		},
 	};
+}
+
+export async function generateStaticParams() {
+	let page = 1;
+	let hasNextPage = true;
+	const products: ProductApiResponse[] = [];
+
+	while (hasNextPage) {
+		const pageData = await fetchProducts({ page });
+		if (!pageData) continue;
+		console.log(
+			'page-${page}',
+			pageData.data.map((p) => p.slug),
+		);
+		products.push(...pageData.data);
+		hasNextPage = pageData.meta.hasNextPage;
+		page++;
+	}
+
+	return products.map((product) => ({ slug: product.slug }));
 }
 
 export default async function Page(props: PageProps) {
