@@ -29,6 +29,10 @@ export const MAIN_PAGE = {
 	banner: {
 		slides: [
 			{
+				urlTo: null,
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_4.webp`,
+			},
+			{
 				urlTo: `/categories/${MAIN_CATEGORIES.interior.slug}`,
 				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_1.webp`,
 			},
