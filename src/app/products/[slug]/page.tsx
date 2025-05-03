@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { fetchProduct, fetchProducts } from '@/shared/api';
-import { limitMetadataDescription } from '@/shared/utils';
 import { openGraph } from '@/app/shared-metadata';
+import { fetchProduct, fetchProducts } from '@/shared/api';
 import PageContainer from '@/shared/components/layout/PageContainer';
+import { limitMetadataDescription } from '@/shared/utils';
 
-import { ProductGallery, ProductSummary, ProductContent } from '@/widgets/single-product';
 import { ProductApiResponse } from '@/shared/types';
+import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
 
 type PageProps = {
 	params: Promise<{
@@ -48,7 +48,7 @@ export async function generateStaticParams() {
 		const pageData = await fetchProducts({ page });
 		if (!pageData) continue;
 		console.log(
-			'page-${page}',
+			`page-${page}`,
 			pageData.data.map((p) => p.slug),
 		);
 		products.push(...pageData.data);

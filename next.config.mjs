@@ -8,6 +8,16 @@ const nextConfig = {
 				port: process.env.IMAGES_PORT,
 				pathname: process.env.IMAGES_PATHNAME ?? '',
 			},
+			{
+				protocol: 'https',
+				hostname: '*',
+				pathname: '/**',
+			},
+			{
+				protocol: 'http',
+				hostname: '*',
+				pathname: '/**',
+			},
 		],
 	},
 };

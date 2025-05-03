@@ -1,13 +1,14 @@
 'use client';
 
-import { Suspense } from 'react';
 import { Clock } from 'lucide-react';
+import { Suspense } from 'react';
 
 import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
 import { Skeleton } from '@/shared/ui/skeleton';
 
 import { SearchBox } from '@/features/search';
 
+import { CallBackButton, CallBackDialog } from '@/features/callback';
 import { useMobileMenuStore } from '../../model';
 
 interface SubHeaderProps {}
@@ -16,7 +17,7 @@ export default function SubHeader({}: SubHeaderProps) {
 	const { toggleMobileMenu } = useMobileMenuStore();
 
 	return (
-		<div className="container">
+		<div className="px-4 py-3">
 			<div className="mb-3 flex max-w-full items-center justify-between">
 				<ul className="text-sm md:block">
 					<li className="mb-1 flex items-center">
@@ -34,6 +35,9 @@ export default function SubHeader({}: SubHeaderProps) {
 			<Suspense fallback={<Skeleton className="mb-3 h-10" />}>
 				<SearchBox onSearchButtonClick={toggleMobileMenu} className="mb-3" />
 			</Suspense>
+			<CallBackDialog>
+				<CallBackButton />
+			</CallBackDialog>
 		</div>
 	);
 }

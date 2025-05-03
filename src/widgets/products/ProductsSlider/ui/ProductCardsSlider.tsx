@@ -22,7 +22,7 @@ export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
 		setIsLoaded(true);
 	}, []);
 
-	const swiperRef = useRef<SwiperClass>();
+	const swiperRef = useRef<SwiperClass | null>(null);
 
 	if (!isLoaded) return <ProductsCardsSkeleton />;
 
