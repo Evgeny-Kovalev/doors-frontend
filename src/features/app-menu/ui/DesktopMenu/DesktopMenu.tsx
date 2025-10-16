@@ -23,7 +23,6 @@ export const DesktopMenu = ({ categories }: DesktopMenuProps) => {
 
 	const menuItems: IMenuItem[] = [
 		{ label: 'Главная', link: '/' },
-		{ label: 'Каталог', link: '/shop' },
 		...categoriesMenuItems,
 		{ label: 'Контакты', link: '/contacts' },
 	];
