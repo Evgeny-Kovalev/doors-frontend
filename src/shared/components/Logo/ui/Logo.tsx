@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { LogoIcon } from '@/shared/icons';
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 
 interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {}
 

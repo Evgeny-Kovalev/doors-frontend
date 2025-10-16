@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { Menu } from 'lucide-react';
 
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 import { CategoryApiResponse } from '@/shared/types';
 
 import { useMobileMenuStore } from '../../model';

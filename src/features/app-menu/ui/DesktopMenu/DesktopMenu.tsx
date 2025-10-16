@@ -1,5 +1,5 @@
 import { MAIN_NAV } from '@/shared/constants';
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 import { CategoryApiResponse } from '@/shared/types';
 
 import { MenuList } from './MenuList';

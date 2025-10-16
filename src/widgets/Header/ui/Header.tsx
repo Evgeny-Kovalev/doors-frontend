@@ -4,11 +4,10 @@ import { Suspense } from 'react';
 import { DesktopMenu, MobileMenu, MobileMenuToggleButton } from '@/features/app-menu';
 import { CallBackButton, CallBackDialog } from '@/features/callback';
 import { SearchBox } from '@/features/search';
-import { fetchCategories } from '@/shared/api';
+import { fetchCategories } from '@/entities/category';
 import { Logo } from '@/shared/components/Logo';
 import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
-import { Button } from '@/shared/ui/button';
-import { Skeleton } from '@/shared/ui/skeleton';
+import { Button, Skeleton } from '@/shared/ui';
 
 export const Header = async () => {
 	const categories = await fetchCategories();

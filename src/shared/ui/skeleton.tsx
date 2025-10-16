@@ -1,4 +1,4 @@
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 
 function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
 	return (

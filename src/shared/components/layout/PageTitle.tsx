@@ -1,4 +1,4 @@
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 import React from 'react';
 
 interface PageTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { openGraph } from '@/app/shared-metadata';
-import { fetchProduct, fetchProducts } from '@/shared/api';
+import { fetchProduct, fetchProducts } from '@/entities/product';
 import PageContainer from '@/shared/components/layout/PageContainer';
 import { limitMetadataDescription } from '@/shared/utils';
 

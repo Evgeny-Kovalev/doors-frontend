@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui';
 import {
 	Dialog,
 	DialogContent,
@@ -9,16 +9,14 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@/shared/ui/dialog';
-import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/shared/ui/form';
-import { Input } from '@/shared/ui/input';
+	Input,
+} from '@/shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

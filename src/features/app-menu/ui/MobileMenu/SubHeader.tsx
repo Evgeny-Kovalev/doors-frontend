@@ -4,7 +4,7 @@ import { Clock } from 'lucide-react';
 import { Suspense } from 'react';
 
 import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
-import { Skeleton } from '@/shared/ui/skeleton';
+import { Skeleton } from '@/shared/ui';
 
 import { SearchBox } from '@/features/search';
 

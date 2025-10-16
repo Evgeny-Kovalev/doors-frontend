@@ -2,11 +2,12 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { openGraph } from '@/app/shared-metadata';
-import { fetchCategory, fetchProducts } from '@/shared/api';
+import { fetchCategory } from '@/entities/category';
+import { fetchProducts } from '@/entities/product';
 import BoxContainer from '@/shared/components/layout/BoxContainer';
 import PageTitle from '@/shared/components/layout/PageTitle';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
-import { Separator } from '@/shared/ui/separator';
+import { Separator } from '@/shared/ui';
 import { limitMetadataDescription } from '@/shared/utils';
 
 import { PaginationControls } from '@/shared/components/PaginationControls';

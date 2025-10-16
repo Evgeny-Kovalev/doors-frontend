@@ -1,5 +1,4 @@
-import { Button, type ButtonProps } from '@/shared/ui/button';
-import { cn } from '@/shared/ui/utils';
+import { Button, cn, type ButtonProps } from '@/shared/ui';
 import { Phone } from 'lucide-react';
 
 export const CallBackButton = ({ className, ...props }: ButtonProps) => {

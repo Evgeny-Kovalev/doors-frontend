@@ -1,5 +1,4 @@
-import { Box } from '@/shared/ui/box';
-import { cn } from '@/shared/ui/utils';
+import { Box, cn } from '@/shared/ui';
 
 interface BoxContainerProps extends React.HTMLAttributes<HTMLDivElement> {}
 

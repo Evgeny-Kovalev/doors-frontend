@@ -2,8 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { CategoryApiResponse } from '@/shared/types';
-import { Box } from '@/shared/ui/box';
-import { CardTitle } from '@/shared/ui/card';
+import { Box, CardTitle } from '@/shared/ui';
 
 interface CategoryCardProps {
 	category: CategoryApiResponse;

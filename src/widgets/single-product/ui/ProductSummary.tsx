@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ProductApiResponse } from '@/shared/types';
-import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui';
 import { AttributeList } from './AttributeList';
 import { PriceDetails } from './PriceDetails';
 

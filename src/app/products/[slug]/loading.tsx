@@ -1,5 +1,5 @@
 import PageContainer from '@/shared/components/layout/PageContainer';
-import { Skeleton } from '@/shared/ui/skeleton';
+import { Skeleton } from '@/shared/ui';
 
 export default function Loading() {
 	return (

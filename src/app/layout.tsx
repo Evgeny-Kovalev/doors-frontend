@@ -10,7 +10,7 @@ import { Header } from '@/widgets/Header';
 
 import { CallBackDialog } from '@/features/callback';
 import { Portal } from '@/shared/components/Portal';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui';
 import { Phone } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 

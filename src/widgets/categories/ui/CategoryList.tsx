@@ -1,6 +1,6 @@
 import { CategoryApiResponse } from '@/shared/types';
 import CategoryItem from './CategoryItem';
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 
 interface CategoryListProps extends React.HTMLAttributes<HTMLUListElement> {
 	categories: CategoryApiResponse[];

@@ -2,8 +2,7 @@
 
 import { X, Menu } from 'lucide-react';
 
-import { Button } from '@/shared/ui/button';
-import { cn } from '@/shared/ui/utils';
+import { Button, cn } from '@/shared/ui';
 
 import { useMobileMenuStore } from '../../model';
 

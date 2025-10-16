@@ -1,4 +1,4 @@
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 
 interface PageContainerProps extends React.HTMLAttributes<HTMLDivElement> {}
 

@@ -1,4 +1,4 @@
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 import Image from 'next/image';
 import MainSlider from './MainSlider';
 import { MAIN_PAGE } from '@/shared/constants';

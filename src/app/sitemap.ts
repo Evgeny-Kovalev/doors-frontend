@@ -1,4 +1,4 @@
-import { fetchCategories } from '@/shared/api';
+import { fetchCategories } from '@/entities/category';
 import { MetadataRoute } from 'next';
 import { convertCategoriesToFlattenArray } from '@/shared/utils';
 

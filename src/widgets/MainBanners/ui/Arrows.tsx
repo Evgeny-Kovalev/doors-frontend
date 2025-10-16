@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const ArrowPrev = (props: React.HTMLAttributes<HTMLButtonElement>) => {

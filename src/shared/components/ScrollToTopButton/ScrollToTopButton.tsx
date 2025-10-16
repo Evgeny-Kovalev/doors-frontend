@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ChevronUp } from 'lucide-react';
-import { cn } from '@/shared/ui/utils';
-import { Button } from '@/shared/ui/button';
+import { cn, Button } from '@/shared/ui';
 import { Portal } from '../Portal';
 
 export const ScrollToTopButton = () => {

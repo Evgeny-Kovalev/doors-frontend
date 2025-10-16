@@ -1,4 +1,4 @@
-import { fetchCollection } from '@/shared/api';
+import { fetchCollection } from '@/entities/collection';
 import PageContainer from '@/shared/components/layout/PageContainer';
 
 import { ProductCardsSlider } from '@/widgets/products/ProductsSlider';

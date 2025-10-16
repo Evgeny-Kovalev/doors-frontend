@@ -7,10 +7,10 @@ import {
 	PaginationPrevious,
 	PaginationLink,
 	PaginationNext,
-} from '@/shared/ui/pagination';
+	cn,
+} from '@/shared/ui';
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 import { usePagination } from '@/shared/hooks/usePagination';
-import { cn } from '@/shared/ui/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 interface PaginationControlsProps {

@@ -1,11 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { MAIN_CATEGORIES } from '@/shared/constants';
 import { ProductApiResponse } from '@/shared/types';
-import { Button } from '@/shared/ui/button';
-import { Card, CardContent, CardFooter, CardTitle } from '@/shared/ui/card';
-import { cn } from '@/shared/ui/utils';
+import { Button, cn, Card, CardContent, CardFooter, CardTitle } from '@/shared/ui';
 
 import { getPriceText } from '../lib';
 

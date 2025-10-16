@@ -1,7 +1,7 @@
-import { fetchProducts } from '@/shared/api';
 import { AlertDestructive } from '@/shared/components/Alert';
 import { PaginationControls } from '@/shared/components/PaginationControls';
 
+import { fetchProducts } from '@/entities/product';
 import { ProductCards } from '@/widgets/products/ProductCards';
 
 interface ProductSearchResultsProps {

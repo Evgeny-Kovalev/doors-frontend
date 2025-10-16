@@ -1,4 +1,4 @@
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 import React from 'react';
 
 const Box = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
