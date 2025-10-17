@@ -36,9 +36,9 @@ export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
 				onSwiper={(swiper) => (swiperRef.current = swiper)}
 				breakpoints={{
 					640: { slidesPerView: 3 },
-					1024: { slidesPerView: 4 },
-					1280: { slidesPerView: 5 },
-					1536: { slidesPerView: 6 },
+					768: { slidesPerView: 4 },
+					1024: { slidesPerView: 5 },
+					1280: { slidesPerView: 6 },
 				}}
 				autoplay={{
 					delay: 2000,

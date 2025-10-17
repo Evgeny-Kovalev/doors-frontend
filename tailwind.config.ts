@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 const config = {
 	darkMode: ['class'],
@@ -18,6 +19,14 @@ const config = {
 			// },
 		},
 		extend: {
+			fontFamily: {
+				// sfPro: ['var(--font-sf-pro)', ...defaultTheme.fontFamily.sans, 'sans-serif'],
+				sfProRounded: [
+					'var(--font-sf-pro-rounded)',
+					...defaultTheme.fontFamily.sans,
+					'sans-serif',
+				],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

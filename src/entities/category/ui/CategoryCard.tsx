@@ -11,7 +11,7 @@ interface CategoryCardProps {
 export const CategoryCard = ({ category }: CategoryCardProps) => {
 	return (
 		<Link href={`/categories/${category.slug}`}>
-			<Box className="group flex items-center gap-4 transition-transform duration-500 hover:-translate-y-2 hover:shadow-md">
+			<Box className="group flex min-h-20 items-center gap-4 p-4 transition-transform duration-500 hover:-translate-y-1 hover:shadow-md md:p-3">
 				<Image
 					className="w-1/3"
 					src={category.imgUrl}
@@ -19,7 +19,7 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
 					width={200}
 					height={100}
 				/>
-				<CardTitle className="w-2/3 text-xl transition-colors group-hover:text-primary-accent md:text-2xl">
+				<CardTitle className="w-2/3 text-xl transition-colors group-hover:text-primary-accent">
 					{category.name}
 				</CardTitle>
 			</Box>

@@ -1,7 +1,7 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
 
+import { fontSfProRounded } from './fonts';
 import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
 import { openGraph } from './shared-metadata';
 
@@ -15,11 +15,6 @@ import { Phone } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 
 import './globals.css';
-
-const inter = Inter({
-	subsets: ['latin'],
-	weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-});
 
 export const revalidate = 3600;
 
@@ -102,7 +97,7 @@ export default function RootLayout({
 	return (
 		<html lang="ru">
 			<GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />
-			<body className={inter.className}>
+			<body className={`${fontSfProRounded.variable} font-sfProRounded`}>
 				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
 				<div className="min-h-[500px] bg-muted/40 pb-14">{children}</div>
@@ -112,7 +107,7 @@ export default function RootLayout({
 				<ScrollToTopButton />
 				<Portal>
 					<CallBackDialog>
-						<Button className="fixed bottom-5 left-5 h-12 w-12 rounded-full p-1 md:hidden">
+						<Button className="fixed bottom-5 left-5 z-10 h-12 w-12 rounded-full p-1 md:hidden">
 							<Phone width={20} height={20} color="white" />
 						</Button>
 					</CallBackDialog>

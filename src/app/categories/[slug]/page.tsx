@@ -11,7 +11,7 @@ import { Separator } from '@/shared/ui';
 import { limitMetadataDescription } from '@/shared/utils';
 
 import { PaginationControls } from '@/shared/components/PaginationControls';
-import { CategoryList } from '@/widgets/categories';
+import { CategoryList } from '@/entities/category';
 import { ProductCards } from '@/widgets/products/ProductCards';
 
 interface PageProps {

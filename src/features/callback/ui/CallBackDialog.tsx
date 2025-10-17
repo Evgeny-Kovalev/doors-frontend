@@ -37,6 +37,8 @@ const formSchema = z.object({
 
 export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
 	const form = useForm<z.infer<typeof formSchema>>({
+		mode: 'onSubmit',
+		reValidateMode: 'onSubmit',
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			name: '',
@@ -94,6 +96,10 @@ export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
 									<FormControl>
 										<Input
 											{...field}
+											onChange={(e) => {
+												form.clearErrors('name');
+												field.onChange(e);
+											}}
 											placeholder="Ваше имя"
 											disabled={isLoading}
 										/>
@@ -113,6 +119,10 @@ export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
 									<FormControl>
 										<PatternFormat
 											{...field}
+											onChange={(e) => {
+												form.clearErrors('phone');
+												field.onChange(e);
+											}}
 											format="+375 (##) ###-##-##"
 											mask="_"
 											customInput={Input}

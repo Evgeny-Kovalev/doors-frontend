@@ -21,7 +21,7 @@ export default async function Home() {
 	]);
 
 	return (
-		<PageContainer>
+		<PageContainer className="-mb-14">
 			<section className="mb-10">
 				<MainBanners />
 			</section>
