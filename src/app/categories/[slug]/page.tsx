@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { openGraph } from '@/app/shared-metadata';
-import { fetchCategory } from '@/entities/category';
+import { fetchCategories, fetchCategory } from '@/entities/category';
 import { fetchProducts } from '@/entities/product';
 import BoxContainer from '@/shared/components/layout/BoxContainer';
 import PageTitle from '@/shared/components/layout/PageTitle';
@@ -57,6 +57,10 @@ export default async function Page(props: PageProps) {
 
 	if (!category) return notFound();
 
+	const childCategories = await fetchCategories({
+		parentCategorySlug: category.slug,
+	});
+
 	const currentPage = Number(searchParams['page'] ?? '1');
 	const limit = Number(searchParams['limit'] ?? PRODUCT_PER_PAGE);
 
@@ -73,22 +77,24 @@ export default async function Page(props: PageProps) {
 	return (
 		<BoxContainer>
 			<PageTitle>{category.name}</PageTitle>
-			{category.children.length > 0 && (
+			{childCategories && childCategories.length > 0 && (
 				<>
-					<CategoryList className="mb-5" categories={category.children} />
+					<CategoryList className="mb-5" categories={childCategories} />
 					<Separator className="mb-5" />
 				</>
 			)}
 			{products.length > 0 ? (
 				<>
 					<ProductCards products={products} />
-					<PaginationControls
-						limit={limit}
-						currentPage={currentPage}
-						hasNextPage={meta.hasNextPage}
-						hasPrevPage={meta.hasPreviousPage}
-						totalPages={meta.pageCount}
-					/>
+					{meta.pageCount > 1 && (
+						<PaginationControls
+							limit={limit}
+							currentPage={currentPage}
+							hasNextPage={meta.hasNextPage}
+							hasPrevPage={meta.hasPreviousPage}
+							totalPages={meta.pageCount}
+						/>
+					)}
 				</>
 			) : (
 				// !TODO

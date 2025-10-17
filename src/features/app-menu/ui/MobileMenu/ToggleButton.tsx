@@ -4,7 +4,7 @@ import { X, Menu } from 'lucide-react';
 
 import { Button, cn } from '@/shared/ui';
 
-import { useMobileMenuStore } from '../../model';
+import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
 
 interface ToggleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 

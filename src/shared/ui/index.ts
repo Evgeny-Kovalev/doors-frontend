@@ -1,5 +1,6 @@
 export * from './alert';
 export * from './box';
+export * from './breadcrumbs';
 export * from './button';
 export * from './card';
 export * from './dialog';

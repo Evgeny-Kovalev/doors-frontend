@@ -9,7 +9,7 @@ import { Skeleton } from '@/shared/ui';
 import { SearchBox } from '@/features/search';
 
 import { CallBackButton, CallBackDialog } from '@/features/callback';
-import { useMobileMenuStore } from '../../model';
+import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
 
 interface SubHeaderProps {}
 

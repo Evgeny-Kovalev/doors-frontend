@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MoveLeft, ChevronRight } from 'lucide-react';
 
-import { useMobileMenuStore } from '../../model';
+import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
 import Link from 'next/link';
 import { IMenuItem } from '../../types';
 
@@ -13,7 +13,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 	const { toggleMobileMenu } = useMobileMenuStore();
 
 	const [level, setLevel] = useState(1);
-	const [currnetMenu, setCurrnetMenu] = useState<IMenuItem[][]>([items]);
+	const [currentMenu, setCurrentMenu] = useState<IMenuItem[][]>([items]);
 
 	const [selectedItemPrev, setSelectedItemPrev] = useState<IMenuItem | null>(null);
 	const [selectedItem, setSelectedItem] = useState<IMenuItem | null>(null);
@@ -26,7 +26,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 
 		if (!menu) return;
 		setLevel(level);
-		setCurrnetMenu((l) => {
+		setCurrentMenu((l) => {
 			l[level] = menu;
 			return l;
 		});
@@ -35,7 +35,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 	const backLevel = () => {
 		setSelectedItem(selectedItemPrev);
 		setLevel(level - 1);
-		setCurrnetMenu((l) => {
+		setCurrentMenu((l) => {
 			l[level] = [];
 			return l;
 		});
@@ -59,7 +59,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 					transform: `translateX(calc(-100% * ${level - 1} ) )`,
 				}}
 			>
-				{currnetMenu.map((item, i) => (
+				{currentMenu.map((item, i) => (
 					<ul className="min-w-full" key={i}>
 						{level > 1 && selectedItem && (
 							<li>

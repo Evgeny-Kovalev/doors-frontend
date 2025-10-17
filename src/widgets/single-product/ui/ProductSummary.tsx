@@ -1,14 +1,18 @@
 import Link from 'next/link';
-import { ProductApiResponse } from '@/shared/types';
-import { Card, CardContent, CardFooter, CardHeader } from '@/shared/ui';
+import { CategoryApiResponse, ProductApiResponse } from '@/shared/types';
+import { Card, CardContent, CardFooter, CardHeader, cn } from '@/shared/ui';
 import { AttributeList } from './AttributeList';
 import { PriceDetails } from './PriceDetails';
+import { Fragment } from 'react';
 
 type Props = {
 	product: ProductApiResponse;
+	categories?: CategoryApiResponse[] | null;
 };
 
-export const ProductSummary = ({ product }: Props) => {
+export const ProductSummary = ({ product, categories }: Props) => {
+	const categoriesArray = categories || [product.category];
+
 	return (
 		<Card>
 			<CardHeader>
@@ -19,13 +23,24 @@ export const ProductSummary = ({ product }: Props) => {
 				<PriceDetails product={product} />
 			</CardContent>
 			<CardFooter className="whitespace-break-spaces">
-				<span className="font-bold">Категория: </span>
-				<Link
-					className="hover:text-primary-accent"
-					href={`/categories/${product.category.slug}`}
-				>
-					{product.category.name}
-				</Link>
+				<span className="font-bold">
+					{categoriesArray.length > 1 ? 'Категории: ' : 'Категория: '}
+				</span>
+				{categoriesArray.map((category, index, array) => (
+					<Fragment key={category.id}>
+						<Link
+							key={category.id}
+							className={cn(
+								'hover:text-primary-accent',
+								index === array.length - 1 && array.length > 1 && 'font-bold',
+							)}
+							href={`/categories/${category.slug}`}
+						>
+							{category.name}
+						</Link>
+						{index < array.length - 1 && ', '}
+					</Fragment>
+				))}
 			</CardFooter>
 		</Card>
 	);

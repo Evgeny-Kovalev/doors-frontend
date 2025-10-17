@@ -6,11 +6,11 @@ import { Menu } from 'lucide-react';
 import { cn } from '@/shared/ui';
 import { CategoryApiResponse } from '@/shared/types';
 
-import { useMobileMenuStore } from '../../model';
+import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
 import MobileMenuHeader from './MobileMenuHeader';
 import MobileMenuSubHeader from './SubHeader';
 import CategoryMobileNav from './CategoryMobileNav';
-import { mapCategoriesToMenuItems } from '../../lib';
+import { mapCategoriesToMenuItems } from '../../model';
 import { IMenuItem } from '../../types';
 
 interface MobileMenuProps {
@@ -25,6 +25,7 @@ export const MobileMenu = ({ categories }: MobileMenuProps) => {
 		{
 			label: 'Контакты',
 			link: '/contacts',
+			slug: 'contacts',
 		},
 	];
 
