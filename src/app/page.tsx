@@ -1,7 +1,7 @@
 import { fetchCollection } from '@/entities/collection';
 import { PageContainer } from '@/shared/components';
 
-import { ProductCardsSlider } from '@/widgets/products/ProductsSlider';
+import { ProductCardsSlider } from '@/widgets/products';
 import { MainBanners } from '@/widgets/MainBanners';
 import { CategoryCard } from '@/entities/category';
 

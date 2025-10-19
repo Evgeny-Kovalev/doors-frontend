@@ -1,7 +1,7 @@
 import { AlertDestructive, PaginationControls } from '@/shared/components';
 
 import { fetchProducts } from '@/entities/product';
-import { ProductCards } from '@/widgets/products/ProductCards';
+import { ProductCardsGrid } from '@/widgets/products';
 
 interface ProductSearchResultsProps {
 	q: string;
@@ -24,7 +24,7 @@ export const ProductSearchResults = async ({
 		<>
 			{products.length > 0 ? (
 				<>
-					<ProductCards products={products} />
+					<ProductCardsGrid products={products} />
 					{meta.pageCount > 1 && (
 						<PaginationControls
 							limit={limit}

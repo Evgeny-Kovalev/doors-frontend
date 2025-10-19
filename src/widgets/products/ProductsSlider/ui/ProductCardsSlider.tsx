@@ -8,7 +8,7 @@ import 'swiper/css';
 import { ProductApiResponse } from '@/shared/types';
 
 import { ProductCard } from '@/entities/product';
-import { ProductsCardsSkeleton } from '../../ProductCards/ui/ProductsCardsSkeleton';
+import { ProductCardsSkeleton } from '../../ProductCardsGrid/ui/ProductCardsSkeleton';
 import { ButtonNext, ButtonPrev } from './NavButtons';
 
 interface ProductCardsSliderProps {
@@ -24,7 +24,7 @@ export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
 
 	const swiperRef = useRef<SwiperClass | null>(null);
 
-	if (!isLoaded) return <ProductsCardsSkeleton />;
+	if (!isLoaded) return <ProductCardsSkeleton />;
 
 	return (
 		<div className="relative">

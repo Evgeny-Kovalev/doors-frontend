@@ -5,8 +5,7 @@ import { Metadata } from 'next';
 import { BoxContainer, PageTitle } from '@/shared/components';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
 
-import { ProductSearchResults } from '@/widgets/products/ProductSearchResults';
-import { ProductsCardsSkeleton } from '@/widgets/products/ProductCards';
+import { ProductSearchResults, ProductCardsSkeleton } from '@/widgets/products';
 
 type PageProps = {
 	searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -31,7 +30,7 @@ export default async function Page(props: PageProps) {
 			<PageTitle>Результаты по запросу: {searchParams['q']}</PageTitle>
 			<Suspense
 				key={searchParams['q'] + currentPage}
-				fallback={<ProductsCardsSkeleton />}
+				fallback={<ProductCardsSkeleton />}
 			>
 				<ProductSearchResults
 					q={searchParams['q']}

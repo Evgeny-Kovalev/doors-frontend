@@ -2,13 +2,15 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { openGraph } from '@/app/shared-metadata';
-import { fetchProduct, fetchProducts } from '@/entities/product';
+import { fetchProduct, fetchProducts, fetchRelatedProducts } from '@/entities/product';
 import { PageContainer } from '@/shared/components';
 import { limitMetadataDescription } from '@/shared/utils';
 
 import { ProductApiResponse } from '@/shared/types';
 import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
 import { fetchCategoryHierarchy } from '@/entities/category';
+import { Box } from '@/shared/ui';
+import { ProductCardsGrid } from '@/widgets/products';
 
 type PageProps = {
 	params: Promise<{
@@ -66,6 +68,9 @@ export default async function Page(props: PageProps) {
 	if (!product) return notFound();
 
 	const categories = await fetchCategoryHierarchy(product.category.slug);
+	const relatedProducts = await fetchRelatedProducts({
+		categorySlug: product.category.slug,
+	});
 
 	const breadcrumbsItems = categories && [
 		{
@@ -83,8 +88,8 @@ export default async function Page(props: PageProps) {
 	];
 
 	return (
-		<PageContainer withoutBox breadcrumbsItems={breadcrumbsItems}>
-			<div className="grid grid-cols-2 gap-5">
+		<PageContainer className=" gap-5" withoutBox breadcrumbsItems={breadcrumbsItems}>
+			<div className="mb-5 grid grid-cols-2 gap-5">
 				<div className="col-span-2 lg:col-span-1">
 					<ProductGallery product={product} />
 				</div>
@@ -95,6 +100,12 @@ export default async function Page(props: PageProps) {
 					<ProductContent product={product} />
 				</div>
 			</div>
+			<Box>
+				<h4 className="mb-5 text-2xl font-bold">Вам может понравиться</h4>
+				{relatedProducts && relatedProducts.length > 0 && (
+					<ProductCardsGrid onlyOneRow products={relatedProducts} />
+				)}
+			</Box>
 		</PageContainer>
 	);
 }

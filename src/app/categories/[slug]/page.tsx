@@ -14,7 +14,7 @@ import { Separator } from '@/shared/ui';
 import { limitMetadataDescription } from '@/shared/utils';
 
 import { CategoryList } from '@/entities/category';
-import { ProductCards } from '@/widgets/products/ProductCards';
+import { ProductCardsGrid } from '@/widgets/products';
 
 interface PageProps {
 	params: Promise<{
@@ -99,7 +99,7 @@ export default async function Page(props: PageProps) {
 			)}
 			{products.length > 0 ? (
 				<>
-					<ProductCards products={products} />
+					<ProductCardsGrid products={products} />
 					{meta.pageCount > 1 && (
 						<PaginationControls
 							limit={limit}

@@ -25,3 +25,22 @@ export const fetchProduct = async (slug: string): Promise<ProductApiResponse | n
 	const product = await res.json();
 	return product;
 };
+
+export const fetchRelatedProducts = async ({
+	categorySlug,
+	limit = 6,
+}: {
+	categorySlug: string;
+	limit?: number;
+}): Promise<ProductApiResponse[] | null> => {
+	const queryParams = new URLSearchParams();
+	queryParams.set('categorySlug', categorySlug);
+	queryParams.set('limit', limit.toString());
+
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/products/random?` + queryParams,
+	);
+	if (!res.ok) return null;
+	const products = await res.json();
+	return products;
+};

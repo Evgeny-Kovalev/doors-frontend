@@ -1,0 +1,31 @@
+.oneRowGrid > li {
+	display: none;
+}
+
+.oneRowGrid > li:nth-child(-n + 2) {
+	display: block;
+}
+
+@media (min-width: 640px) {
+	.oneRowGrid > li:nth-child(-n + 3) {
+		display: block;
+	}
+}
+
+@media (min-width: 768px) {
+	.oneRowGrid > li:nth-child(-n + 4) {
+		display: block;
+	}
+}
+
+@media (min-width: 1024px) {
+	.oneRowGrid > li:nth-child(-n + 5) {
+		display: block;
+	}
+}
+
+@media (min-width: 1280px) {
+	.oneRowGrid > li:nth-child(-n + 6) {
+		display: block;
+	}
+}
