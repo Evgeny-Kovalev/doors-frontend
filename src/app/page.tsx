@@ -1,5 +1,5 @@
 import { fetchCollection } from '@/entities/collection';
-import PageContainer from '@/shared/components/layout/PageContainer';
+import { PageContainer } from '@/shared/components';
 
 import { ProductCardsSlider } from '@/widgets/products/ProductsSlider';
 import { MainBanners } from '@/widgets/MainBanners';
@@ -21,7 +21,7 @@ export default async function Home() {
 	]);
 
 	return (
-		<PageContainer className="-mb-14">
+		<PageContainer withoutBox className="-mb-14">
 			<section className="mb-10">
 				<MainBanners />
 			</section>

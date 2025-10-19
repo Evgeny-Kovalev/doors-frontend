@@ -2,14 +2,13 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 
 import { fontSfProRounded } from './fonts';
-import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
 import { openGraph } from './shared-metadata';
 
 import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 
 import { CallBackDialog } from '@/features/callback';
-import { Portal } from '@/shared/components/Portal';
+import { Portal, ScrollToTopButton } from '@/shared/components';
 import { Button } from '@/shared/ui';
 import { Phone } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';

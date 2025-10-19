@@ -2,15 +2,17 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { openGraph } from '@/app/shared-metadata';
-import { fetchCategories, fetchCategory } from '@/entities/category';
+import {
+	fetchCategories,
+	fetchCategory,
+	fetchCategoryHierarchy,
+} from '@/entities/category';
 import { fetchProducts } from '@/entities/product';
-import BoxContainer from '@/shared/components/layout/BoxContainer';
-import PageTitle from '@/shared/components/layout/PageTitle';
+import { PageContainer, PageTitle, PaginationControls } from '@/shared/components';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
 import { Separator } from '@/shared/ui';
 import { limitMetadataDescription } from '@/shared/utils';
 
-import { PaginationControls } from '@/shared/components/PaginationControls';
 import { CategoryList } from '@/entities/category';
 import { ProductCards } from '@/widgets/products/ProductCards';
 
@@ -42,13 +44,12 @@ export async function generateMetadata(props: PageProps): Promise<Metadata | nul
 		},
 	};
 }
-//TODO: add generateStaticParams with children categories
 
-// export async function generateStaticParams() {
-// 	const categories = await fetchCategories();
-// 	if (!categories) return [];
-// 	return categories.map((category) => ({ slug: category.slug }));
-// }
+export async function generateStaticParams() {
+	const categories = await fetchCategories();
+	if (!categories) return [];
+	return categories.map((category) => ({ slug: category.slug }));
+}
 
 export default async function Page(props: PageProps) {
 	const searchParams = await props.searchParams;
@@ -74,8 +75,21 @@ export default async function Page(props: PageProps) {
 
 	const { data: products, meta } = productsRes;
 
+	const categories = await fetchCategoryHierarchy(category.slug);
+
+	const breadcrumbsItems = categories && [
+		{
+			label: 'Главная',
+			href: '/',
+		},
+		...categories.map((category) => ({
+			label: category.name,
+			href: `/categories/${category.slug}`,
+		})),
+	];
+
 	return (
-		<BoxContainer>
+		<PageContainer breadcrumbsItems={breadcrumbsItems}>
 			<PageTitle>{category.name}</PageTitle>
 			{childCategories && childCategories.length > 0 && (
 				<>
@@ -100,6 +114,6 @@ export default async function Page(props: PageProps) {
 				// !TODO
 				<div>Здесь еще нет товаров</div>
 			)}
-		</BoxContainer>
+		</PageContainer>
 	);
 }

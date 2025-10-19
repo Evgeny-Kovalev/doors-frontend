@@ -1,4 +1,4 @@
-import { Logo } from '@/shared/components/Logo';
+import { Logo } from '@/shared/components';
 import { ToggleButton } from './ToggleButton';
 
 interface HeaderProps {}

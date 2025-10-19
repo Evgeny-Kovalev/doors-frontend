@@ -45,7 +45,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 		<>
 			{level > 1 && (
 				<button
-					className="flex w-full items-center border-b-2 border-gray-300 px-4 py-3 "
+					className="flex w-full items-center border-b-2 border-gray-100 px-4 py-3 "
 					onClick={backLevel}
 				>
 					<MoveLeft className="mr-3" />

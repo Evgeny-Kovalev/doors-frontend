@@ -1,11 +1,10 @@
 'use client';
 
-import { Button } from '@/shared/ui';
+import { Button, cn } from '@/shared/ui';
 import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
-	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -24,6 +23,22 @@ import toast from 'react-hot-toast';
 import { PatternFormat } from 'react-number-format';
 import { z } from 'zod';
 import { fetchCallback } from '../api/fetchCallback';
+import { useMediaQuery } from '@/shared/hooks';
+import {
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerFooter,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+	DrawerClose,
+} from '@/shared/ui';
+
+const DATA = {
+	title: 'Заказать звонок',
+	description: 'Оставьте заявку, и мы свяжемся с вами в ближайшее время',
+};
 
 const formSchema = z.object({
 	name: z
@@ -36,6 +51,59 @@ const formSchema = z.object({
 });
 
 export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
+	const isDesktop = useMediaQuery('(min-width: 768px)');
+
+	const [open, setOpen] = useState(false);
+
+	if (isDesktop)
+		return (
+			<Dialog open={open} onOpenChange={setOpen}>
+				<DialogTrigger asChild>
+					<div>{children}</div>
+				</DialogTrigger>
+				<DialogContent
+					onOpenAutoFocus={(e) => e.preventDefault()}
+					className="sm:max-w-[425px]"
+				>
+					<DialogHeader>
+						<DialogTitle className="text-center">Заказать звонок</DialogTitle>
+						<DialogDescription className="text-center">
+							Оставьте заявку, и мы свяжемся с вами в ближайшее время
+						</DialogDescription>
+					</DialogHeader>
+					<CallBackForm isDesktop={isDesktop} />
+				</DialogContent>
+			</Dialog>
+		);
+
+	return (
+		<Drawer repositionInputs={false} open={open} onOpenChange={setOpen}>
+			<DrawerTrigger asChild>
+				<div>{children}</div>
+			</DrawerTrigger>
+			<DrawerContent>
+				<DrawerHeader className="text-left">
+					<DrawerTitle>{DATA.title}</DrawerTitle>
+					<DrawerDescription>{DATA.description}</DrawerDescription>
+				</DrawerHeader>
+				<CallBackForm className="px-4" isDesktop={!!isDesktop} />
+				<DrawerFooter className="pt-2">
+					<DrawerClose asChild>
+						<Button variant="outline">Закрыть</Button>
+					</DrawerClose>
+				</DrawerFooter>
+			</DrawerContent>
+		</Drawer>
+	);
+};
+
+const CallBackForm = ({
+	className,
+	isDesktop,
+}: {
+	className?: string;
+	isDesktop: boolean;
+}) => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		mode: 'onSubmit',
 		reValidateMode: 'onSubmit',
@@ -45,10 +113,7 @@ export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
 			phone: '',
 		},
 	});
-
-	const [open, setOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-
 	async function onSubmit({ name, phone }: z.infer<typeof formSchema>) {
 		const formattedPhone = phone.replace(/ /g, '');
 		setIsLoading(true);
@@ -66,83 +131,73 @@ export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
 			});
 		} finally {
 			setIsLoading(false);
-			setOpen(false);
 		}
 	}
 
 	return (
-		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger asChild>{children}</DialogTrigger>
-			<DialogContent
-				onOpenAutoFocus={(e) => e.preventDefault()}
-				className="sm:max-w-[425px]"
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className={cn('space-y-4', className)}
 			>
-				<DialogHeader>
-					<DialogTitle className="text-center">Заказать звонок</DialogTitle>
-					<DialogDescription className="text-center">
-						Оставьте заявку, и мы свяжемся с вами в ближайшее время
-					</DialogDescription>
-				</DialogHeader>
-				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-						<FormField
-							control={form.control}
-							name="name"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>
-										Имя<span className="text-red-500">*</span>
-									</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											onChange={(e) => {
-												form.clearErrors('name');
-												field.onChange(e);
-											}}
-											placeholder="Ваше имя"
-											disabled={isLoading}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="phone"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>
-										Телефон<span className="text-red-500">*</span>
-									</FormLabel>
-									<FormControl>
-										<PatternFormat
-											{...field}
-											onChange={(e) => {
-												form.clearErrors('phone');
-												field.onChange(e);
-											}}
-											format="+375 (##) ###-##-##"
-											mask="_"
-											customInput={Input}
-											placeholder="+375 (__) ___-__-__"
-											disabled={isLoading}
-											allowEmptyFormatting
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<DialogFooter>
-							<Button type="submit" disabled={isLoading}>
-								{isLoading ? 'Отправка...' : 'Отправить'}
-							</Button>
-						</DialogFooter>
-					</form>
-				</Form>
-			</DialogContent>
-		</Dialog>
+				<FormField
+					control={form.control}
+					name="name"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>
+								Имя<span className="text-red-500">*</span>
+							</FormLabel>
+							<FormControl>
+								<Input
+									{...field}
+									onChange={(e) => {
+										form.clearErrors('name');
+										field.onChange(e);
+									}}
+									placeholder="Ваше имя"
+									disabled={isLoading}
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="phone"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>
+								Телефон<span className="text-red-500">*</span>
+							</FormLabel>
+							<FormControl>
+								<PatternFormat
+									{...field}
+									onChange={(e) => {
+										form.clearErrors('phone');
+										field.onChange(e);
+									}}
+									format="+375 (##) ###-##-##"
+									mask="_"
+									customInput={Input}
+									placeholder="+375 (__) ___-__-__"
+									disabled={isLoading}
+									allowEmptyFormatting
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<Button
+					className={cn('flex justify-self-end', !isDesktop && 'w-full')}
+					type="submit"
+					disabled={isLoading}
+				>
+					{isLoading ? 'Отправка...' : 'Отправить'}
+				</Button>
+			</form>
+		</Form>
 	);
 };

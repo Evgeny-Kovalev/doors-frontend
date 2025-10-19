@@ -3,7 +3,7 @@ import React from 'react';
 
 interface PageTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 
-export default function PageTitle({ children, className, ...props }: PageTitleProps) {
+export function PageTitle({ children, className, ...props }: PageTitleProps) {
 	return (
 		<h1
 			className={cn(

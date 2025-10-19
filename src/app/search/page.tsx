@@ -2,8 +2,7 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
-import BoxContainer from '@/shared/components/layout/BoxContainer';
-import PageTitle from '@/shared/components/layout/PageTitle';
+import { BoxContainer, PageTitle } from '@/shared/components';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
 
 import { ProductSearchResults } from '@/widgets/products/ProductSearchResults';
@@ -21,13 +20,13 @@ export const metadata: Metadata = {
 };
 
 export default async function Page(props: PageProps) {
-    const searchParams = await props.searchParams;
-    const currentPage = Number(searchParams['page'] ?? '1');
-    const limit = Number(searchParams['limit'] ?? PRODUCT_PER_PAGE);
+	const searchParams = await props.searchParams;
+	const currentPage = Number(searchParams['page'] ?? '1');
+	const limit = Number(searchParams['limit'] ?? PRODUCT_PER_PAGE);
 
-    if (!searchParams['q']) return notFound();
+	if (!searchParams['q']) return notFound();
 
-    return (
+	return (
 		<BoxContainer>
 			<PageTitle>Результаты по запросу: {searchParams['q']}</PageTitle>
 			<Suspense

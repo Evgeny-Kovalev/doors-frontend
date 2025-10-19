@@ -3,23 +3,12 @@ import { notFound } from 'next/navigation';
 
 import { openGraph } from '@/app/shared-metadata';
 import { fetchProduct, fetchProducts } from '@/entities/product';
-import PageContainer from '@/shared/components/layout/PageContainer';
+import { PageContainer } from '@/shared/components';
 import { limitMetadataDescription } from '@/shared/utils';
 
 import { ProductApiResponse } from '@/shared/types';
 import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
 import { fetchCategoryHierarchy } from '@/entities/category';
-import {
-	Box,
-	Breadcrumb,
-	BreadcrumbList,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbSeparator,
-	BreadcrumbPage,
-} from '@/shared/ui';
-import Link from 'next/link';
-import { Fragment } from 'react';
 
 type PageProps = {
 	params: Promise<{
@@ -78,38 +67,23 @@ export default async function Page(props: PageProps) {
 
 	const categories = await fetchCategoryHierarchy(product.category.slug);
 
+	const breadcrumbsItems = categories && [
+		{
+			label: 'Главная',
+			href: '/',
+		},
+		...categories.map((category) => ({
+			label: category.name,
+			href: `/categories/${category.slug}`,
+		})),
+		{
+			label: product.name,
+			href: `/products/${product.slug}`,
+		},
+	];
+
 	return (
-		<PageContainer>
-			{categories && (
-				<Box className="mb-3 w-fit px-5 py-2">
-					<Breadcrumb>
-						<BreadcrumbList>
-							<BreadcrumbItem>
-								<BreadcrumbLink asChild>
-									<Link href="/">Главная</Link>
-								</BreadcrumbLink>
-							</BreadcrumbItem>
-							<BreadcrumbSeparator />
-							{categories.map((category, index) => (
-								<Fragment key={category.id}>
-									<BreadcrumbItem>
-										{index === categories.length - 1 ? (
-											<BreadcrumbPage>{category.name}</BreadcrumbPage>
-										) : (
-											<BreadcrumbLink asChild>
-												<Link href={`/categories/${category.slug}`}>
-													{category.name}
-												</Link>
-											</BreadcrumbLink>
-										)}
-									</BreadcrumbItem>
-									{index < categories.length - 1 && <BreadcrumbSeparator />}
-								</Fragment>
-							))}
-						</BreadcrumbList>
-					</Breadcrumb>
-				</Box>
-			)}
+		<PageContainer withoutBox breadcrumbsItems={breadcrumbsItems}>
 			<div className="grid grid-cols-2 gap-5">
 				<div className="col-span-2 lg:col-span-1">
 					<ProductGallery product={product} />

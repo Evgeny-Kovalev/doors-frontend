@@ -1,9 +1,8 @@
 'use client';
 
-import { Clock } from 'lucide-react';
 import { Suspense } from 'react';
 
-import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
+import { PhoneNumbersList, WorkingHoursList } from '@/shared/components';
 import { Skeleton } from '@/shared/ui';
 
 import { SearchBox } from '@/features/search';
@@ -19,17 +18,7 @@ export default function SubHeader({}: SubHeaderProps) {
 	return (
 		<div className="px-4 py-3">
 			<div className="mb-3 flex max-w-full items-center justify-between">
-				<ul className="text-sm md:block">
-					<li className="mb-1 flex items-center">
-						<Clock className="mr-3 h-full max-h-4 w-full max-w-4 self-center " />
-						<span>Вт-Пт: 11:00 - 18:00</span>
-					</li>
-					<li className="flex items-center">
-						<Clock className="mr-3 h-full max-h-4 w-full max-w-4 self-center " />
-						<span>Сб-Вс: 11:00 - 17:00</span>
-					</li>
-					{/* <li className="">Пн: выходной</li> */}
-				</ul>
+				<WorkingHoursList className="text-sm" />
 				<PhoneNumbersList className="text-nowrap text-sm" />
 			</div>
 			<Suspense fallback={<Skeleton className="mb-3 h-10" />}>

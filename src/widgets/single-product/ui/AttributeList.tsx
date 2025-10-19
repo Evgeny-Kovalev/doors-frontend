@@ -77,7 +77,7 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 	};
 
 	return (
-		<>
+		<div>
 			<ul>
 				{Object.entries(paramsObjectDefault)
 					.sort(([key1], [key2]) => key1.localeCompare(key2))
@@ -127,6 +127,6 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 					Очистить
 				</span>
 			)}
-		</>
+		</div>
 	);
 };

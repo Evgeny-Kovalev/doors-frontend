@@ -43,7 +43,7 @@ export const PriceDetails = ({ product }: PriceDetailsProps) => {
 
 	return (
 		<div
-			className={cn('mt-5 flex flex-col gap-5 rounded-lg border p-5', {
+			className={cn('flex flex-col gap-5 rounded-lg border p-5', {
 				'w-full': !isInteriorType,
 			})}
 		>

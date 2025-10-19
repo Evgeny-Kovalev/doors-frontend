@@ -1,15 +1,58 @@
-import { cn } from '@/shared/ui';
+import {
+	Box,
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+	cn,
+} from '@/shared/ui';
+import Link from 'next/link';
 
-interface PageContainerProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface PageContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+	breadcrumbsItems?: { label: string; href: string }[] | null;
+	withoutBox?: boolean;
+}
 
-export default function PageContainer({
+export function PageContainer({
 	className,
+	withoutBox,
 	children,
+	breadcrumbsItems,
 	...props
 }: PageContainerProps) {
 	return (
-		<div className={cn('container px-2 py-5 sm:px-4', className)} {...props}>
-			{children}
-		</div>
+		<>
+			<div className={cn('container p-2 sm:p-4', className)} {...props}>
+				{breadcrumbsItems && (
+					<Box className="mb-3 w-fit px-3 py-2 md:px-5">
+						<Breadcrumb>
+							<BreadcrumbList>
+								{breadcrumbsItems.map((item, index) => (
+									<BreadcrumbItem key={item.label}>
+										{item.href && index !== breadcrumbsItems.length - 1 ? (
+											<BreadcrumbLink asChild>
+												<Link href={item.href}>{item.label}</Link>
+											</BreadcrumbLink>
+										) : (
+											<BreadcrumbPage>{item.label}</BreadcrumbPage>
+										)}
+										{index < breadcrumbsItems.length - 1 && (
+											<BreadcrumbSeparator />
+										)}
+									</BreadcrumbItem>
+								))}
+							</BreadcrumbList>
+						</Breadcrumb>
+					</Box>
+				)}
+				{withoutBox ? (
+					children
+				) : (
+					<Box className="px-3 md:px-4 lg:px-5">{children}</Box>
+				)}
+			</div>
+		</>
 	);
 }
