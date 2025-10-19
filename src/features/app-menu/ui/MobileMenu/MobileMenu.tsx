@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { Menu } from 'lucide-react';
 
-import { cn } from '@/shared/ui';
+import { DialogDescription, DialogTitle, Drawer, DrawerContent } from '@/shared/ui';
 import { CategoryApiResponse } from '@/shared/types';
 
 import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
@@ -18,7 +18,7 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu = ({ categories }: MobileMenuProps) => {
-	const { isMobileMenuOpen } = useMobileMenuStore();
+	const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore();
 
 	const menuItems: IMenuItem[] = [
 		...mapCategoriesToMenuItems(categories),
@@ -36,22 +36,25 @@ export const MobileMenu = ({ categories }: MobileMenuProps) => {
 	}, [isMobileMenuOpen]);
 
 	return (
-		<div
-			className={cn(
-				'fixed -left-full top-0 z-20 h-full w-full overflow-x-hidden bg-white duration-300 lg:hidden',
-				{
-					'visible left-0': isMobileMenuOpen,
-					invisible: !isMobileMenuOpen,
-				},
-			)}
+		<Drawer
+			direction="right"
+			repositionInputs={false}
+			open={isMobileMenuOpen}
+			onOpenChange={toggleMobileMenu}
 		>
-			<MobileMenuHeader />
-			<MobileMenuSubHeader />
-			<div className="container flex max-w-full bg-primary py-3 font-bold text-white">
-				<Menu className="mr-2" />
-				Каталог
-			</div>
-			<CategoryMobileNav items={menuItems} />
-		</div>
+			<DialogTitle></DialogTitle>
+			<DialogDescription></DialogDescription>
+			<DrawerContent className="!w-full border-none">
+				<div className="pb-safe overflow-x-hidden">
+					<MobileMenuHeader />
+					<MobileMenuSubHeader />
+					<div className="container flex max-w-full bg-primary py-3 font-bold text-white">
+						<Menu className="mr-2" />
+						Каталог
+					</div>
+					<CategoryMobileNav items={menuItems} />
+				</div>
+			</DrawerContent>
+		</Drawer>
 	);
 };

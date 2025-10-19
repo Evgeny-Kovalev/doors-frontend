@@ -54,9 +54,9 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 			)}
 			<nav
 				role="navigation"
-				className="flex transition-transform"
+				className="flex transition-transform will-change-transform"
 				style={{
-					transform: `translateX(calc(-100% * ${level - 1} ) )`,
+					transform: `translateX(calc(-100% * ${level - 1}))`,
 				}}
 			>
 				{currentMenu.map((item, i) => (
