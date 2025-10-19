@@ -1,7 +1,6 @@
 import { AlertDestructive, PaginationControls } from '@/shared/components';
 
-import { fetchProducts } from '@/entities/product';
-import { ProductCardsGrid } from '@/widgets/products';
+import { fetchProducts, ProductCardsGrid } from '@/entities/product';
 
 interface ProductSearchResultsProps {
 	q: string;

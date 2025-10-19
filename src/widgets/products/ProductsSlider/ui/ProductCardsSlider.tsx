@@ -7,8 +7,7 @@ import 'swiper/css';
 
 import { ProductApiResponse } from '@/shared/types';
 
-import { ProductCard } from '@/entities/product';
-import { ProductCardsSkeleton } from '../../ProductCardsGrid/ui/ProductCardsSkeleton';
+import { ProductCard, ProductCardsSkeleton } from '@/entities/product';
 import { ButtonNext, ButtonPrev } from './NavButtons';
 
 interface ProductCardsSliderProps {

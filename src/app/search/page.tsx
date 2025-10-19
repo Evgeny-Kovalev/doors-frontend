@@ -5,7 +5,8 @@ import { Metadata } from 'next';
 import { BoxContainer, PageTitle } from '@/shared/components';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
 
-import { ProductSearchResults, ProductCardsSkeleton } from '@/widgets/products';
+import { ProductSearchResults } from '@/widgets/products';
+import { ProductCardsSkeleton } from '@/entities/product';
 
 type PageProps = {
 	searchParams: Promise<{ [key: string]: string | undefined }>;

@@ -9,8 +9,8 @@ import { limitMetadataDescription } from '@/shared/utils';
 import { ProductApiResponse } from '@/shared/types';
 import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
 import { fetchCategoryHierarchy } from '@/entities/category';
+import { ProductCardsGrid } from '@/entities/product';
 import { Box } from '@/shared/ui';
-import { ProductCardsGrid } from '@/widgets/products';
 
 type PageProps = {
 	params: Promise<{

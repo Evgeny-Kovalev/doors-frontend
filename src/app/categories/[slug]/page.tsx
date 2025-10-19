@@ -14,7 +14,7 @@ import { Separator } from '@/shared/ui';
 import { limitMetadataDescription } from '@/shared/utils';
 
 import { CategoryList } from '@/entities/category';
-import { ProductCardsGrid } from '@/widgets/products';
+import { ProductCardsGrid } from '@/entities/product';
 
 interface PageProps {
 	params: Promise<{
