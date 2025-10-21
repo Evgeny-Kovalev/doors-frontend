@@ -1,4 +1,4 @@
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 import { MenuItem } from './MenuItem';
 import { IMenuItem } from '../../types';
 

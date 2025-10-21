@@ -1,19 +1,19 @@
-import type { Metadata, Viewport } from 'next';
-import { Roboto } from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import type { Metadata, Viewport } from 'next';
 
+import { fontSfProRounded } from './fonts';
 import { openGraph } from './shared-metadata';
-import { ScrollToTopButton } from '@/shared/components/ScrollToTopButton/ScrollToTopButton';
 
 import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 
-import './globals.css';
+import { CallBackDialog } from '@/features/callback';
+import { Portal, ScrollToTopButton } from '@/shared/components';
+import { Button } from '@/shared/ui';
+import { Phone } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
 
-const roboto = Roboto({
-	subsets: ['latin'],
-	weight: ['100', '300', '400', '500', '700', '900'],
-});
+import './globals.css';
 
 export const revalidate = 3600;
 
@@ -96,13 +96,21 @@ export default function RootLayout({
 	return (
 		<html lang="ru">
 			<GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />
-			<body className={roboto.className}>
+			<body className={`${fontSfProRounded.variable} font-sfProRounded`}>
+				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
 				<div className="min-h-[500px] bg-muted/40 pb-14">{children}</div>
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
 				<ScrollToTopButton />
+				<Portal>
+					<CallBackDialog>
+						<Button className="fixed bottom-5 left-5 z-10 h-12 w-12 rounded-full p-1 md:hidden">
+							<Phone width={20} height={20} color="white" />
+						</Button>
+					</CallBackDialog>
+				</Portal>
 				<div id="portal" />
 			</body>
 		</html>

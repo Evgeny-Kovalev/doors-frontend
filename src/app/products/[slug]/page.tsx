@@ -1,22 +1,28 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { fetchProduct } from '@/shared/api';
-import { limitMetadataDescription } from '@/shared/utils';
 import { openGraph } from '@/app/shared-metadata';
-import PageContainer from '@/shared/components/layout/PageContainer';
+import { fetchProduct, fetchProducts, fetchRelatedProducts } from '@/entities/product';
+import { PageContainer } from '@/shared/components';
+import { limitMetadataDescription } from '@/shared/utils';
 
-import { ProductGallery, ProductSummary, ProductContent } from '@/widgets/single-product';
+import { ProductApiResponse } from '@/shared/types';
+import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
+import { fetchCategoryHierarchy } from '@/entities/category';
+import { ProductCardsGrid } from '@/entities/product';
+import { Box } from '@/shared/ui';
 
 type PageProps = {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 };
 
-export async function generateMetadata({
-	params: { slug },
-}: PageProps): Promise<Metadata | null> {
+export async function generateMetadata(props: PageProps): Promise<Metadata | null> {
+	const params = await props.params;
+
+	const { slug } = params;
+
 	const product = await fetchProduct(slug);
 	if (!product) return null;
 
@@ -36,23 +42,70 @@ export async function generateMetadata({
 	};
 }
 
-export default async function Page({ params }: PageProps) {
+export async function generateStaticParams() {
+	let page = 1;
+	let hasNextPage = true;
+	const products: ProductApiResponse[] = [];
+
+	while (hasNextPage) {
+		const pageData = await fetchProducts({ page });
+		if (!pageData) continue;
+		console.log(
+			`page-${page}`,
+			pageData.data.map((p) => p.slug),
+		);
+		products.push(...pageData.data);
+		hasNextPage = pageData.meta.hasNextPage;
+		page++;
+	}
+
+	return products.map((product) => ({ slug: product.slug }));
+}
+
+export default async function Page(props: PageProps) {
+	const params = await props.params;
 	const product = await fetchProduct(params.slug);
 	if (!product) return notFound();
 
+	const categories = await fetchCategoryHierarchy(product.category.slug);
+	const relatedProducts = await fetchRelatedProducts({
+		categorySlug: product.category.slug,
+	});
+
+	const breadcrumbsItems = categories && [
+		{
+			label: 'Главная',
+			href: '/',
+		},
+		...categories.map((category) => ({
+			label: category.name,
+			href: `/categories/${category.slug}`,
+		})),
+		{
+			label: product.name,
+			href: `/products/${product.slug}`,
+		},
+	];
+
 	return (
-		<PageContainer>
-			<div className="grid grid-cols-2 gap-5">
+		<PageContainer className=" gap-5" withoutBox breadcrumbsItems={breadcrumbsItems}>
+			<div className="mb-5 grid grid-cols-2 gap-5">
 				<div className="col-span-2 lg:col-span-1">
 					<ProductGallery product={product} />
 				</div>
 				<div className="col-span-2 lg:col-span-1">
-					<ProductSummary product={product} />
+					<ProductSummary product={product} categories={categories} />
 				</div>
 				<div className="col-span-2">
 					<ProductContent product={product} />
 				</div>
 			</div>
+			<Box>
+				<h4 className="mb-5 text-2xl font-bold">Вам может понравиться</h4>
+				{relatedProducts && relatedProducts.length > 0 && (
+					<ProductCardsGrid onlyOneRow products={relatedProducts} />
+				)}
+			</Box>
 		</PageContainer>
 	);
 }

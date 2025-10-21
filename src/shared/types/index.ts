@@ -52,7 +52,7 @@ export type ProductApiResponse = {
 
 export type CategoryType = 'interiorDoors' | 'exteriorDoors';
 
-export interface Category {
+export interface CategoryApiResponse {
 	id: number;
 	name: string;
 	slug: string;
@@ -62,10 +62,6 @@ export interface Category {
 	parentCategoryId: number;
 
 	categoryType: CategoryType;
-}
-
-export interface CategoryApiResponse extends Category {
-	children: CategoryApiResponse[];
 }
 
 export type CollectionApiResponse = {

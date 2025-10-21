@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 
-import PageTitle from '@/shared/components/layout/PageTitle';
+import { PageTitle, BoxContainer } from '@/shared/components';
 import { SHOP_INFO } from '@/shared/constants';
-import BoxContainer from '@/shared/components/layout/BoxContainer';
 import { openGraph } from '../shared-metadata';
 
 export const metadata: Metadata = {
@@ -23,17 +22,19 @@ export default async function Page() {
 						<li>
 							<b>Адрес:</b> {SHOP_INFO.adress}
 						</li>
-						{SHOP_INFO.phones.map((phone) => (
-							<li key={phone.label}>
-								<b>Тел:</b>{' '}
-								<a
-									href={'tel:' + phone.tel}
-									className="hover:text-primary-accent"
-								>
-									{phone.label}
-								</a>
-							</li>
-						))}
+						<ul className="flex flex-col gap-2">
+							{SHOP_INFO.phones.map((phone) => (
+								<li key={phone.label}>
+									<b>Тел:</b>{' '}
+									<a
+										href={'tel:' + phone.tel}
+										className="hover:text-primary-accent"
+									>
+										{phone.label}
+									</a>
+								</li>
+							))}
+						</ul>
 						<li>Вы можете связаться с нами по любым возникшим у вас вопросам.</li>
 					</ul>
 				</div>

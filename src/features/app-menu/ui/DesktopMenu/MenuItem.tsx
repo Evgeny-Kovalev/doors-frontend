@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 
 import { IMenuItem } from '../../types';
 import { MenuList } from './MenuList';

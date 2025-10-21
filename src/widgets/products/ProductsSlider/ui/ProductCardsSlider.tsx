@@ -7,8 +7,7 @@ import 'swiper/css';
 
 import { ProductApiResponse } from '@/shared/types';
 
-import { ProductCard } from '@/entities/product';
-import { ProductsCardsSkeleton } from '../../ProductCards/ui/ProductsCardsSkeleton';
+import { ProductCard, ProductCardsSkeleton } from '@/entities/product';
 import { ButtonNext, ButtonPrev } from './NavButtons';
 
 interface ProductCardsSliderProps {
@@ -22,9 +21,9 @@ export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
 		setIsLoaded(true);
 	}, []);
 
-	const swiperRef = useRef<SwiperClass>();
+	const swiperRef = useRef<SwiperClass | null>(null);
 
-	if (!isLoaded) return <ProductsCardsSkeleton />;
+	if (!isLoaded) return <ProductCardsSkeleton />;
 
 	return (
 		<div className="relative">
@@ -36,9 +35,9 @@ export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
 				onSwiper={(swiper) => (swiperRef.current = swiper)}
 				breakpoints={{
 					640: { slidesPerView: 3 },
-					1024: { slidesPerView: 4 },
-					1280: { slidesPerView: 5 },
-					1536: { slidesPerView: 6 },
+					768: { slidesPerView: 4 },
+					1024: { slidesPerView: 5 },
+					1280: { slidesPerView: 6 },
 				}}
 				autoplay={{
 					delay: 2000,

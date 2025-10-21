@@ -1,10 +1,10 @@
 'use client';
 
-import { CategoryType, ProductType, ProductApiResponse } from '../../../shared/types';
-import { getPriceTextByVariant, getPriceText } from '../../../entities/product';
-import { cn } from '../../../shared/ui/utils';
+import { CategoryType, ProductType, ProductApiResponse } from '@/shared/types';
+import { getPriceTextByVariant, getPriceText } from '@/entities/product';
+import { cn } from '@/shared/ui';
 import { useProductStore } from '../model';
-import { DoorCasingIcon, DoorFrameIcon, DoorIcon } from '../../../shared/icons';
+import { DoorCasingIcon, DoorFrameIcon, DoorIcon } from '@/shared/icons';
 import { ReactElement } from 'react';
 
 interface PriceDetailsProps {
@@ -43,7 +43,7 @@ export const PriceDetails = ({ product }: PriceDetailsProps) => {
 
 	return (
 		<div
-			className={cn('mt-5 flex flex-col gap-5 rounded-lg border p-5', {
+			className={cn('flex flex-col gap-5 rounded-lg border p-5', {
 				'w-full': !isInteriorType,
 			})}
 		>

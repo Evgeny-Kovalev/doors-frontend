@@ -1,8 +1,6 @@
-import { fetchProducts } from '@/shared/api';
-import { AlertDestructive } from '@/shared/components/Alert';
-import { PaginationControls } from '@/shared/components/PaginationControls';
+import { AlertDestructive, PaginationControls } from '@/shared/components';
 
-import { ProductCards } from '@/widgets/products/ProductCards';
+import { fetchProducts, ProductCardsGrid } from '@/entities/product';
 
 interface ProductSearchResultsProps {
 	q: string;
@@ -25,14 +23,16 @@ export const ProductSearchResults = async ({
 		<>
 			{products.length > 0 ? (
 				<>
-					<ProductCards products={products} />
-					<PaginationControls
-						limit={limit}
-						currentPage={currentPage}
-						hasNextPage={meta.hasNextPage}
-						hasPrevPage={meta.hasPreviousPage}
-						totalPages={meta.pageCount}
-					/>
+					<ProductCardsGrid products={products} />
+					{meta.pageCount > 1 && (
+						<PaginationControls
+							limit={limit}
+							currentPage={currentPage}
+							hasNextPage={meta.hasNextPage}
+							hasPrevPage={meta.hasPreviousPage}
+							totalPages={meta.pageCount}
+						/>
+					)}
 				</>
 			) : (
 				<div>По запросу &quot;{q}&quot; ничего не найдено</div>

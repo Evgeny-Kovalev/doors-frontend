@@ -1,6 +1,5 @@
-import { fetchCategories } from '@/shared/api';
+import { fetchCategories } from '@/entities/category';
 import { MetadataRoute } from 'next';
-import { convertCategoriesToFlattenArray } from '@/shared/utils';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const defaultPages = [
@@ -19,10 +18,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const sitemap = [...defaultPages];
 
 	if (categories && categories.length > 0) {
-		const categoriesArr = convertCategoriesToFlattenArray(categories);
-
 		sitemap.push(
-			...categoriesArr.map((cat) => ({
+			...categories.map((cat) => ({
 				url: `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${cat.slug}`,
 				priority: 0.9,
 			})),

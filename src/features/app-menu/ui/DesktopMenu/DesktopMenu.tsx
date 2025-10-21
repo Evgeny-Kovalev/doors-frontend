@@ -1,10 +1,10 @@
 import { MAIN_NAV } from '@/shared/constants';
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 import { CategoryApiResponse } from '@/shared/types';
 
 import { MenuList } from './MenuList';
 import styles from './styles.module.css';
-import { mapCategoriesToMenuItems } from '../../lib';
+import { mapCategoriesToMenuItems } from '../../model';
 import { IMenuItem } from '../../types';
 
 interface DesktopMenuProps {
@@ -12,20 +12,16 @@ interface DesktopMenuProps {
 }
 
 export const DesktopMenu = ({ categories }: DesktopMenuProps) => {
-	const categoriesForMenu = categories
-		.filter((cat) => MAIN_NAV.categoriesIds.includes(cat.id))
-		.sort((a, b) => {
-			return (
-				MAIN_NAV.categoriesIds.indexOf(a.id) - MAIN_NAV.categoriesIds.indexOf(b.id)
-			);
-		});
+	const categoriesForMenu = categories.filter(
+		(cat) => !MAIN_NAV.hiddenCategoriesSlugs.includes(cat.slug),
+	);
+
 	const categoriesMenuItems = mapCategoriesToMenuItems(categoriesForMenu);
 
 	const menuItems: IMenuItem[] = [
-		{ label: 'Главная', link: '/' },
-		{ label: 'Каталог', link: '/shop' },
+		{ label: 'Главная', link: '/', slug: 'home' },
 		...categoriesMenuItems,
-		{ label: 'Контакты', link: '/contacts' },
+		{ label: 'Контакты', link: '/contacts', slug: 'contacts' },
 	];
 
 	return (

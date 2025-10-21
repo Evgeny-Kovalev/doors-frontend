@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MoveLeft, ChevronRight } from 'lucide-react';
 
-import { useMobileMenuStore } from '../../model';
+import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
 import Link from 'next/link';
 import { IMenuItem } from '../../types';
 
@@ -13,7 +13,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 	const { toggleMobileMenu } = useMobileMenuStore();
 
 	const [level, setLevel] = useState(1);
-	const [currnetMenu, setCurrnetMenu] = useState<IMenuItem[][]>([items]);
+	const [currentMenu, setCurrentMenu] = useState<IMenuItem[][]>([items]);
 
 	const [selectedItemPrev, setSelectedItemPrev] = useState<IMenuItem | null>(null);
 	const [selectedItem, setSelectedItem] = useState<IMenuItem | null>(null);
@@ -26,7 +26,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 
 		if (!menu) return;
 		setLevel(level);
-		setCurrnetMenu((l) => {
+		setCurrentMenu((l) => {
 			l[level] = menu;
 			return l;
 		});
@@ -35,7 +35,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 	const backLevel = () => {
 		setSelectedItem(selectedItemPrev);
 		setLevel(level - 1);
-		setCurrnetMenu((l) => {
+		setCurrentMenu((l) => {
 			l[level] = [];
 			return l;
 		});
@@ -45,7 +45,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 		<>
 			{level > 1 && (
 				<button
-					className="ITEM flex w-full items-center border-b-2 border-gray-300 px-5 py-4 "
+					className="flex w-full items-center border-b-2 border-gray-100 px-4 py-3 "
 					onClick={backLevel}
 				>
 					<MoveLeft className="mr-3" />
@@ -54,19 +54,19 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 			)}
 			<nav
 				role="navigation"
-				className="flex transition-transform"
+				className="flex transition-transform will-change-transform"
 				style={{
-					transform: `translateX(calc(-100% * ${level - 1} ) )`,
+					transform: `translateX(calc(-100% * ${level - 1}))`,
 				}}
 			>
-				{currnetMenu.map((item, i) => (
+				{currentMenu.map((item, i) => (
 					<ul className="min-w-full" key={i}>
 						{level > 1 && selectedItem && (
 							<li>
 								<Link
 									href={selectedItem.link}
 									onClick={toggleMobileMenu}
-									className="block border-b px-5 py-4 text-primary"
+									className="block border-b px-4 py-3 text-primary"
 								>
 									Посмотреть все товары
 								</Link>
@@ -75,7 +75,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 						{item.map((m) => {
 							return m.children ? (
 								<li
-									className="flex cursor-pointer items-center justify-between border-b px-5 py-4"
+									className="flex cursor-pointer items-center justify-between border-b px-4 py-3"
 									key={m.label}
 									onClick={() => selectLevel(level + 1, m, m.children)}
 								>
@@ -85,7 +85,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 							) : (
 								<li className="border-b" key={m.label}>
 									<Link
-										className="block px-5 py-4"
+										className="block px-4 py-3"
 										onClick={toggleMobileMenu}
 										href={m.link}
 									>

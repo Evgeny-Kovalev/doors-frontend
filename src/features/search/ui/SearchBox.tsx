@@ -4,9 +4,7 @@ import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from 'lucide-react';
 
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { cn } from '@/shared/ui/utils';
+import { Button, Input, cn } from '@/shared/ui';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	onSearchButtonClick?: () => void;

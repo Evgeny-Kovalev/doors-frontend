@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, AlertDescription } from '@/shared/ui/alert';
+import { Alert, AlertTitle, AlertDescription } from '@/shared/ui';
 import { AlertCircle } from 'lucide-react';
 
 interface AlertProps {

@@ -4,7 +4,7 @@ import { SHOP_INFO } from '../constants';
 
 interface PhoneNumbersListProps extends React.HTMLAttributes<HTMLUListElement> {}
 
-export default function PhoneNumbersList({ className }: PhoneNumbersListProps) {
+export function PhoneNumbersList({ className }: PhoneNumbersListProps) {
 	return (
 		<ul className={cn(className)}>
 			{SHOP_INFO.phones.map((phone) => (

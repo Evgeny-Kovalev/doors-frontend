@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { ProductApiResponse, VariantApiResponse } from '../../../shared/types/index';
+import { ProductApiResponse, VariantApiResponse } from '@/shared/types';
 
 interface ProductState {
 	product: ProductApiResponse | null;

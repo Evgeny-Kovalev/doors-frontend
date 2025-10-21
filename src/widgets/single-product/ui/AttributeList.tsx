@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Trash } from 'lucide-react';
 
 import { VariantApiResponse } from '@/shared/types';
-import { cn } from '@/shared/ui/utils';
+import { cn } from '@/shared/ui';
 
 import { useProductStore } from '../model';
 import {
@@ -77,7 +77,7 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 	};
 
 	return (
-		<>
+		<div>
 			<ul>
 				{Object.entries(paramsObjectDefault)
 					.sort(([key1], [key2]) => key1.localeCompare(key2))
@@ -127,6 +127,6 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 					Очистить
 				</span>
 			)}
-		</>
+		</div>
 	);
 };

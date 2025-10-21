@@ -1,7 +1,14 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+	Card,
+	CardContent,
+	CardHeader,
+	CardTitle,
+} from '@/shared/ui';
 import { ProductApiResponse } from '@/shared/types';
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
-
 import { ProductParamsTable } from './ProductParamsTable';
 
 interface Props {

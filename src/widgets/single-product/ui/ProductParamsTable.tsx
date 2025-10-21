@@ -1,6 +1,5 @@
 import { AttributeApiResponse } from '@/shared/types';
-import { Table, TableBody, TableCell, TableRow } from '@/shared/ui/table';
-import { cn } from '@/shared/ui/utils';
+import { cn, Table, TableBody, TableCell, TableRow } from '@/shared/ui';
 
 interface ProductParamsTableProps {
 	params: AttributeApiResponse[];

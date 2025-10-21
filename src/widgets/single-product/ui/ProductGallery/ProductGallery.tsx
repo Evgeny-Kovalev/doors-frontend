@@ -8,9 +8,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-import { cn } from '@/shared/ui/utils';
 import { ProductApiResponse } from '@/shared/types';
-import { Card, CardContent, CardFooter } from '@/shared/ui/card';
+import { Card, CardContent, CardFooter, cn } from '@/shared/ui';
 
 import { useProductStore } from '../../model';
 import { ProductGallerySkeleton } from './ProductGallerySkeleton';

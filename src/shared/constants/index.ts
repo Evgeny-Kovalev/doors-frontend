@@ -29,6 +29,10 @@ export const MAIN_PAGE = {
 	banner: {
 		slides: [
 			{
+				urlTo: null,
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_4.webp`,
+			},
+			{
 				urlTo: `/categories/${MAIN_CATEGORIES.interior.slug}`,
 				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_1.webp`,
 			},
@@ -54,8 +58,8 @@ export const MAIN_PAGE = {
 	},
 };
 
-export const MAIN_NAV = {
-	categoriesIds: [MAIN_CATEGORIES.exterior.id, MAIN_CATEGORIES.interior.id],
+export const MAIN_NAV: { hiddenCategoriesSlugs: string[] } = {
+	hiddenCategoriesSlugs: [],
 };
 
 export const PRODUCT_PER_PAGE = 20;

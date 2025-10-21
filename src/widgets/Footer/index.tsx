@@ -1,9 +1,7 @@
-import PageContainer from '@/shared/components/layout/PageContainer';
-import { Logo } from '@/shared/components/Logo';
+import { PhoneNumbersList, WorkingHoursList, Logo } from '@/shared/components';
 import Link from 'next/link';
 import { MAIN_CATEGORIES, SHOP_INFO } from '@/shared/constants';
-import { Clock, MapPin, Phone } from 'lucide-react';
-import PhoneNumbersList from '@/shared/components/PhoneNumbersList';
+import { MapPin } from 'lucide-react';
 
 export const Footer = () => {
 	return (
@@ -19,17 +17,7 @@ export const Footer = () => {
 					</div>
 					<div className="col-span-6 sm:col-span-3 md:col-span-2 lg:col-span-2 xl:col-span-1">
 						<h5 className="mb-2 text-sm font-bold tracking-wider">График работы</h5>
-						<ul>
-							<li className="mb-1 flex items-center">
-								<Clock className="mr-3 h-full max-h-4 w-full max-w-4 self-center " />
-								<span>Вт-Пт: 11:00 - 18:00</span>
-							</li>
-							<li className="mb-1 flex items-center">
-								<Clock className="mr-3 h-full max-h-4 w-full max-w-4 self-center " />
-								<span>Сб-Вс: 11:00 - 17:00</span>
-							</li>
-							<li className="">Пн: выходной</li>
-						</ul>
+						<WorkingHoursList />
 					</div>
 					<div className="hidden xl:col-span-1 xl:block">
 						<h5 className="mb-2 text-sm font-bold tracking-wider">Каталог</h5>
