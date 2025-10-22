@@ -43,6 +43,8 @@ export async function generateMetadata(props: PageProps): Promise<Metadata | nul
 }
 
 export async function generateStaticParams() {
+	if (process.env.NODE_ENV === 'development') return [];
+
 	let page = 1;
 	let hasNextPage = true;
 	const products: ProductApiResponse[] = [];
@@ -70,7 +72,10 @@ export default async function Page(props: PageProps) {
 	const categories = await fetchCategoryHierarchy(product.category.slug);
 	const relatedProducts = await fetchRelatedProducts({
 		categorySlug: product.category.slug,
+		limit: 1000,
 	});
+
+	const randomProducts = relatedProducts?.sort(() => Math.random() - 0.5).slice(0, 6);
 
 	const breadcrumbsItems = categories && [
 		{
@@ -102,8 +107,8 @@ export default async function Page(props: PageProps) {
 			</div>
 			<Box>
 				<h4 className="mb-5 text-2xl font-bold">Вам может понравиться</h4>
-				{relatedProducts && relatedProducts.length > 0 && (
-					<ProductCardsGrid onlyOneRow products={relatedProducts} />
+				{randomProducts && randomProducts.length > 0 && (
+					<ProductCardsGrid onlyOneRow products={randomProducts} />
 				)}
 			</Box>
 		</PageContainer>

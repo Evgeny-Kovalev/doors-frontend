@@ -46,6 +46,8 @@ export async function generateMetadata(props: PageProps): Promise<Metadata | nul
 }
 
 export async function generateStaticParams() {
+	if (process.env.NODE_ENV === 'development') return [];
+
 	const categories = await fetchCategories();
 	if (!categories) return [];
 	return categories.map((category) => ({ slug: category.slug }));
