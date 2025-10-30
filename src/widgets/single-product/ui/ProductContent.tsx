@@ -17,10 +17,10 @@ interface Props {
 
 export const ProductContent = ({ product }: Props) => {
 	return (
-		<Tabs defaultValue="description">
+		<Tabs defaultValue="details">
 			<TabsList>
-				<TabsTrigger value="description">Описание</TabsTrigger>
 				<TabsTrigger value="details">Характеристики</TabsTrigger>
+				<TabsTrigger value="description">Описание</TabsTrigger>
 			</TabsList>
 			<TabsContent value="description">
 				<Card>
