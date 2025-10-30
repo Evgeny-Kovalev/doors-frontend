@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react';
 import { Navigation, Thumbs } from 'swiper/modules';
@@ -29,13 +29,25 @@ export const ProductGallery = ({ product }: Props) => {
 
 	let swiperRef = useRef<SwiperClass | null>(null);
 
+	const mainVariantIndex = product.variants.findIndex(
+		(v) => v.imgUrl === product.imgUrl,
+	);
+
+	const orderdVariants = useMemo(
+		() => [
+			...product.variants.slice(mainVariantIndex),
+			...product.variants.slice(0, mainVariantIndex),
+		],
+		[product.variants, mainVariantIndex],
+	);
+
 	useEffect(() => {
 		if (!activeVariant) return;
 
 		swiperRef.current?.slideTo(
-			product.variants.findIndex((v) => activeVariant.id === v.id),
+			orderdVariants.findIndex((v) => activeVariant.id === v.id),
 		);
-	}, [activeVariant, product.variants]);
+	}, [activeVariant, orderdVariants]);
 
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
@@ -54,7 +66,7 @@ export const ProductGallery = ({ product }: Props) => {
 					modules={[Navigation, Thumbs]}
 					className="w-full"
 				>
-					{product.variants.map((v, i) => (
+					{orderdVariants.map((v, i) => (
 						<SwiperSlide key={v.id}>
 							<div className="relative flex h-[50vh] items-center justify-center md:h-[70vh]">
 								<Image
@@ -87,10 +99,10 @@ export const ProductGallery = ({ product }: Props) => {
 					navigation
 					className="w-full"
 				>
-					{product.variants.map((v, i) => (
+					{orderdVariants.map((v, i) => (
 						<SwiperSlide key={v.id}>
 							<div
-								key={i}
+								key={v.id}
 								className={cn(
 									'h-20 cursor-pointer rounded-md bg-gray-200 opacity-80 transition-opacity hover:opacity-100',
 								)}

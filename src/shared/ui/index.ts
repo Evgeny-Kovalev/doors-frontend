@@ -1,4 +1,6 @@
 export * from './alert';
+export * from './badge';
+export * from './carousel';
 export * from './box';
 export * from './breadcrumbs';
 export * from './button';

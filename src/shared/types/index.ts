@@ -4,7 +4,6 @@ export type AttributeApiResponse = {
 		id: number;
 		value: string;
 		label: string;
-		imgUrl: string | null;
 	};
 	value: {
 		id: number;
