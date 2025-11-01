@@ -42,21 +42,21 @@ type BackgroundItem = {
 
 const BG_ITEMS: BackgroundItem[] = [
 	{
-		align: 'center',
-		imgUrl: '/interiors/1.jpg',
-		productPosition: {
-			bottom: 21,
-			horizontal: 33.5,
-			width: 11,
-		},
-	},
-	{
 		align: 'left',
 		imgUrl: '/interiors/2.jpg',
 		productPosition: {
 			bottom: 10,
 			horizontal: 21,
 			width: 15,
+		},
+	},
+	{
+		align: 'center',
+		imgUrl: '/interiors/1.jpg',
+		productPosition: {
+			bottom: 21,
+			horizontal: 33.5,
+			width: 11,
 		},
 	},
 	{

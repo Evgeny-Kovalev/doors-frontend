@@ -16,16 +16,26 @@ type Props = {
 export const ProductSummary = ({ product, categories }: Props) => {
 	const categoriesArray = categories || [product.category];
 
+	const isInteriorDoor = product.category.categoryType === 'interiorDoors';
+
 	return (
 		<Box className="flex flex-col gap-5">
 			<h1 className="text-2xl  sm:text-3xl">{product.name}</h1>
 			<AttributeList variants={product.variants} />
 			<PriceDetails product={product} />
-			<div className="grid grid-cols-1 gap-2 xl:grid-cols-2">
-				{product.category.categoryType === 'interiorDoors' && (
+			<div
+				className={cn(
+					'grid gap-2',
+					isInteriorDoor ? 'grid-cols-1 xl:grid-cols-2' : 'grid-cols-1',
+				)}
+			>
+				{isInteriorDoor && (
 					<InteriorProductViewDialog product={product}>
-						<Button variant="outline" className="w-full">
-							<DoorClosed size={20} className="mr-2" />
+						<Button
+							variant="outline"
+							className="w-full border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-primary-foreground"
+						>
+							<DoorClosed size={20} className="mr-2 " />
 							Посмотреть в интерьере
 							<Badge className="ml-2" variant="destructive">
 								NEW

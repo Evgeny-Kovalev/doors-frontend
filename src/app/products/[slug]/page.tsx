@@ -12,6 +12,8 @@ import { fetchCategoryHierarchy } from '@/entities/category';
 import { ProductCardsGrid } from '@/entities/product';
 import { Box } from '@/shared/ui';
 
+export const dynamicParams = false;
+
 type PageProps = {
 	params: Promise<{
 		slug: string;
