@@ -43,38 +43,47 @@ type BackgroundItem = {
 const BG_ITEMS: BackgroundItem[] = [
 	{
 		align: 'left',
-		imgUrl: '/interiors/2.jpg',
+		imgUrl: '/interiors/1.webp',
 		productPosition: {
-			bottom: 10,
-			horizontal: 21,
-			width: 15,
+			bottom: 23.7,
+			horizontal: 22,
+			width: 14.5,
 		},
 	},
 	{
 		align: 'center',
-		imgUrl: '/interiors/1.jpg',
+		imgUrl: '/interiors/2.webp',
 		productPosition: {
-			bottom: 21,
+			bottom: 20.9,
 			horizontal: 33.5,
-			width: 11,
+			width: 13,
 		},
 	},
 	{
-		align: 'right',
-		imgUrl: '/interiors/3.png',
+		align: 'center',
+		imgUrl: '/interiors/3.webp',
 		productPosition: {
-			bottom: 11.65,
-			horizontal: 70.5,
+			bottom: 12.3,
+			horizontal: 45,
 			width: 17,
 		},
 	},
 	{
 		align: 'center',
-		imgUrl: '/interiors/4.jpg',
+		imgUrl: '/interiors/4.webp',
 		productPosition: {
-			bottom: 16.8,
-			horizontal: 30.5,
-			width: 14,
+			bottom: 11.5,
+			horizontal: 50.5,
+			width: 16,
+		},
+	},
+	{
+		align: 'center',
+		imgUrl: '/interiors/5.webp',
+		productPosition: {
+			bottom: 25.7,
+			horizontal: 40,
+			width: 14.5,
 		},
 	},
 ];
