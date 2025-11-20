@@ -1,4 +1,4 @@
-import { cn } from '@/shared/ui';
+import { cn, AspectRatio } from '@/shared/ui';
 import Image from 'next/image';
 import MainSlider from './MainSlider';
 import { MAIN_PAGE } from '@/shared/constants';
@@ -10,7 +10,9 @@ export const MainBanners = ({ className, ...props }: MainBannersProps) => {
 	return (
 		<div className={cn('grid grid-cols-12 gap-5', className)} {...props}>
 			<div className="relative col-span-12 row-span-2 object-fill lg:col-span-8">
-				<MainSlider />
+				<div className="aspect-[16/10] h-full w-auto max-w-full">
+					<MainSlider />
+				</div>
 			</div>
 			{MAIN_PAGE.banner.items.map(({ imgUrl, urlTo }) => (
 				<div
@@ -19,6 +21,19 @@ export const MainBanners = ({ className, ...props }: MainBannersProps) => {
 				>
 					{urlTo ? (
 						<Link href={urlTo}>
+							<AspectRatio ratio={16 / 10}>
+								<Image
+									width={800}
+									height={500}
+									priority
+									className="h-full w-full"
+									src={imgUrl}
+									alt="Banner item"
+								/>
+							</AspectRatio>
+						</Link>
+					) : (
+						<AspectRatio ratio={16 / 10}>
 							<Image
 								width={800}
 								height={500}
@@ -27,16 +42,7 @@ export const MainBanners = ({ className, ...props }: MainBannersProps) => {
 								src={imgUrl}
 								alt="Banner item"
 							/>
-						</Link>
-					) : (
-						<Image
-							width={800}
-							height={500}
-							priority
-							className="h-full w-full"
-							src={imgUrl}
-							alt="Banner item"
-						/>
+						</AspectRatio>
 					)}
 				</div>
 			))}

@@ -45,9 +45,9 @@ const BG_ITEMS: BackgroundItem[] = [
 		align: 'left',
 		imgUrl: '/interiors/1.webp',
 		productPosition: {
-			bottom: 23.7,
+			bottom: 19.7,
 			horizontal: 22,
-			width: 14.5,
+			width: 13,
 		},
 	},
 	{
@@ -63,16 +63,16 @@ const BG_ITEMS: BackgroundItem[] = [
 		align: 'center',
 		imgUrl: '/interiors/3.webp',
 		productPosition: {
-			bottom: 12.3,
+			bottom: 9.3,
 			horizontal: 45,
-			width: 17,
+			width: 15,
 		},
 	},
 	{
 		align: 'center',
 		imgUrl: '/interiors/4.webp',
 		productPosition: {
-			bottom: 11.5,
+			bottom: 11.7,
 			horizontal: 50.5,
 			width: 16,
 		},
@@ -81,9 +81,9 @@ const BG_ITEMS: BackgroundItem[] = [
 		align: 'center',
 		imgUrl: '/interiors/5.webp',
 		productPosition: {
-			bottom: 25.7,
+			bottom: 18.1,
 			horizontal: 40,
-			width: 14.5,
+			width: 14,
 		},
 	},
 ];
@@ -91,7 +91,6 @@ const BG_ITEMS: BackgroundItem[] = [
 type InteriorProductViewDialogProps = PropsWithChildren<{
 	product: ProductApiResponse;
 	bgAlign?: 'left' | 'right' | 'center';
-	initialActiveVariant?: VariantApiResponse | null;
 }>;
 
 export const InteriorProductViewDialog = ({
@@ -100,7 +99,7 @@ export const InteriorProductViewDialog = ({
 }: InteriorProductViewDialogProps) => {
 	const isDesktop = useMediaQuery('(min-width: 768px)');
 
-	const { activeVariant, setActiveVariant } = useProductStore((state) => state);
+	const { activeVariant, setActiveVariant } = useProductStore();
 
 	const [activeBgItem, setActiveBgItem] = useState<BackgroundItem>(BG_ITEMS[0]);
 
@@ -182,6 +181,8 @@ export const InteriorProductViewDialog = ({
 		}
 	};
 
+	const defaultVariant = product.variants.find((v) => v.imgUrl === product.imgUrl);
+
 	// Desktop
 	if (isDesktop)
 		return (
@@ -219,7 +220,7 @@ export const InteriorProductViewDialog = ({
 						</div>
 					</div>
 					<ProductVariantsCarousel
-						activeVariant={activeVariant}
+						activeVariant={activeVariant || defaultVariant}
 						variants={product.variants}
 						onVariantClick={(v) => setActiveVariant(v)}
 						className="absolute bottom-4 right-12 z-20 rounded-lg bg-white px-4 py-2"
@@ -231,7 +232,7 @@ export const InteriorProductViewDialog = ({
 						className="absolute left-4 top-1/2 z-20 w-fit -translate-y-1/2 rounded-lg bg-white p-2"
 						itemClassName="basis-auto pt-2"
 						orientation="vertical"
-						contentClassName="h-[352px] -mt-2"
+						contentClassName="h-[400px] -mt-2"
 					/>
 				</DialogContent>
 			</Dialog>
@@ -273,7 +274,7 @@ export const InteriorProductViewDialog = ({
 				</div>
 				<div className="pointer-events-auto fixed inset-x-0 bottom-0 z-[60] flex h-[45%] flex-col justify-evenly rounded-t-xl bg-white px-4 pb-[env(safe-area-inset-bottom)] md:hidden">
 					<ProductVariantsCarousel
-						activeVariant={activeVariant}
+						activeVariant={activeVariant || defaultVariant}
 						variants={product.variants}
 						onVariantClick={(v) => setActiveVariant(v)}
 					/>
@@ -312,7 +313,7 @@ const BackgroundsCarousel = ({
 				align: 'start',
 				dragFree: true,
 			}}
-			className={cn('relative mx-auto w-full max-w-sm', className)}
+			className={cn('relative mx-auto w-full max-w-lg', className)}
 			orientation={orientation}
 		>
 			<CarouselPrevious
@@ -328,9 +329,9 @@ const BackgroundsCarousel = ({
 					>
 						<Image
 							className={cn(
-								'size-20 cursor-pointer p-1 transition-all duration-100',
+								'size-20 cursor-pointer border-[2px] border-transparent transition-all duration-100',
 								item.imgUrl === activeItem.imgUrl &&
-									'rounded-lg border-[2px] border-primary',
+									'rounded-lg border-primary p-[3px]',
 							)}
 							onClick={() => onItemClick(item)}
 							src={item.imgUrl}
@@ -368,21 +369,21 @@ const ProductVariantsCarousel = ({
 				align: 'start',
 				dragFree: true,
 			}}
-			className={cn('mx-auto w-full max-w-sm', className)}
+			className={cn('mx-auto w-full max-w-sm !p-3 !pb-0', className)}
 		>
 			<CarouselPrevious className="-left-3 z-10 [@media(min-width:480px)]:-left-10" />
-			<CarouselContent>
+			<CarouselContent className="h-[132px]">
 				{variants.map((v, index) => (
-					<CarouselItem key={index} className="basis-auto ">
+					<CarouselItem key={index} className="basis-auto">
 						<div
 							className={cn(
-								'relative inline-block cursor-pointer pb-2 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:rounded-md after:bg-transparent after:transition-colors after:duration-200 after:content-[""]',
+								'relative inline-block cursor-pointer pb-3 after:absolute after:bottom-[5px] after:left-0 after:right-0 after:h-[3px] after:rounded-md after:bg-transparent after:transition-colors after:duration-200 after:content-[""]',
 								v.imgUrl === activeVariant?.imgUrl && 'after:bg-primary',
 							)}
 							onClick={() => onVariantClick?.(v)}
 						>
 							<Image
-								className="block"
+								className="h-[120px]"
 								src={v.imgUrl}
 								alt="Product variant"
 								width={50}

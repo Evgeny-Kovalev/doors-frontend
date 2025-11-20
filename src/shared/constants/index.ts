@@ -1,8 +1,6 @@
 import { CategoryType } from '../types';
 
-export const MAIN_CATEGORIES: {
-	[key: string]: { id: number; slug: string; label: string; type: CategoryType };
-} = {
+export const MAIN_CATEGORIES = {
 	interior: {
 		id: 1,
 		slug: 'dveri-mezhkomnatnye',
@@ -15,7 +13,7 @@ export const MAIN_CATEGORIES: {
 		label: 'Двери входные',
 		type: 'exteriorDoors',
 	},
-};
+} as const;
 
 export const SHOP_INFO = {
 	phones: [
@@ -29,16 +27,14 @@ export const MAIN_PAGE = {
 	banner: {
 		slides: [
 			{
-				urlTo: null,
-				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_4.webp`,
-			},
-			{
 				urlTo: `/categories/${MAIN_CATEGORIES.interior.slug}`,
-				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_1.webp`,
+				imgUrl: '/banners/1.webp',
+				title: 'Двери\nмежкомнатные',
 			},
 			{
 				urlTo: `/categories/${MAIN_CATEGORIES.exterior.slug}`,
-				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_2.webp`,
+				imgUrl: '/banners/2.webp',
+				title: 'Двери входные',
 			},
 			{
 				urlTo: null,
