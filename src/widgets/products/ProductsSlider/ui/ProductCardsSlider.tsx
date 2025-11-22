@@ -40,11 +40,23 @@ export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
 			</CarouselContent>
 			<CarouselPrevious
 				variant="default"
-				className="left-[10px] top-[40%] -translate-x-1/2 md:left-0"
+				className={cn('left-[10px] top-[40%] -translate-x-1/2 md:left-0', {
+					'xl:hidden': products.length <= 6,
+					'lg:hidden': products.length <= 5,
+					'md:hidden': products.length <= 4,
+					'sm:hidden': products.length <= 3,
+					hidden: products.length <= 2,
+				})}
 			/>
 			<CarouselNext
 				variant="default"
-				className="right-[10px] top-[40%] translate-x-1/2  md:right-0"
+				className={cn('right-[10px] top-[40%] translate-x-1/2  md:right-0', {
+					'xl:hidden': products.length <= 6,
+					'lg:hidden': products.length <= 5,
+					'md:hidden': products.length <= 4,
+					'sm:hidden': products.length <= 3,
+					hidden: products.length <= 2,
+				})}
 			/>
 		</Carousel>
 	);
