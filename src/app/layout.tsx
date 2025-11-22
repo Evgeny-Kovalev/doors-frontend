@@ -99,14 +99,17 @@ export default function RootLayout({
 			<body className={`${fontSfProRounded.variable} font-sfProRounded`}>
 				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
-				<div className="min-h-[500px] bg-muted/40 pb-14">{children}</div>
+				<main className="min-h-[500px] bg-muted/40 pb-14">{children}</main>
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
 				<ScrollToTopButton />
 				<Portal>
 					<CallBackDialog>
-						<Button className="fixed bottom-5 left-5 z-10 h-12 w-12 rounded-full p-1 md:hidden">
+						<Button
+							aria-label="Обратный звонок"
+							className="fixed bottom-5 left-5 z-10 h-12 w-12 rounded-full p-1 md:hidden"
+						>
 							<Phone width={20} height={20} color="white" />
 						</Button>
 					</CallBackDialog>

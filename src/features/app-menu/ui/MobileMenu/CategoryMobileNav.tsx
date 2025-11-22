@@ -45,7 +45,7 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 		<>
 			{level > 1 && (
 				<button
-					className="flex w-full items-center border-b-2 border-gray-100 px-4 py-3 "
+					className="flex w-full items-center border-b-2 border-gray-100 px-4 py-3"
 					onClick={backLevel}
 				>
 					<MoveLeft className="mr-3" />
@@ -74,13 +74,14 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 						)}
 						{item.map((m) => {
 							return m.children ? (
-								<li
-									className="flex cursor-pointer items-center justify-between border-b px-4 py-3"
-									key={m.label}
-									onClick={() => selectLevel(level + 1, m, m.children)}
-								>
-									{m.label}
-									<ChevronRight height={20} className="text-gray-400" />
+								<li className="border-b" key={m.label}>
+									<button
+										className="flex w-full cursor-pointer items-center justify-between px-4 py-3"
+										onClick={() => selectLevel(level + 1, m, m.children)}
+									>
+										{m.label}
+										<ChevronRight height={20} className="text-gray-400" />
+									</button>
 								</li>
 							) : (
 								<li className="border-b" key={m.label}>

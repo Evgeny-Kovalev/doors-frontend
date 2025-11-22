@@ -28,7 +28,10 @@ export const Header = async () => {
 					<div className="flex gap-3">
 						<CallBackDialog>
 							<CallBackButton className="hidden items-center xl:flex" />
-							<Button className="hidden h-10 w-10 rounded-full p-1 min-[374px]:inline-flex xl:hidden">
+							<Button
+								aria-label="Обратный звонок"
+								className="hidden h-10 w-10 rounded-full p-1 min-[374px]:inline-flex xl:hidden"
+							>
 								<Phone width={18} height={18} color="white" />
 							</Button>
 						</CallBackDialog>

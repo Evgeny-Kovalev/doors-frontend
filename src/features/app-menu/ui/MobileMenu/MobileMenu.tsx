@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { Menu } from 'lucide-react';
 
-import { DialogDescription, DialogTitle, Drawer, DrawerContent } from '@/shared/ui';
+import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@/shared/ui';
 import { CategoryApiResponse } from '@/shared/types';
 
 import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
@@ -42,9 +42,11 @@ export const MobileMenu = ({ categories }: MobileMenuProps) => {
 			open={isMobileMenuOpen}
 			onOpenChange={toggleMobileMenu}
 		>
-			<DialogTitle></DialogTitle>
-			<DialogDescription></DialogDescription>
 			<DrawerContent className="!w-full border-none">
+				<DrawerTitle className="sr-only">Меню</DrawerTitle>
+				<DrawerDescription className="sr-only">
+					Для мобильных устройств
+				</DrawerDescription>
 				<div className="pb-safe overflow-x-hidden">
 					<MobileMenuHeader />
 					<MobileMenuSubHeader />

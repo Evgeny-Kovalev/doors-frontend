@@ -39,7 +39,11 @@ export const SearchBox = ({ className, onSearchButtonClick, ...props }: Props) =
 				placeholder="Поиск дверей"
 				className="rounded-r-none border-r-0"
 			/>
-			<Button onClick={updateSearchParams} className="rounded-l-none">
+			<Button
+				aria-label="Найти"
+				onClick={updateSearchParams}
+				className="rounded-l-none"
+			>
 				<Search className="h-5 w-5" />
 			</Button>
 		</div>

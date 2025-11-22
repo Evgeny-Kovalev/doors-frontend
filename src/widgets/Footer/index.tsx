@@ -12,15 +12,15 @@ export const Footer = () => {
 						<Logo className="text-gray-200" />
 					</div>
 					<div className="col-span-6 sm:col-span-3 md:col-span-2 lg:col-span-2 xl:col-span-1 xl:col-start-4">
-						<h5 className="mb-2 text-sm font-bold tracking-wider">Телефон</h5>
+						<h4 className="mb-2 text-sm font-bold tracking-wider">Телефон</h4>
 						<PhoneNumbersList />
 					</div>
 					<div className="col-span-6 sm:col-span-3 md:col-span-2 lg:col-span-2 xl:col-span-1">
-						<h5 className="mb-2 text-sm font-bold tracking-wider">График работы</h5>
+						<h4 className="mb-2 text-sm font-bold tracking-wider">График работы</h4>
 						<WorkingHoursList />
 					</div>
 					<div className="hidden xl:col-span-1 xl:block">
-						<h5 className="mb-2 text-sm font-bold tracking-wider">Каталог</h5>
+						<h4 className="mb-2 text-sm font-bold tracking-wider">Каталог</h4>
 						<ul className="ml-4 list-disc">
 							{Object.values(MAIN_CATEGORIES).map(({ slug, label }) => (
 								<li className="mb-2 last:mb-0" key={slug}>
@@ -35,7 +35,7 @@ export const Footer = () => {
 						</ul>
 					</div>
 					<div className="col-span-6 lg:col-span-4 lg:col-start-3 xl:col-start-4">
-						<h5 className="mb-2 text-sm font-bold tracking-wider">Адрес</h5>
+						<h4 className="mb-2 text-sm font-bold tracking-wider">Адрес</h4>
 						<div className="flex items-center">
 							<MapPin className="mr-3 h-full max-h-4 w-full max-w-4 self-center " />
 							<span>{SHOP_INFO.adress}</span>

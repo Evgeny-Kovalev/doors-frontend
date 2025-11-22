@@ -30,6 +30,7 @@ export const ScrollToTopButton = () => {
 	return (
 		<Portal>
 			<Button
+				aria-label="Прокрутитить страницу вверх"
 				className={cn(
 					'fixed bottom-5 right-5 z-10 h-12 w-12 rounded-full p-1 shadow-lg outline-none transition-opacity duration-200',
 					{

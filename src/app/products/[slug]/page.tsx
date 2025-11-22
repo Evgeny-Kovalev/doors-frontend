@@ -9,8 +9,8 @@ import { limitMetadataDescription } from '@/shared/utils';
 import { ProductApiResponse } from '@/shared/types';
 import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
 import { fetchCategoryHierarchy } from '@/entities/category';
-import { ProductCardsGrid } from '@/entities/product';
 import { Box } from '@/shared/ui';
+import { ProductCardsSlider } from '@/widgets/products';
 
 export const dynamicParams = false;
 
@@ -107,12 +107,12 @@ export default async function Page(props: PageProps) {
 					<ProductContent product={product} />
 				</div>
 			</div>
-			<Box>
-				<h4 className="mb-5 text-2xl font-bold">Вам может понравиться</h4>
-				{randomProducts && randomProducts.length > 0 && (
-					<ProductCardsGrid onlyOneRow products={randomProducts} />
-				)}
-			</Box>
+			{randomProducts && randomProducts.length > 0 && (
+				<Box>
+					<h4 className="mb-5 text-2xl font-bold">Другие модели</h4>
+					<ProductCardsSlider products={randomProducts} />
+				</Box>
+			)}
 		</PageContainer>
 	);
 }
