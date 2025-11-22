@@ -19,13 +19,15 @@ const config = {
 			// },
 		},
 		extend: {
-			fontFamily: {
-				// sfPro: ['var(--font-sf-pro)', ...defaultTheme.fontFamily.sans, 'sans-serif'],
-				sfProRounded: [
-					'var(--font-sf-pro-rounded)',
-					...defaultTheme.fontFamily.sans,
-					'sans-serif',
-				],
+			fontWeight: {
+				normal: '500',
+				medium: '600',
+				semibold: '700',
+				bold: '800',
+			},
+			letterSpacing: {
+				tight: '-0.05em',
+				wider: '0.025em',
 			},
 			colors: {
 				border: 'hsl(var(--border))',

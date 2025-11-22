@@ -1,7 +1,7 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 
-import { fontSfProRounded } from './fonts';
+import { Nunito } from 'next/font/google';
 import { openGraph } from './shared-metadata';
 
 import { Footer } from '@/widgets/Footer';
@@ -88,15 +88,21 @@ export const metadata: Metadata = {
 	},
 };
 
+const nunito = Nunito({
+	subsets: ['latin'],
+	weight: ['500', '600', '700', '800'],
+	preload: false,
+});
+
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="ru">
+		<html lang="ru" className={nunito.className}>
 			<GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />
-			<body className={`${fontSfProRounded.variable} font-sfProRounded`}>
+			<body className="-tracking-[0.035em]">
 				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
 				<main className="min-h-[500px] bg-muted/40 pb-14">{children}</main>
