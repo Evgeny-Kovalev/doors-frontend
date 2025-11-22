@@ -1,6 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import WheelGesturesPlugin from 'embla-carousel-wheel-gestures';
+import Autoplay from 'embla-carousel-autoplay';
+
 import { MAIN_PAGE } from '@/shared/constants';
 import {
 	Button,
@@ -10,10 +15,6 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from '@/shared/ui';
-import { ArrowRight } from 'lucide-react';
-import Autoplay from 'embla-carousel-autoplay';
-
-import Link from 'next/link';
 
 interface MainSliderProps {}
 
@@ -24,7 +25,7 @@ export default function MainSlider({}: MainSliderProps) {
 				align: 'start',
 				loop: true,
 			}}
-			plugins={[Autoplay({ delay: 3000 })]}
+			plugins={[Autoplay({ delay: 3000 }), WheelGesturesPlugin()]}
 			className="h-full"
 		>
 			<CarouselContent className="h-full ">
@@ -37,6 +38,8 @@ export default function MainSlider({}: MainSliderProps) {
 								alt="Slider item"
 								width={1400}
 								height={700}
+								fetchPriority="high"
+								priority
 							/>
 							{title && (
 								<div className="absolute bottom-0 left-1/2 top-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-gradient-to-t from-black/90 to-transparent p-4 text-2xl font-bold uppercase  text-white min-[510px]:p-5 min-[510px]:text-4xl md:text-4xl xl:p-8 xl:text-5xl">

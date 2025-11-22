@@ -1,63 +1,51 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
-
+import Autoplay from 'embla-carousel-autoplay';
 import { ProductApiResponse } from '@/shared/types';
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+	cn,
+} from '@/shared/ui';
 
-import { ProductCard, ProductCardsSkeleton } from '@/entities/product';
-import { ButtonNext, ButtonPrev } from './NavButtons';
+import { ProductCard } from '@/entities/product';
 
 interface ProductCardsSliderProps {
 	products: ProductApiResponse[];
 }
 
 export const ProductCardsSlider = ({ products }: ProductCardsSliderProps) => {
-	const [isLoaded, setIsLoaded] = useState(false);
-
-	useEffect(() => {
-		setIsLoaded(true);
-	}, []);
-
-	const swiperRef = useRef<SwiperClass | null>(null);
-
-	if (!isLoaded) return <ProductCardsSkeleton />;
-
 	return (
-		<div className="relative">
-			<ButtonPrev
-				onClick={() => swiperRef.current?.slidePrev()}
-				className="absolute left-0 top-1/2 hidden -translate-x-1/3 -translate-y-1/2 md:inline-flex"
-			/>
-			<Swiper
-				onSwiper={(swiper) => (swiperRef.current = swiper)}
-				breakpoints={{
-					640: { slidesPerView: 3 },
-					768: { slidesPerView: 4 },
-					1024: { slidesPerView: 5 },
-					1280: { slidesPerView: 6 },
-				}}
-				autoplay={{
-					delay: 2000,
-					disableOnInteraction: false,
-				}}
-				modules={[Autoplay]}
-				slidesPerView={2}
-				spaceBetween={25}
-				loop
-			>
+		<Carousel
+			opts={{
+				align: 'start',
+				loop: true,
+			}}
+			plugins={[Autoplay({ delay: 3000 })]}
+		>
+			<CarouselContent>
 				{products.map((p) => (
-					<SwiperSlide key={p.id}>
+					<CarouselItem
+						key={p.id}
+						className={cn(
+							'basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6',
+						)}
+					>
 						<ProductCard product={p} />
-					</SwiperSlide>
+					</CarouselItem>
 				))}
-			</Swiper>
-			<ButtonNext
-				onClick={() => swiperRef.current?.slideNext()}
-				className="absolute right-0 top-1/2 hidden -translate-y-1/2 translate-x-1/3 md:inline-flex"
+			</CarouselContent>
+			<CarouselPrevious
+				variant="default"
+				className="left-[10px] top-[40%] -translate-x-1/2 md:left-0"
 			/>
-		</div>
+			<CarouselNext
+				variant="default"
+				className="right-[10px] top-[40%] translate-x-1/2  md:right-0"
+			/>
+		</Carousel>
 	);
 };
