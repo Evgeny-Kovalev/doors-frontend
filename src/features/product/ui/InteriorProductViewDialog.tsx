@@ -101,6 +101,8 @@ export const InteriorProductViewDialog = ({
 
 	const { activeVariant, setActiveVariant } = useProductStore();
 
+	const [open, setOpen] = useState(false);
+
 	const [activeBgItem, setActiveBgItem] = useState<BackgroundItem>(BG_ITEMS[0]);
 
 	const [computedLeftPx, setComputedLeftPx] = useState<number>(0);
@@ -183,13 +185,10 @@ export const InteriorProductViewDialog = ({
 
 	const defaultVariant = product.variants.find((v) => v.imgUrl === product.imgUrl);
 
-	// Desktop
 	if (isDesktop)
 		return (
-			<Dialog>
-				<DialogTrigger asChild>
-					<div>{children}</div>
-				</DialogTrigger>
+			<Dialog open={open} onOpenChange={setOpen}>
+				<div onClick={() => setOpen(true)}>{children}</div>
 				<DialogContent className="left-0 top-0 h-dvh w-dvw max-w-none translate-x-0 translate-y-0 transform-none border-0 p-0">
 					<DialogClose asChild>
 						<Button
@@ -240,10 +239,8 @@ export const InteriorProductViewDialog = ({
 
 	// Mobile
 	return (
-		<Drawer>
-			<DrawerTrigger asChild>
-				<div>{children}</div>
-			</DrawerTrigger>
+		<Drawer open={open} onOpenChange={setOpen}>
+			<div onClick={() => setOpen(true)}>{children}</div>
 			<DrawerContent hideGrabber className="h-full min-h-dvh border-none">
 				<DrawerClose asChild>
 					<Button

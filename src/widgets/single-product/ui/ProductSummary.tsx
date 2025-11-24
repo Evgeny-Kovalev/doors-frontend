@@ -21,6 +21,12 @@ export const ProductSummary = ({ product, categories }: Props) => {
 	return (
 		<Box className="flex flex-col gap-5">
 			<h1 className="text-2xl  sm:text-3xl">{product.name}</h1>
+			<h2 className="sr-only">
+				Дверь{' '}
+				{product.category.categoryType === 'exteriorDoors'
+					? 'входная'
+					: 'межкомнатная'}
+			</h2>
 			<AttributeList variants={product.variants} />
 			<PriceDetails product={product} />
 			<div

@@ -15,7 +15,7 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
 				<Image
 					className="w-1/3"
 					src={category.imgUrl}
-					alt={category.name}
+					alt="Category image"
 					width={200}
 					height={100}
 				/>

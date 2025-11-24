@@ -93,6 +93,7 @@ export default async function Page(props: PageProps) {
 	return (
 		<PageContainer breadcrumbsItems={breadcrumbsItems}>
 			<PageTitle>{category.name}</PageTitle>
+			<h2 className="sr-only">Список дверей категории</h2>
 			{childCategories && childCategories.length > 0 && (
 				<>
 					<CategoryList className="mb-5" categories={childCategories} />

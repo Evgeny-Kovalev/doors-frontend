@@ -7,7 +7,6 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger,
 	Form,
 	FormControl,
 	FormField,
@@ -31,7 +30,6 @@ import {
 	DrawerFooter,
 	DrawerHeader,
 	DrawerTitle,
-	DrawerTrigger,
 	DrawerClose,
 } from '@/shared/ui';
 
@@ -58,9 +56,7 @@ export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
 	if (isDesktop)
 		return (
 			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogTrigger asChild>
-					<div>{children}</div>
-				</DialogTrigger>
+				<div onClick={() => setOpen(true)}>{children}</div>
 				<DialogContent
 					onOpenAutoFocus={(e) => e.preventDefault()}
 					className="sm:max-w-[425px]"
@@ -77,10 +73,8 @@ export const CallBackDialog = ({ children }: { children: React.ReactNode }) => {
 		);
 
 	return (
-		<Drawer repositionInputs={false} open={open} onOpenChange={setOpen}>
-			<DrawerTrigger asChild>
-				<div>{children}</div>
-			</DrawerTrigger>
+		<Drawer open={open} onOpenChange={setOpen} repositionInputs={false}>
+			<div onClick={() => setOpen(true)}>{children}</div>
 			<DrawerContent>
 				<DrawerHeader className="text-left">
 					<DrawerTitle>{DATA.title}</DrawerTitle>

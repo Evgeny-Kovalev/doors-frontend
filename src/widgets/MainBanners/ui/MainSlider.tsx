@@ -8,6 +8,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 import { MAIN_PAGE } from '@/shared/constants';
 import {
+	AspectRatio,
 	Button,
 	Carousel,
 	CarouselContent,
@@ -32,25 +33,32 @@ export default function MainSlider({}: MainSliderProps) {
 				{MAIN_PAGE.banner.slides.map(({ imgUrl, title, urlTo }, index) => (
 					<CarouselItem key={imgUrl} className="relative h-full">
 						<div className="relative h-full">
-							<Image
-								src={imgUrl}
-								className="h-full max-h-[525px] w-full object-cover"
-								alt="Slider item"
-								width={1400}
-								height={700}
-								fetchPriority="high"
-								priority
-							/>
+							<AspectRatio ratio={16 / 10}>
+								<Image
+									src={imgUrl}
+									className="h-full max-h-[525px] w-full object-cover"
+									alt="Slider item"
+									width={1400}
+									height={700}
+									fetchPriority="high"
+									priority
+								/>
+							</AspectRatio>
 							{title && (
-								<div className="absolute bottom-0 left-1/2 top-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-gradient-to-t from-black/90 to-transparent p-4 text-2xl font-bold uppercase  text-white min-[510px]:p-5 min-[510px]:text-4xl md:text-4xl xl:p-8 xl:text-5xl">
-									<span className="-mb-1 whitespace-pre-line">{title}</span>
+								<div className="absolute bottom-0 left-1/2 top-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-gradient-to-t from-black/90 to-transparent p-4 min-[510px]:p-5 xl:p-8">
+									<span className="-mb-1 whitespace-pre-line text-2xl font-bold uppercase text-white min-[510px]:text-4xl md:text-4xl xl:text-5xl">
+										{title}
+									</span>
 									{urlTo && (
-										<Link href={urlTo}>
-											<Button className="h-5 rounded-lg px-3 py-3 text-xs min-[510px]:px-5 min-[510px]:py-4 min-[510px]:text-base xl:px-6 xl:py-5 xl:text-lg ">
+										<Button
+											asChild
+											className="h-6 rounded-lg px-3 text-xs min-[510px]:px-5 min-[510px]:py-4 min-[510px]:text-base xl:px-6 xl:py-5 xl:text-lg "
+										>
+											<Link href={urlTo}>
 												Выбрать
 												<ArrowRight className="ml-1 size-3 min-[510px]:size-4 xl:size-[18px]" />
-											</Button>
-										</Link>
+											</Link>
+										</Button>
 									)}
 								</div>
 							)}

@@ -27,12 +27,17 @@ export const Header = async () => {
 					<PhoneNumbersList className="hidden text-nowrap text-sm md:block" />
 					<div className="flex gap-3">
 						<CallBackDialog>
-							<CallBackButton className="hidden items-center xl:flex" />
 							<Button
 								aria-label="Обратный звонок"
-								className="hidden h-10 w-10 rounded-full p-1 min-[374px]:inline-flex xl:hidden"
+								className="max-xl:size-10 max-xl:rounded-full max-xl:p-1 xl:rounded-md"
 							>
-								<Phone width={18} height={18} color="white" />
+								<Phone
+									width={18}
+									height={18}
+									className="size-[18px] xl:mr-2 xl:size-[15px]"
+									color="white"
+								/>
+								<span className="max-xl:hidden">Обратный звонок</span>
 							</Button>
 						</CallBackDialog>
 						<MobileMenuToggleButton className="h-10 w-10 p-3 lg:hidden" />

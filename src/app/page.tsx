@@ -22,7 +22,8 @@ export default async function Home() {
 
 	return (
 		<PageContainer withoutBox className="-mb-14">
-			<h1 className="sr-only">Двери входные и межкомнатные</h1>
+			<h1 className="sr-only">Двери</h1>
+			<h2 className="sr-only">Входные и межкомнатные</h2>
 			<section className="mb-10">
 				<MainBanners />
 			</section>
