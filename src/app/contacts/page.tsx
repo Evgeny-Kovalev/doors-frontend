@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { PageTitle, BoxContainer } from '@/shared/components';
+import { PageTitle, PageContainer } from '@/shared/components';
 import { SHOP_INFO } from '@/shared/constants';
 import { openGraph } from '../shared-metadata';
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
 	return (
-		<BoxContainer>
+		<PageContainer>
 			<div className="grid grid-cols-2 gap-5">
 				<div className="col-span-2 lg:col-span-1">
 					<PageTitle>Контактная информация</PageTitle>
@@ -49,6 +49,6 @@ export default async function Page() {
 					></iframe>
 				</div>
 			</div>
-		</BoxContainer>
+		</PageContainer>
 	);
 }

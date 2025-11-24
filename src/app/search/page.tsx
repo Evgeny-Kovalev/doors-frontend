@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
-import { BoxContainer, PageTitle } from '@/shared/components';
+import { PageContainer, PageTitle } from '@/shared/components';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
 
 import { ProductSearchResults } from '@/widgets/products';
@@ -27,7 +27,7 @@ export default async function Page(props: PageProps) {
 	if (!searchParams['q']) return notFound();
 
 	return (
-		<BoxContainer>
+		<PageContainer boxClassName="min-h-[500px]">
 			<PageTitle>Результаты по запросу: {searchParams['q']}</PageTitle>
 			<Suspense
 				key={searchParams['q'] + currentPage}
@@ -39,6 +39,6 @@ export default async function Page(props: PageProps) {
 					limit={limit}
 				/>
 			</Suspense>
-		</BoxContainer>
+		</PageContainer>
 	);
 }

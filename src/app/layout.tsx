@@ -102,10 +102,10 @@ export default function RootLayout({
 	return (
 		<html lang="ru" className={nunito.className}>
 			<GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />
-			<body className="-tracking-[0.035em]">
+			<body className="grid min-h-screen grid-rows-[auto_1fr_auto] -tracking-[0.035em]">
 				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
-				<main className="min-h-[500px] bg-muted/40 pb-14">{children}</main>
+				<main className="bg-muted/40">{children}</main>
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>

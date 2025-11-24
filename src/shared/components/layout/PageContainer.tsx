@@ -13,10 +13,12 @@ import Link from 'next/link';
 interface PageContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 	breadcrumbsItems?: { label: string; href: string }[] | null;
 	withoutBox?: boolean;
+	boxClassName?: string;
 }
 
 export function PageContainer({
 	className,
+	boxClassName,
 	withoutBox,
 	children,
 	breadcrumbsItems,
@@ -50,7 +52,9 @@ export function PageContainer({
 				{withoutBox ? (
 					children
 				) : (
-					<Box className="px-3 md:px-4 lg:px-5">{children}</Box>
+					<Box className={cn('h-full px-3 md:px-4 lg:px-5', boxClassName)}>
+						{children}
+					</Box>
 				)}
 			</div>
 		</>

@@ -21,7 +21,7 @@ export default async function Home() {
 	]);
 
 	return (
-		<PageContainer withoutBox className="-mb-14">
+		<PageContainer withoutBox>
 			<h1 className="sr-only">Двери</h1>
 			<h2 className="sr-only">Входные и межкомнатные</h2>
 			<section className="mb-10">
@@ -68,7 +68,7 @@ export default async function Home() {
 				</section>
 			)}
 			{interiorDoorsFavorite && interiorDoorsFavorite.products.length > 0 && (
-				<section className="mb-10">
+				<section>
 					<h3 className="mb-5 border-b-2 pb-2 text-3xl font-bold">
 						<span className="uppercase text-primary-accent">
 							Популяные модели |

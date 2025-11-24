@@ -12,9 +12,9 @@ export const Header = async () => {
 	const categories = await fetchCategories();
 
 	return (
-		<>
+		<div>
 			<div className="border-b border-b-gray-200 py-3 lg:border-none">
-				<div className="container flex items-center justify-between gap-3 ">
+				<div className="container flex items-center justify-between gap-2 ">
 					<Logo />
 					<Suspense
 						fallback={
@@ -50,6 +50,6 @@ export const Header = async () => {
 					<MobileMenu categories={categories} />
 				</>
 			)}
-		</>
+		</div>
 	);
 };
