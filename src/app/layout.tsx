@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
+import { Suspense } from 'react';
 
 import { Nunito } from 'next/font/google';
 import { openGraph } from './shared-metadata';
@@ -7,6 +8,7 @@ import { openGraph } from './shared-metadata';
 import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 
+import { YandexMetrika } from '@/features/analytics';
 import { CallBackDialog } from '@/features/callback';
 import { Portal, ScrollToTopButton } from '@/shared/components';
 import { Button } from '@/shared/ui';
@@ -99,9 +101,11 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const isProd = !!(process.env.NODE_ENV === 'production');
+
 	return (
 		<html lang="ru" className={nunito.className}>
-			<GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />
+			{isProd && <GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />}
 			<body className="grid min-h-screen grid-rows-[auto_1fr_auto] -tracking-[0.035em]">
 				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
@@ -122,6 +126,11 @@ export default function RootLayout({
 				</Portal>
 				<div id="portal" />
 			</body>
+			{isProd && (
+				<Suspense>
+					<YandexMetrika />
+				</Suspense>
+			)}
 		</html>
 	);
 }
