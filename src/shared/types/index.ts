@@ -32,6 +32,7 @@ export type VariantApiResponse = {
 	price?: number;
 	discountPrice?: number;
 	attributes: AttributeApiResponse[];
+	tags: TagApiResponse[];
 };
 
 export type ProductApiResponse = {
@@ -60,6 +61,8 @@ export interface CategoryApiResponse {
 	isVisible: boolean;
 	parentCategoryId: number;
 
+	order: number | null;
+
 	categoryType: CategoryType;
 }
 
@@ -69,4 +72,16 @@ export type CollectionApiResponse = {
 
 	categories: CategoryApiResponse[];
 	products: ProductApiResponse[];
+};
+
+export enum TagKeys {
+	'bestseller' = 'bestseller',
+	'new' = 'new',
+	'sample' = 'sample',
+}
+
+export type TagApiResponse = {
+	id: number;
+	key: TagKeys;
+	label: string;
 };
