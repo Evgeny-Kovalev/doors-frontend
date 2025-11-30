@@ -109,7 +109,7 @@ export default function RootLayout({
 			<body className="grid min-h-screen grid-rows-[auto_1fr_auto] -tracking-[0.035em]">
 				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
-				<main className="bg-muted/40">{children}</main>
+				<main className="min-w-0 bg-muted/40">{children}</main>
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
