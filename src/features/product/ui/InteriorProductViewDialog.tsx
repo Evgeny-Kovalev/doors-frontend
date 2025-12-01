@@ -192,7 +192,7 @@ export const InteriorProductViewDialog = ({
 				<DialogContent className="left-0 top-0 h-dvh w-dvw max-w-none translate-x-0 translate-y-0 transform-none border-0 p-0">
 					<DialogClose asChild>
 						<Button
-							className="absolute right-4 top-4 z-10"
+							className="absolute right-4 top-4 z-20"
 							variant="outline"
 							size="iconSm"
 						>
@@ -244,7 +244,7 @@ export const InteriorProductViewDialog = ({
 			<DrawerContent hideGrabber className="h-full min-h-dvh border-none">
 				<DrawerClose asChild>
 					<Button
-						className="absolute right-4 top-4 z-10"
+						className="absolute right-4 top-4 z-20"
 						variant="outline"
 						size="iconSm"
 					>
