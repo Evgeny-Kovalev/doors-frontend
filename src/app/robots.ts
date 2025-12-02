@@ -7,6 +7,8 @@ export default function robots(): MetadataRoute.Robots {
 			allow: ['/'],
 			disallow: ['/search', '/feedback'],
 		},
-		sitemap: [`${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml`],
+		sitemap: [
+			`${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml\nClean-param: page&limit`,
+		],
 	};
 }
