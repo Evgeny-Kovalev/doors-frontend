@@ -27,9 +27,9 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 							<Badge
 								key={t.id}
 								className={cn('w-fit', {
-									'bg-red-500': t.key === TagKeys.bestseller,
-									'bg-green-500 ': t.key === TagKeys.new,
-									'bg-amber-500': t.key === TagKeys.sample,
+									'bg-red-500 hover:bg-red-500': t.key === TagKeys.bestseller,
+									'bg-green-500 hover:bg-green-500 ': t.key === TagKeys.new,
+									'bg-amber-500 hover:bg-amber-500': t.key === TagKeys.sample,
 								})}
 							>
 								{t.label}
