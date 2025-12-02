@@ -58,5 +58,5 @@ export const MAIN_NAV: { hiddenCategoriesSlugs: string[] } = {
 	hiddenCategoriesSlugs: [],
 };
 
-export const PRODUCT_PER_PAGE = 20;
+export const PRODUCT_PER_PAGE = 24;
 export const DESCRIPTION_MAX_LEN = 200;
