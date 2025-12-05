@@ -25,7 +25,7 @@ type AttributeValue = {
 };
 
 export const AttributeList = ({ variants }: AttributeListProps) => {
-	const { setActiveVariant } = useProductStore();
+	const { activeVariant, setActiveVariant } = useProductStore();
 	const [selectedItems, setSelectedItems] = useState<{ [key: string]: string }>({});
 
 	const isVariantCompatibleWithSelection = (
@@ -100,6 +100,20 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 
 		if (found) setActiveVariant(found);
 	}, [selectedItems, variants, setActiveVariant]);
+
+	useEffect(() => {
+		if (!activeVariant) return;
+
+		const newSelection = activeVariant.attributes.reduce<Record<string, string>>(
+			(acc, a) => {
+				acc[a.key.value] = a.value.value;
+				return acc;
+			},
+			{},
+		);
+
+		setSelectedItems(newSelection);
+	}, [activeVariant]);
 
 	return (
 		<div className="relative">
