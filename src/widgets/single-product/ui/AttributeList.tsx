@@ -117,38 +117,40 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 
 	return (
 		<div className="relative">
-			{Object.keys(grouped).map((k) => {
-				const g = grouped[k];
-				return (
-					<ul key={k} className="mb-5">
-						<div className="font-semibold">{g.key.label}:</div>
-						<li className="mt-1 flex flex-wrap gap-2">
-							{g.values.map((v) => (
-								<button
-									key={v.value}
-									type="button"
-									disabled={v.isDisabled}
-									onClick={() => handleValueClick(k, v.value, v.isDisabled)}
-									className={cn(
-										'relative overflow-hidden rounded border px-3 py-2 text-sm',
-										selectedItems[k] === v.value && 'bg-gray-200',
-									)}
-								>
-									{v.isDisabled ? (
-										<>
-											<span className="absolute -left-1/2 bottom-0 right-1/2 top-1/2 h-[1px] w-[200%] rotate-45 bg-red-600"></span>
-											<span className="absolute -left-1/2 bottom-0 right-1/2 top-1/2 h-[1px] w-[200%] -rotate-45 bg-red-600"></span>
-											<span className="opacity-25">{v.value}</span>
-										</>
-									) : (
-										v.value
-									)}
-								</button>
-							))}
-						</li>
-					</ul>
-				);
-			})}
+			{Object.keys(grouped)
+				.sort()
+				.map((k) => {
+					const g = grouped[k];
+					return (
+						<ul key={k} className="mb-5">
+							<div className="font-semibold">{g.key.label}:</div>
+							<li className="mt-1 flex flex-wrap gap-2">
+								{g.values.map((v) => (
+									<button
+										key={v.value}
+										type="button"
+										disabled={v.isDisabled}
+										onClick={() => handleValueClick(k, v.value, v.isDisabled)}
+										className={cn(
+											'relative overflow-hidden rounded border px-3 py-2 text-sm',
+											selectedItems[k] === v.value && 'bg-gray-200',
+										)}
+									>
+										{v.isDisabled ? (
+											<>
+												<span className="absolute -left-1/2 bottom-0 right-1/2 top-1/2 h-[1px] w-[200%] rotate-45 bg-red-600"></span>
+												<span className="absolute -left-1/2 bottom-0 right-1/2 top-1/2 h-[1px] w-[200%] -rotate-45 bg-red-600"></span>
+												<span className="opacity-25">{v.value}</span>
+											</>
+										) : (
+											v.value
+										)}
+									</button>
+								))}
+							</li>
+						</ul>
+					);
+				})}
 			{Object.keys(selectedItems).length > 0 && (
 				<span
 					className="absolute -bottom-2.5 inline-flex cursor-pointer items-center justify-center gap-1 text-sm text-gray-600 hover:underline"
