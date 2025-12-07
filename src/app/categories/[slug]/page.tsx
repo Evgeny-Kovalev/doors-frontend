@@ -10,10 +10,9 @@ import {
 import { fetchProducts } from '@/entities/product';
 import { PageContainer, PageTitle, PaginationControls } from '@/shared/components';
 import { PRODUCT_PER_PAGE } from '@/shared/constants';
-import { Separator } from '@/shared/ui';
 import { limitMetadataDescription } from '@/shared/utils';
 
-import { CategoryList } from '@/entities/category';
+import { CategoriesSlider } from '@/entities/category';
 import { ProductCardsGrid } from '@/entities/product';
 
 interface PageProps {
@@ -95,10 +94,7 @@ export default async function Page(props: PageProps) {
 			<PageTitle>{category.name}</PageTitle>
 			<h2 className="sr-only">Список дверей категории</h2>
 			{childCategories && childCategories.length > 0 && (
-				<>
-					<CategoryList className="mb-5" categories={childCategories} />
-					<Separator className="mb-5" />
-				</>
+				<CategoriesSlider className="mb-5" categories={childCategories} />
 			)}
 			{products.length > 0 ? (
 				<>

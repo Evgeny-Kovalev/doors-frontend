@@ -1,2 +1,2 @@
 export { CategoryCard } from './CategoryCard';
-export { CategoryList } from './CategoryList';
+export { CategoriesSlider } from './CategoriesSlider';

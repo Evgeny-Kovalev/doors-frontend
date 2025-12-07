@@ -9,7 +9,7 @@ interface CategoryItemProps {
 
 export default function CategoryItem({ category }: CategoryItemProps) {
 	return (
-		<Box className="p-2 pb-3 transition-[transform,shadow] duration-300 hover:-translate-y-1 hover:shadow-lg lg:px-4">
+		<Box className="p-2 pb-3 transition-[transform,shadow] duration-300 hover:-translate-y-1 lg:px-4">
 			<Link href={`/categories/${category.slug}`}>
 				<Image
 					className="mb-2 h-auto w-full"
