@@ -169,14 +169,14 @@ const ItemsCarousel = ({
 							<Image
 								onClick={() => onItemClick?.(item)}
 								className={cn(
-									'h-[130px] w-[65px] cursor-pointer border border-gray-200',
+									'h-[120px] w-[60px] cursor-pointer border border-gray-200 lg:h-[170px] lg:w-[85px]',
 									selectedItem?.imageUrl === item.imageUrl &&
 										'border-2 border-primary',
 								)}
 								src={item.imageUrl}
 								alt="Product variant"
-								width={65}
-								height={130}
+								width={85}
+								height={170}
 							/>
 						)}
 					</CarouselItem>
