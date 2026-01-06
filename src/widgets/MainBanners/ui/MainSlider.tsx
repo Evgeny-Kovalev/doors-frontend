@@ -8,7 +8,6 @@ import Autoplay from 'embla-carousel-autoplay';
 
 import { MAIN_PAGE } from '@/shared/constants';
 import {
-	AspectRatio,
 	Button,
 	Carousel,
 	CarouselContent,
@@ -29,21 +28,19 @@ export default function MainSlider({}: MainSliderProps) {
 			plugins={[Autoplay({ delay: 3000 }), WheelGesturesPlugin()]}
 			className="h-full"
 		>
-			<CarouselContent className="h-full ">
-				{MAIN_PAGE.banner.slides.map(({ imgUrl, title, urlTo }, index) => (
-					<CarouselItem key={imgUrl} className="relative h-full">
+			<CarouselContent className="h-full">
+				{MAIN_PAGE.banner.slides.map(({ imgUrl, title, urlTo }) => (
+					<CarouselItem key={imgUrl}>
 						<div className="relative h-full">
-							<AspectRatio ratio={16 / 10}>
-								<Image
-									src={imgUrl}
-									className="h-full max-h-[525px] w-full object-cover"
-									alt="Slider item"
-									width={1400}
-									height={700}
-									fetchPriority="high"
-									priority
-								/>
-							</AspectRatio>
+							<Image
+								src={imgUrl}
+								className="h-full w-full object-cover"
+								alt="Slider item"
+								width={1400}
+								height={700}
+								fetchPriority="high"
+								priority
+							/>
 							{title && (
 								<div className="absolute bottom-0 left-1/2 top-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-gradient-to-t from-black/90 to-transparent p-4 min-[510px]:p-5 xl:p-8">
 									<span className="-mb-1 whitespace-pre-line text-2xl font-bold uppercase text-white min-[510px]:text-4xl md:text-4xl xl:text-5xl">
