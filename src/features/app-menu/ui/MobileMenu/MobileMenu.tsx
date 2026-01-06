@@ -23,6 +23,11 @@ export const MobileMenu = ({ categories }: MobileMenuProps) => {
 	const menuItems: IMenuItem[] = [
 		...mapCategoriesToMenuItems(categories),
 		{
+			label: 'Конструктор дверей',
+			link: '/product-constructor',
+			slug: 'product-constructor',
+		},
+		{
 			label: 'Контакты',
 			link: '/contacts',
 			slug: 'contacts',
