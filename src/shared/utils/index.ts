@@ -5,3 +5,5 @@ export const limitMetadataDescription = (description: string) => {
 		? description.slice(0, DESCRIPTION_MAX_LEN - 3) + '...'
 		: description;
 };
+
+export * from './try-catch';
