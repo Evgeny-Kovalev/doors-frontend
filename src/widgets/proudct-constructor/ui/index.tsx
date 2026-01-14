@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import {
 	Tabs,
@@ -31,30 +31,47 @@ export const ProductConstructor = ({ data }: { data: ProductConstructorResponse 
 	const [selectedMilling, setSelectedMilling] =
 		useState<OutputDataItem>(DEFAULT_MILLING);
 
+	const previewRef = useRef<HTMLDivElement | null>(null);
+	const [isFloatingPreview, setisFloatingPreview] = useState(true);
+
+	useEffect(() => {
+		if (!previewRef.current) return;
+
+		const obs = new IntersectionObserver(
+			(entries) => {
+				setisFloatingPreview(entries[0].intersectionRatio >= 0.8);
+			},
+			{
+				threshold: 0.8,
+				rootMargin: '-80px 0px 0px 0px',
+			},
+		);
+
+		obs.observe(previewRef.current);
+		return () => {
+			obs.disconnect();
+		};
+	}, []);
+
 	return (
 		<div className="grid grid-cols-1 gap-3 md:grid-cols-[auto_1fr]">
+			<div
+				className={cn('fixed inset-x-0 top-0 z-50 bg-white shadow md:hidden', {
+					hidden: isFloatingPreview,
+				})}
+			>
+				<div className="mx-auto flex w-[300px] justify-center py-2">
+					<PreviewImages
+						selectedColor={selectedColor}
+						selectedMilling={selectedMilling}
+					/>
+				</div>
+			</div>
 			<div className="mx-auto flex w-[300px] flex-col gap-3">
-				<div className="relative mx-auto h-[300px] w-[150px] lg:h-[500px] lg:w-[235px] ">
-					<Image
-						className="absolute left-0 top-0 h-full w-full object-contain"
-						src={selectedColor.imageUrl ?? ''}
-						alt="Door"
-						width={235}
-						height={500}
-					/>
-					<Image
-						className="absolute left-0 top-0 h-full w-full object-contain p-5 pb-3"
-						src={selectedMilling.imageUrl ?? ''}
-						alt="Milling"
-						width={235}
-						height={500}
-					/>
-					<Image
-						className="absolute left-0 top-0 h-full w-full object-contain"
-						src={ACCESSORIES_IMAGE_URL}
-						alt="Accessories"
-						width={235}
-						height={500}
+				<div ref={previewRef}>
+					<PreviewImages
+						selectedColor={selectedColor}
+						selectedMilling={selectedMilling}
 					/>
 				</div>
 				<Box className="hidden w-full md:block">
@@ -139,6 +156,40 @@ export const ProductConstructor = ({ data }: { data: ProductConstructorResponse 
 				<div>Материал - {selectedColor.title}</div>
 				<div>Фрезеровка - {selectedMilling.title}</div>
 			</div>
+		</div>
+	);
+};
+
+const PreviewImages = ({
+	selectedColor,
+	selectedMilling,
+}: {
+	selectedColor: OutputDataItem;
+	selectedMilling: OutputDataItem;
+}) => {
+	return (
+		<div className="relative mx-auto h-[300px] w-[150px] lg:h-[500px] lg:w-[235px]">
+			<Image
+				className="absolute left-0 top-0 h-full w-full object-contain"
+				src={selectedColor.imageUrl ?? ''}
+				alt="Door"
+				width={235}
+				height={500}
+			/>
+			<Image
+				className="absolute left-0 top-0 h-full w-full object-contain p-5 pb-3"
+				src={selectedMilling.imageUrl ?? ''}
+				alt="Milling"
+				width={235}
+				height={500}
+			/>
+			<Image
+				className="absolute left-0 top-0 h-full w-full object-contain"
+				src={ACCESSORIES_IMAGE_URL}
+				alt="Accessories"
+				width={235}
+				height={500}
+			/>
 		</div>
 	);
 };
