@@ -30,6 +30,9 @@ export default async function Home() {
 				<MainBanners />
 			</section>
 			<section>
+				<h3 className="mb-5 border-b pb-2 text-center text-3xl font-bold uppercase text-primary-accent">
+					Почему выбирают нас?
+				</h3>
 				<AdvantageList />
 			</section>
 			{interiorDoorsSamples && interiorDoorsSamples.products.length > 0 && (

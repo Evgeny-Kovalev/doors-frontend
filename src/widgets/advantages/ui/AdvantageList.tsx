@@ -30,7 +30,7 @@ export const AdvantageList = ({ className }: { className?: string }) => {
 					<div className="flex size-16 items-center justify-center rounded-lg border border-gray-100 bg-white text-primary [&_svg]:size-7">
 						{icon}
 					</div>
-					<span className="text-center font-bold leading-tight">{text}</span>
+					<span className="text-center text-lg font-bold leading-tight">{text}</span>
 				</li>
 			))}
 		</ul>
