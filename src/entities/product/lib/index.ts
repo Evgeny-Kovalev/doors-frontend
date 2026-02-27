@@ -27,6 +27,6 @@ export const getPriceText = (product: ProductApiResponse) => {
 };
 
 export const getPriceTextByVariant = (variant: VariantApiResponse) => {
-	if (!variant.price) return 'Цену уточняйте';
-	return `${variant.price}руб`;
+	if (!variant.discountPrice && !variant.price) return 'Цену уточняйте';
+	return `${variant.discountPrice || variant.price}руб`;
 };

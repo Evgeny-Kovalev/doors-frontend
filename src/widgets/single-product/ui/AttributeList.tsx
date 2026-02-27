@@ -91,6 +91,14 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 	};
 
 	useEffect(() => {
+		const selectedKeys = Object.keys(selectedItems);
+		if (
+			selectedKeys.length === 0 ||
+			selectedKeys.length !== Object.keys(grouped).length
+		) {
+			setActiveVariant(null);
+			return;
+		}
 		const found = variants.find((v) =>
 			v.attributes.every(
 				(a) =>
@@ -99,10 +107,11 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 		);
 
 		if (found) setActiveVariant(found);
-	}, [selectedItems, variants, setActiveVariant]);
+	}, [selectedItems, variants, setActiveVariant, grouped]);
 
 	useEffect(() => {
 		if (!activeVariant) return;
+		if (!variants.some((v) => v.id === activeVariant.id)) return;
 
 		const newSelection = activeVariant.attributes.reduce<Record<string, string>>(
 			(acc, a) => {
@@ -113,7 +122,7 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 		);
 
 		setSelectedItems(newSelection);
-	}, [activeVariant]);
+	}, [activeVariant, variants]);
 
 	return (
 		<div className="relative">

@@ -63,9 +63,9 @@ export const ProductGallery = ({ product }: Props) => {
 	}, [emblaMainApi, onSelect]);
 
 	useEffect(() => {
-		if (!emblaMainApi) return;
+		if (!emblaMainApi || !activeVariant) return;
 
-		const index = sortedVariants.findIndex((v) => activeVariant?.id === v.id);
+		const index = sortedVariants.findIndex((v) => activeVariant.id === v.id);
 		emblaMainApi.scrollTo(index === -1 ? 0 : index);
 	}, [activeVariant, sortedVariants, emblaMainApi]);
 
