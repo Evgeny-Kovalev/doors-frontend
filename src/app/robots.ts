@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: '*',
 			allow: ['/'],
-			disallow: ['/search', '/feedback'],
+			disallow: ['/search', '/feedback', '/favorites'],
 		},
 		sitemap: [
 			`${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml\nClean-param: page&limit`,

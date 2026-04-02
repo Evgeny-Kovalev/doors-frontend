@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import { ChevronUp } from 'lucide-react';
-import { cn, Button } from '@/shared/ui';
-import { Portal } from '../Portal';
+import { cn, Button, ButtonProps } from '@/shared/ui';
 
-export const ScrollToTopButton = () => {
+interface ScrollToTopButtonProps extends ButtonProps {}
+
+export const ScrollToTopButton = ({
+	className,
+	onClick,
+	...props
+}: ScrollToTopButtonProps) => {
 	const [isVisible, setIsVisible] = useState(false);
 
 	useEffect(() => {
@@ -19,29 +24,27 @@ export const ScrollToTopButton = () => {
 		};
 	}, []);
 
-	const scrollToTop = () => {
+	const scrollToTop: React.MouseEventHandler<HTMLButtonElement> = (e) => {
 		isVisible &&
 			window.scrollTo({
 				top: 0,
 				behavior: 'smooth',
 			});
+		onClick?.(e);
 	};
 
 	return (
-		<Portal>
-			<Button
-				aria-label="Прокрутитить страницу вверх"
-				className={cn(
-					'fixed bottom-5 right-5 z-10 h-12 w-12 rounded-full p-1 shadow-lg outline-none transition-opacity duration-200',
-					{
-						'opacity-100': isVisible,
-						'opacity-0': !isVisible,
-					},
-				)}
-				onClick={scrollToTop}
-			>
-				<ChevronUp />
-			</Button>
-		</Portal>
+		<Button
+			aria-label="Прокрутитить страницу вверх"
+			className={cn(
+				'size-12 rounded-full p-1 shadow-lg outline-none transition-opacity duration-200',
+				className,
+				isVisible ? 'opacity-100' : 'opacity-0',
+			)}
+			onClick={scrollToTop}
+			{...props}
+		>
+			<ChevronUp />
+		</Button>
 	);
 };

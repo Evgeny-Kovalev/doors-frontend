@@ -1,8 +1,10 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import { Suspense } from 'react';
-
+import Link from 'next/link';
 import { Nunito } from 'next/font/google';
+import { Heart, Phone } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
 import { openGraph } from './shared-metadata';
 
 import { Footer } from '@/widgets/Footer';
@@ -12,8 +14,6 @@ import { YandexMetrika } from '@/features/analytics';
 import { CallBackDialog } from '@/features/callback';
 import { Portal, ScrollToTopButton } from '@/shared/components';
 import { Button } from '@/shared/ui';
-import { Phone } from 'lucide-react';
-import { Toaster } from 'react-hot-toast';
 
 import './globals.css';
 
@@ -113,12 +113,20 @@ export default function RootLayout({
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
-				<ScrollToTopButton />
 				<Portal>
+					<ScrollToTopButton className="fixed bottom-5 right-5 z-10" />
+					<Button
+						className="fixed bottom-3 left-3 z-10 size-12 rounded-full p-1"
+						asChild
+					>
+						<Link href="/favorites">
+							<Heart width={20} height={20} color="white" />
+						</Link>
+					</Button>
 					<CallBackDialog>
 						<Button
 							aria-label="Обратный звонок"
-							className="fixed bottom-5 left-5 z-10 h-12 w-12 rounded-full p-1 md:hidden"
+							className="fixed bottom-16 left-3 z-10 size-12 rounded-full p-1 md:bottom-5 md:hidden"
 						>
 							<Phone width={20} height={20} color="white" />
 						</Button>

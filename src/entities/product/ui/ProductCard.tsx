@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { ProductApiResponse, TagApiResponse, TagKeys } from '@/shared/types';
 import { Button, cn, Card, CardContent, CardFooter, CardTitle, Badge } from '@/shared/ui';
+import { FavoriteToggleButton } from '@/features/favorites';
 
 import { getPriceText } from '../lib';
 
@@ -46,6 +47,10 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 						placeholder="blur"
 						blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
 						priority
+					/>
+					<FavoriteToggleButton
+						className="absolute right-2 top-2"
+						product={product}
 					/>
 				</CardContent>
 				<CardFooter className="p-2 ">

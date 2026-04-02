@@ -2,15 +2,16 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { openGraph } from '@/app/shared-metadata';
-import { fetchProduct, fetchProducts, fetchRelatedProducts } from '@/entities/product';
 import { PageContainer } from '@/shared/components';
 import { limitMetadataDescription } from '@/shared/utils';
-
-import { ProductApiResponse } from '@/shared/types';
-import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
-import { fetchCategoryHierarchy } from '@/entities/category';
 import { Box } from '@/shared/ui';
+import { ProductApiResponse } from '@/shared/types';
+
+import { ProductContent, ProductGallery, ProductSummary } from '@/widgets/single-product';
 import { ProductCardsSlider } from '@/widgets/products';
+import { FavoriteToggleButton } from '@/features/favorites';
+import { fetchProduct, fetchProducts, fetchRelatedProducts } from '@/entities/product';
+import { fetchCategoryHierarchy } from '@/entities/category';
 
 export const dynamicParams = false;
 
@@ -97,8 +98,14 @@ export default async function Page(props: PageProps) {
 	return (
 		<PageContainer className=" gap-5" withoutBox breadcrumbsItems={breadcrumbsItems}>
 			<div className="mb-5 grid grid-cols-2 gap-5">
-				<div className="col-span-2 lg:col-span-1">
+				<div className="relative col-span-2 lg:col-span-1">
 					<ProductGallery product={product} />
+					<FavoriteToggleButton
+						product={product}
+						size="icon"
+						iconClassName="size-[18px]"
+						className="absolute right-3 top-3"
+					/>
 				</div>
 				<div className="col-span-2 lg:col-span-1">
 					<ProductSummary product={product} categories={categories} />
