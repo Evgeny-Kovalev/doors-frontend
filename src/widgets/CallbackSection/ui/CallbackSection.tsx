@@ -70,7 +70,7 @@ export const CallbackSection = ({ className }: { className?: string }) => {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end"
+						className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1fr_auto]"
 					>
 						<FormField
 							control={form.control}
