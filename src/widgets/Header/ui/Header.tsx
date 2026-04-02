@@ -19,10 +19,10 @@ export const Header = async () => {
 					<Logo />
 					<Suspense
 						fallback={
-							<Skeleton className="hidden h-10 w-1/3 flex-shrink lg:block" />
+							<Skeleton className="hidden h-10 w-1/3 shrink lg:block" />
 						}
 					>
-						<SearchBox className="hidden w-1/3 flex-shrink lg:flex" />
+						<SearchBox className="hidden w-1/3 shrink lg:flex" />
 					</Suspense>
 					<WorkingHoursList className="hidden shrink-0 text-sm md:block" />
 					<PhoneNumbersList className="hidden text-nowrap text-sm md:block" />

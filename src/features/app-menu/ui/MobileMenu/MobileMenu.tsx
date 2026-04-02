@@ -47,7 +47,7 @@ export const MobileMenu = ({ categories }: MobileMenuProps) => {
 			open={isMobileMenuOpen}
 			onOpenChange={toggleMobileMenu}
 		>
-			<DrawerContent className="!w-full border-none">
+			<DrawerContent className="w-full! border-none">
 				<DrawerTitle className="sr-only">Меню</DrawerTitle>
 				<DrawerDescription className="sr-only">
 					Для мобильных устройств

@@ -42,7 +42,7 @@ export default function MainSlider({}: MainSliderProps) {
 								priority
 							/>
 							{title && (
-								<div className="absolute bottom-0 left-1/2 top-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-gradient-to-t from-black/90 to-transparent p-4 min-[510px]:p-5 xl:p-8">
+								<div className="absolute bottom-0 left-1/2 top-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-linear-to-t from-black/90 to-transparent p-4 min-[510px]:p-5 xl:p-8">
 									<span className="-mb-1 whitespace-pre-line text-2xl font-bold uppercase text-white min-[510px]:text-4xl md:text-4xl xl:text-5xl">
 										{title}
 									</span>

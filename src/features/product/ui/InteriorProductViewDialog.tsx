@@ -269,7 +269,7 @@ export const InteriorProductViewDialog = ({
 						/>
 					</div>
 				</div>
-				<div className="pointer-events-auto fixed inset-x-0 bottom-0 z-[60] flex h-[45%] flex-col justify-evenly rounded-t-xl bg-white px-4 pb-[env(safe-area-inset-bottom)] md:hidden">
+				<div className="pointer-events-auto fixed inset-x-0 bottom-0 z-60 flex h-[45%] flex-col justify-evenly rounded-t-xl bg-white px-4 pb-[env(safe-area-inset-bottom)] md:hidden">
 					<ProductVariantsCarousel
 						activeVariant={activeVariant || defaultVariant}
 						variants={product.variants}
@@ -326,7 +326,7 @@ const BackgroundsCarousel = ({
 					>
 						<Image
 							className={cn(
-								'size-20 cursor-pointer border-[2px] border-transparent transition-all duration-100',
+								'size-20 cursor-pointer border-2 border-transparent transition-all duration-100',
 								item.imgUrl === activeItem.imgUrl &&
 									'rounded-lg border-primary p-[3px]',
 							)}
@@ -366,7 +366,7 @@ const ProductVariantsCarousel = ({
 				align: 'start',
 				dragFree: true,
 			}}
-			className={cn('mx-auto w-full max-w-sm !p-3 !pb-0', className)}
+			className={cn('mx-auto w-full max-w-sm p-3! pb-0!', className)}
 		>
 			<CarouselPrevious className="-left-3 z-10 [@media(min-width:480px)]:-left-10" />
 			<CarouselContent className="h-[132px]">
@@ -418,11 +418,11 @@ const InteriorImage = ({
 			width={1920}
 			height={1080}
 			className={cn(
-				'h-full w-full object-cover transition-all !duration-300',
+				'h-full w-full object-cover transition-all duration-300!',
 				activeBgItem.align === 'left'
-					? 'object-left-bottom'
+					? 'object-bottom-left'
 					: activeBgItem.align === 'right'
-						? 'object-right-bottom'
+						? 'object-bottom-right'
 						: 'object-[bottom_center]',
 			)}
 			{...props}

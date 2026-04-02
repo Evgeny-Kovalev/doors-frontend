@@ -6,7 +6,7 @@ const Box = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement
 		<div
 			ref={ref}
 			className={cn(
-				'rounded-lg border bg-card p-6 text-card-foreground shadow-sm',
+				'bg-card text-card-foreground rounded-lg border p-6 shadow-xs',
 				className,
 			)}
 			{...props}

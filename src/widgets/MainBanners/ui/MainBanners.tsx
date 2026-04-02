@@ -10,7 +10,7 @@ export const MainBanners = ({ className, ...props }: MainBannersProps) => {
 	return (
 		<div className={cn('grid grid-cols-12 gap-5', className)} {...props}>
 			<div className="relative col-span-12 row-span-2 object-fill lg:col-span-8">
-				<div className="aspect-[16/10] h-full w-auto max-w-full">
+				<div className="aspect-16/10 h-full w-auto max-w-full">
 					<MainSlider />
 				</div>
 			</div>

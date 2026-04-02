@@ -57,7 +57,7 @@ export const FeedbackForm = () => {
 				<div className="flex justify-center gap-5 text-5xl">
 					<button
 						onClick={() => setStep(2)}
-						className="flex aspect-square max-w-48 flex-1 cursor-pointer items-center justify-center rounded-2xl bg-red-100 transition-all focus-within:bg-opacity-75 hover:bg-opacity-75"
+						className="flex aspect-square max-w-48 flex-1 cursor-pointer items-center justify-center rounded-2xl bg-red-100 transition-all focus-within:bg-red-100/75 hover:bg-red-100/75"
 					>
 						{/* 👎 */}
 						<svg
@@ -79,7 +79,7 @@ export const FeedbackForm = () => {
 					</button>
 					<button
 						onClick={() => setStep(1)}
-						className="flex aspect-square max-w-48 flex-1 cursor-pointer items-center justify-center rounded-2xl bg-green-200 transition-all focus-within:bg-opacity-75 hover:bg-opacity-75"
+						className="flex aspect-square max-w-48 flex-1 cursor-pointer items-center justify-center rounded-2xl bg-green-200 transition-all focus-within:bg-green-200/75 hover:bg-green-200/75"
 					>
 						{/* 👍 */}
 						<svg
