@@ -5,6 +5,7 @@ import type { MouseEventHandler } from 'react';
 
 import type { ProductApiResponse } from '@/shared/types';
 import { Button, cn } from '@/shared/ui';
+import { useStore } from '@/shared/hooks';
 
 import { useFavoritesStore } from '../model/useFavoritesStore';
 import toast from 'react-hot-toast';
@@ -26,7 +27,7 @@ export function FavoriteToggleButton({
 	withText = false,
 	iconClassName,
 }: Props) {
-	const isFavorite = useFavoritesStore((s) => s.isFavorite(product.slug));
+	const isFavorite = useStore(useFavoritesStore, (s) => s.isFavorite(product.slug));
 	const toggle = useFavoritesStore((s) => s.toggle);
 
 	const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
