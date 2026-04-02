@@ -9,13 +9,11 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger,
 	Drawer,
 	DrawerContent,
 	DrawerDescription,
 	DrawerHeader,
 	DrawerTitle,
-	DrawerTrigger,
 	DrawerClose,
 	Separator,
 	Carousel,
@@ -189,10 +187,10 @@ export const InteriorProductViewDialog = ({
 		return (
 			<Dialog open={open} onOpenChange={setOpen}>
 				<div onClick={() => setOpen(true)}>{children}</div>
-				<DialogContent className="left-0 top-0 h-dvh w-dvw max-w-none translate-x-0 translate-y-0 transform-none border-0 p-0">
+				<DialogContent className="top-0 left-0 h-dvh w-dvw max-w-none translate-x-0 translate-y-0 transform-none border-0 p-0">
 					<DialogClose asChild>
 						<Button
-							className="absolute right-4 top-4 z-20"
+							className="absolute top-4 right-4 z-20"
 							variant="outline"
 							size="iconSm"
 						>
@@ -222,13 +220,13 @@ export const InteriorProductViewDialog = ({
 						activeVariant={activeVariant || defaultVariant}
 						variants={product.variants}
 						onVariantClick={(v) => setActiveVariant(v)}
-						className="absolute bottom-4 right-12 z-20 rounded-lg bg-white px-4 py-2"
+						className="absolute right-12 bottom-4 z-20 rounded-lg bg-white px-4 py-2"
 					/>
 					<BackgroundsCarousel
 						items={BG_ITEMS}
 						onItemClick={(i) => setActiveBgItem(i)}
 						activeItem={activeBgItem}
-						className="absolute left-4 top-1/2 z-20 w-fit -translate-y-1/2 rounded-lg bg-white p-2"
+						className="absolute top-1/2 left-4 z-20 w-fit -translate-y-1/2 rounded-lg bg-white p-2"
 						itemClassName="basis-auto pt-2"
 						orientation="vertical"
 						contentClassName="h-[400px] -mt-2"
@@ -244,7 +242,7 @@ export const InteriorProductViewDialog = ({
 			<DrawerContent hideGrabber className="h-full min-h-dvh border-none">
 				<DrawerClose asChild>
 					<Button
-						className="absolute right-4 top-4 z-20"
+						className="absolute top-4 right-4 z-20"
 						variant="outline"
 						size="iconSm"
 					>
@@ -319,7 +317,7 @@ const BackgroundsCarousel = ({
 				})}
 			/>
 			<CarouselContent className={contentClassName}>
-				{items.map((item, index) => (
+				{items.map((item) => (
 					<CarouselItem
 						key={item.imgUrl}
 						className={cn('basis-auto', itemClassName)}
@@ -328,7 +326,7 @@ const BackgroundsCarousel = ({
 							className={cn(
 								'size-20 cursor-pointer border-2 border-transparent transition-all duration-100',
 								item.imgUrl === activeItem.imgUrl &&
-									'rounded-lg border-primary p-[3px]',
+									'border-primary rounded-lg p-[3px]',
 							)}
 							onClick={() => onItemClick(item)}
 							src={item.imgUrl}
@@ -374,7 +372,7 @@ const ProductVariantsCarousel = ({
 					<CarouselItem key={index} className="basis-auto">
 						<div
 							className={cn(
-								'relative inline-block cursor-pointer pb-3 after:absolute after:bottom-[5px] after:left-0 after:right-0 after:h-[3px] after:rounded-md after:bg-transparent after:transition-colors after:duration-200 after:content-[""]',
+								'relative inline-block cursor-pointer pb-3 after:absolute after:right-0 after:bottom-[5px] after:left-0 after:h-[3px] after:rounded-md after:bg-transparent after:transition-colors after:duration-200 after:content-[""]',
 								v.imgUrl === activeVariant?.imgUrl && 'after:bg-primary',
 							)}
 							onClick={() => onVariantClick?.(v)}

@@ -78,6 +78,7 @@ export default async function Page(props: PageProps) {
 		limit: 1000,
 	});
 
+	// eslint-disable-next-line react-hooks/purity
 	const randomProducts = relatedProducts?.sort(() => Math.random() - 0.5).slice(0, 6);
 
 	const breadcrumbsItems = categories && [
@@ -96,7 +97,7 @@ export default async function Page(props: PageProps) {
 	];
 
 	return (
-		<PageContainer className=" gap-5" withoutBox breadcrumbsItems={breadcrumbsItems}>
+		<PageContainer className="gap-5" withoutBox breadcrumbsItems={breadcrumbsItems}>
 			<div className="mb-5 grid grid-cols-2 gap-5">
 				<div className="relative col-span-2 lg:col-span-1">
 					<ProductGallery product={product} />
@@ -104,7 +105,7 @@ export default async function Page(props: PageProps) {
 						product={product}
 						size="icon"
 						iconClassName="size-[18px]"
-						className="absolute right-3 top-3"
+						className="absolute top-3 right-3"
 					/>
 				</div>
 				<div className="col-span-2 lg:col-span-1">

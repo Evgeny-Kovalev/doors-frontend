@@ -147,8 +147,8 @@ export const AttributeList = ({ variants }: AttributeListProps) => {
 									>
 										{v.isDisabled ? (
 											<>
-												<span className="absolute -left-1/2 bottom-0 right-1/2 top-1/2 h-px w-[200%] rotate-45 bg-red-600"></span>
-												<span className="absolute -left-1/2 bottom-0 right-1/2 top-1/2 h-px w-[200%] -rotate-45 bg-red-600"></span>
+												<span className="absolute top-1/2 right-1/2 bottom-0 -left-1/2 h-px w-[200%] rotate-45 bg-red-600"></span>
+												<span className="absolute top-1/2 right-1/2 bottom-0 -left-1/2 h-px w-[200%] -rotate-45 bg-red-600"></span>
 												<span className="opacity-25">{v.value}</span>
 											</>
 										) : (

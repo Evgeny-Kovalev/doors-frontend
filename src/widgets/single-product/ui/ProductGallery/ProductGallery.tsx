@@ -69,7 +69,7 @@ export const ProductGallery = ({ product }: Props) => {
 		emblaMainApi.scrollTo(index === -1 ? 0 : index);
 	}, [activeVariant, sortedVariants, emblaMainApi]);
 
-	const wheelGesturesPlugin = useMemo(WheelGesturesPlugin, []);
+	const wheelGesturesPlugin = useMemo(() => WheelGesturesPlugin(), []);
 
 	return (
 		<Card className="flex flex-col pt-6">
@@ -101,11 +101,11 @@ export const ProductGallery = ({ product }: Props) => {
 					</CarouselContent>
 					<CarouselPrevious
 						variant="default"
-						className="left-[10px] top-1/2 -translate-x-1/2 md:left-0"
+						className="top-1/2 left-[10px] -translate-x-1/2 md:left-0"
 					/>
 					<CarouselNext
 						variant="default"
-						className="right-[10px] top-1/2 translate-x-1/2  md:right-0"
+						className="top-1/2 right-[10px] translate-x-1/2 md:right-0"
 					/>
 				</Carousel>
 			</CardContent>

@@ -22,7 +22,7 @@ export const CategoriesSlider = ({
 	className,
 	...props
 }: CategoriesSliderProps) => {
-	const wheelGesturesPlugin = useMemo(WheelGesturesPlugin, []);
+	const wheelGesturesPlugin = useMemo(() => WheelGesturesPlugin(), []);
 
 	return (
 		<Carousel
@@ -45,7 +45,7 @@ export const CategoriesSlider = ({
 			</CarouselContent>
 			<CarouselPrevious
 				variant="default"
-				className={cn('left-[10px] top-[40%] -translate-x-1/2 md:left-0', {
+				className={cn('top-[40%] left-[10px] -translate-x-1/2 md:left-0', {
 					'lg:hidden': categories.length <= 4,
 					'md:hidden': categories.length <= 3,
 					hidden: categories.length <= 2,
@@ -53,7 +53,7 @@ export const CategoriesSlider = ({
 			/>
 			<CarouselNext
 				variant="default"
-				className={cn('right-[10px] top-[40%] translate-x-1/2  md:right-0', {
+				className={cn('top-[40%] right-[10px] translate-x-1/2 md:right-0', {
 					'lg:hidden': categories.length <= 4,
 					'md:hidden': categories.length <= 3,
 					hidden: categories.length <= 2,

@@ -56,7 +56,7 @@ export const PaginationControls = ({
 						href={createPageURL(currentPage - 1)}
 					/>
 				</PaginationItem>
-				{pages.map((p, i) => (
+				{pages.map((p) => (
 					<PaginationItem key={p}>
 						<PaginationLink
 							className={cn({ 'pointer-events-none': p === currentPage })}

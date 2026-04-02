@@ -1,5 +1,3 @@
-import { CategoryType } from '../types';
-
 export const MAIN_CATEGORIES = {
 	interior: {
 		id: 1,

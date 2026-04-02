@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 
 import { DesktopMenu, MobileMenu, MobileMenuToggleButton } from '@/features/app-menu';
-import { CallBackButton, CallBackDialog } from '@/features/callback';
+import { CallBackDialog } from '@/features/callback';
 import { SearchBox } from '@/features/search';
 import { fetchCategories } from '@/entities/category';
 import { Logo, PhoneNumbersList, WorkingHoursList } from '@/shared/components';
@@ -15,17 +15,15 @@ export const Header = async () => {
 	return (
 		<div>
 			<div className="border-b border-b-gray-200 py-3 lg:border-none">
-				<div className="container flex items-center justify-between gap-2 max-sm:px-3 ">
+				<div className="container flex items-center justify-between gap-2 max-sm:px-3">
 					<Logo />
 					<Suspense
-						fallback={
-							<Skeleton className="hidden h-10 w-1/3 shrink lg:block" />
-						}
+						fallback={<Skeleton className="hidden h-10 w-1/3 shrink lg:block" />}
 					>
 						<SearchBox className="hidden w-1/3 shrink lg:flex" />
 					</Suspense>
 					<WorkingHoursList className="hidden shrink-0 text-sm md:block" />
-					<PhoneNumbersList className="hidden text-nowrap text-sm md:block" />
+					<PhoneNumbersList className="hidden text-sm text-nowrap md:block" />
 					<div className="flex gap-2">
 						<Button
 							size="icon"

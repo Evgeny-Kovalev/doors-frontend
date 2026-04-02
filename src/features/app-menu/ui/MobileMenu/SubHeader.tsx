@@ -19,7 +19,7 @@ export default function SubHeader({}: SubHeaderProps) {
 		<div className="px-4 py-3">
 			<div className="mb-3 flex max-w-full items-center justify-between">
 				<WorkingHoursList className="text-sm" />
-				<PhoneNumbersList className="text-nowrap text-sm" />
+				<PhoneNumbersList className="text-sm text-nowrap" />
 			</div>
 			<Suspense fallback={<Skeleton className="mb-3 h-10" />}>
 				<SearchBox onSearchButtonClick={toggleMobileMenu} className="mb-3" />
