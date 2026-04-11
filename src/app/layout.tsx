@@ -2,6 +2,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import { Suspense } from 'react';
 import Link from 'next/link';
+import NextTopLoader from 'nextjs-toploader';
 import { Nunito } from 'next/font/google';
 import { Heart, Phone } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
@@ -107,14 +108,20 @@ export default function RootLayout({
 		<html lang="ru" className={nunito.className}>
 			{isProd && <GoogleAnalytics gaId={`${process.env.GOOGLE_ANALYTICS_ID}`} />}
 			<body className="grid min-h-screen grid-rows-[auto_1fr_auto] -tracking-[0.035em]">
+				<NextTopLoader
+					color="var(--primary)"
+					height={3}
+					showSpinner={false}
+					shadow="0 0 10px color-mix(in hsl, var(--primary) 40%, transparent)"
+				/>
 				<Toaster position="top-center" reverseOrder={false} />
 				<Header />
-				<main className="min-w-0 bg-muted/40">{children}</main>
+				<main className="bg-muted/40 min-w-0">{children}</main>
 				<div className="bg-gray-900 text-gray-100">
 					<Footer />
 				</div>
 				<Portal>
-					<ScrollToTopButton className="fixed bottom-5 right-5 z-10" />
+					<ScrollToTopButton className="fixed right-5 bottom-5 z-10" />
 					<Button
 						className="fixed bottom-3 left-3 z-10 size-12 rounded-full p-1"
 						asChild
