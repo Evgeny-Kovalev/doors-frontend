@@ -1,4 +1,5 @@
 import { ProductApiResponse, VariantApiResponse } from '@/shared/types';
+import { SHOP_CURRENCY } from '@/shared/constants';
 
 const getProductPrice = (product: ProductApiResponse) => {
 	const prices = product.variants
@@ -21,12 +22,12 @@ export const getPriceText = (product: ProductApiResponse) => {
 
 	const { min, max } = price;
 
-	if (min === max) return `${min}руб`;
+	if (min === max) return `${min} ${SHOP_CURRENCY.mainTitle}`;
 
-	return `${min}руб - ${max}руб`;
+	return `${min} - ${max} ${SHOP_CURRENCY.mainTitle}`;
 };
 
 export const getPriceTextByVariant = (variant: VariantApiResponse) => {
 	if (!variant.discountPrice && !variant.price) return 'Цену уточняйте';
-	return `${variant.discountPrice || variant.price}руб`;
+	return `${variant.discountPrice || variant.price} ${SHOP_CURRENCY.mainTitle}`;
 };

@@ -21,6 +21,10 @@ export const SHOP_INFO = {
 	adress: 'г. Гомель, пр-кт Космонавтов 61а, ТЦ "КосмоСтар", 2 этаж павильон 4',
 };
 
+export const SHOP_CURRENCY = {
+	mainTitle: 'BYN',
+} as const;
+
 export const MAIN_PAGE = {
 	banner: {
 		slides: [
