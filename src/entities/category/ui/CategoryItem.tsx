@@ -9,18 +9,18 @@ interface CategoryItemProps {
 
 export default function CategoryItem({ category }: CategoryItemProps) {
 	return (
-		<Box className="p-2 pb-3 transition-[transform,shadow] duration-300 hover:-translate-y-1 lg:px-4">
+		<Box className="group p-2 pb-3 lg:px-4">
 			<Link href={`/categories/${category.slug}`}>
 				<Image
 					className="mb-2 h-auto w-full"
 					src={category.imgUrl}
 					sizes="400px"
-					width={500}
-					height={500}
+					width={300}
+					height={150}
 					alt="Category image"
 					priority
 				/>
-				<CardTitle className="mx-auto text-center text-lg leading-none transition-colors hover:text-primary-accent sm:text-xl">
+				<CardTitle className="group-hover:text-primary-accent mx-auto text-center text-lg leading-none transition-colors sm:text-xl">
 					{category.name}
 				</CardTitle>
 			</Link>
