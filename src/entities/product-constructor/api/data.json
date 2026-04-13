@@ -4,6 +4,10 @@
 			"keyLabel": "Простые",
 			"items": [
 				{
+					"title": "А-13",
+					"imageUrl": "https://xn--80akudsge.xn--90ais/images/d2875b0d074edd39a37a9344233da15d.jpg"
+				},
+				{
 					"title": "G-3",
 					"imageUrl": "https://xn--80akudsge.xn--90ais/images/9a84ac2d93310d1d691c5564d28b39d3.jpg"
 				},
@@ -54,10 +58,6 @@
 				{
 					"title": "А-12",
 					"imageUrl": "https://xn--80akudsge.xn--90ais/images/6d8316c152e7d1b1b8cf4d98f662e3f5.jpg"
-				},
-				{
-					"title": "А-13",
-					"imageUrl": "https://xn--80akudsge.xn--90ais/images/d2875b0d074edd39a37a9344233da15d.jpg"
 				},
 				{
 					"title": "А-14",
@@ -1664,12 +1664,12 @@
 			"keyLabel": "ПВХ",
 			"items": [
 				{
-					"title": "MD-10 Эковенге",
-					"imageUrl": "https://xn--80akudsge.xn--90ais/images/9b9a343812fa1d8b21f1b41d41d356e9.jpg"
-				},
-				{
 					"title": "MD-11 Экодуб",
 					"imageUrl": "https://xn--80akudsge.xn--90ais/images/d2e831e8c1ef23023d2abde232da0e30.jpg"
+				},
+				{
+					"title": "MD-10 Эковенге",
+					"imageUrl": "https://xn--80akudsge.xn--90ais/images/9b9a343812fa1d8b21f1b41d41d356e9.jpg"
 				},
 				{
 					"title": "MD-12 Тиковое дерево",
