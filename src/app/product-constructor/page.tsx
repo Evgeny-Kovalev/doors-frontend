@@ -22,7 +22,7 @@ export default async function Page() {
 	return (
 		<PageContainer>
 			<PageTitle className="max-md:mb-5">
-				Конструктор входных дверей (г. Могилёв)
+				Конструктор входных дверей (производство г. Могилёв)
 			</PageTitle>
 			<ProductConstructor data={data} />
 		</PageContainer>
