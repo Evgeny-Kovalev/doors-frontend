@@ -79,17 +79,17 @@ export const ProductGallery = ({ product }: Props) => {
 					setApi={setEmblaMainApi}
 					opts={{ loop: true, axis: 'x' }}
 				>
-					<CarouselContent>
+					<CarouselContent className="-mx-2">
 						{sortedVariants.map((v) => (
 							<CarouselItem
 								key={v.id}
-								className="relative flex h-[50vh] items-center justify-center md:h-[70vh]"
+								className="max-h-[50vh] p-0 md:max-h-[70vh] 2xl:max-h-[60vh]"
 							>
 								<Image
-									className="object-contain"
+									className="h-full w-full object-contain px-2"
 									src={v.imgUrl}
-									sizes="70vh"
-									fill
+									width={800}
+									height={800}
 									fetchPriority="high"
 									priority
 									alt="Product image"
@@ -101,11 +101,11 @@ export const ProductGallery = ({ product }: Props) => {
 					</CarouselContent>
 					<CarouselPrevious
 						variant="default"
-						className="top-1/2 left-[10px] -translate-x-1/2 md:left-0"
+						className="top-1/2 left-0 -translate-x-1/2"
 					/>
 					<CarouselNext
 						variant="default"
-						className="top-1/2 right-[10px] translate-x-1/2 md:right-0"
+						className="top-1/2 right-0 translate-x-1/2"
 					/>
 				</Carousel>
 			</CardContent>
@@ -126,7 +126,7 @@ export const ProductGallery = ({ product }: Props) => {
 								<div
 									key={v.id}
 									className={cn(
-										'h-20 cursor-pointer rounded-md border-2 border-transparent bg-gray-100 opacity-80 transition-opacity hover:opacity-100',
+										'cursor-pointer rounded-md border-2 border-transparent bg-gray-100 opacity-80 transition-opacity hover:opacity-100',
 										(activeVariant?.id === v.id ||
 											(activeVariant === null && i === 0)) &&
 											'border-primary',
@@ -137,8 +137,8 @@ export const ProductGallery = ({ product }: Props) => {
 										src={v.imgUrl}
 										width={100}
 										height={100}
-										className="mx-auto h-full w-auto object-contain"
-										alt={'Variant image'}
+										className="mx-auto size-18 object-contain"
+										alt="Variant image"
 									/>
 								</div>
 							</CarouselItem>
