@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { X } from 'lucide-react';
+
 import {
 	Tabs,
 	TabsList,
@@ -13,8 +15,9 @@ import {
 	CarouselContent,
 	CarouselNext,
 	CarouselPrevious,
+	Button,
+	cn,
 } from '@/shared/ui';
-import { cn } from '@/shared/ui/utils';
 import {
 	ProductConstructorResponse,
 	OutputDataItem,
@@ -60,6 +63,14 @@ export const ProductConstructor = ({ data }: { data: ProductConstructorResponse 
 					hidden: isFloatingPreview,
 				})}
 			>
+				<Button
+					variant="outline"
+					size="iconSm"
+					onClick={() => setisFloatingPreview(true)}
+					className="absolute top-2 right-2"
+				>
+					<X size={20} />
+				</Button>
 				<div className="mx-auto flex w-[300px] justify-center py-2">
 					<PreviewImages
 						selectedColor={selectedColor}
@@ -170,21 +181,21 @@ const PreviewImages = ({
 	return (
 		<div className="relative mx-auto h-[300px] w-[150px] lg:h-[500px] lg:w-[235px]">
 			<Image
-				className="absolute left-0 top-0 h-full w-full object-contain"
+				className="absolute top-0 left-0 h-full w-full object-contain"
 				src={selectedColor.imageUrl ?? ''}
 				alt="Door"
 				width={235}
 				height={500}
 			/>
 			<Image
-				className="absolute left-0 top-0 h-full w-full object-contain p-5 pb-3"
+				className="absolute top-0 left-0 h-full w-full object-contain p-5 pb-3"
 				src={selectedMilling.imageUrl ?? ''}
 				alt="Milling"
 				width={235}
 				height={500}
 			/>
 			<Image
-				className="absolute left-0 top-0 h-full w-full object-contain"
+				className="absolute top-0 left-0 h-full w-full object-contain"
 				src={ACCESSORIES_IMAGE_URL}
 				alt="Accessories"
 				width={235}
@@ -211,8 +222,8 @@ const ItemsCarousel = ({
 			}}
 			className="grid"
 		>
-			<CarouselPrevious variant="default" className="-left-4 z-10 " />
-			<CarouselNext variant="default" className="-right-4 z-10 " />
+			<CarouselPrevious variant="default" className="-left-4 z-10" />
+			<CarouselNext variant="default" className="-right-4 z-10" />
 			<CarouselContent>
 				{items.map((item, index) => (
 					<CarouselItem key={index} className="basis-auto pl-2 first:pl-4">
@@ -222,7 +233,7 @@ const ItemsCarousel = ({
 								className={cn(
 									'h-[120px] w-[60px] cursor-pointer border border-gray-200 lg:h-[170px] lg:w-[85px]',
 									selectedItem?.imageUrl === item.imageUrl &&
-										'border-2 border-primary',
+										'border-primary border-2',
 								)}
 								src={item.imageUrl}
 								alt="Product variant"
