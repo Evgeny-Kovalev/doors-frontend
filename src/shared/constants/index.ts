@@ -30,17 +30,17 @@ export const MAIN_PAGE = {
 		slides: [
 			{
 				urlTo: `/categories/${MAIN_CATEGORIES.interior.slug}`,
-				imgUrl: '/banners/1.webp',
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banners/1.webp`,
 				title: 'Двери\nмежкомнатные',
 			},
 			{
 				urlTo: `/categories/${MAIN_CATEGORIES.exterior.slug}`,
-				imgUrl: '/banners/2.webp',
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banners/2.webp`,
 				title: 'Двери входные',
 			},
 			{
 				urlTo: null,
-				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_large_3.webp`,
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banners/3.webp`,
 			},
 		],
 		items: [
