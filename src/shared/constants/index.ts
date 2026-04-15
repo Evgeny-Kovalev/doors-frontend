@@ -31,6 +31,9 @@ export const MAIN_PAGE = {
 	banner: {
 		slides: [
 			{
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banners/4.webp`,
+			},
+			{
 				urlTo: `/categories/${MAIN_CATEGORIES.interior.slug}`,
 				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banners/1.webp`,
 				title: 'Двери\nмежкомнатные',
