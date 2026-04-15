@@ -13,6 +13,8 @@ export const MAIN_CATEGORIES = {
 	},
 } as const;
 
+export const MOGILEV_DOORS_SLUG = 'dveri-vhodnye-rb-mogilyov';
+
 export const SHOP_INFO = {
 	phones: [
 		{ tel: '+375293278958', label: ' +375 (29) 327-89-58' },

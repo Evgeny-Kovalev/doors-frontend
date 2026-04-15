@@ -1,11 +1,16 @@
 'use client';
 
-import { CategoryType, ProductType, ProductApiResponse } from '@/shared/types';
-import { getPriceTextByVariant, getPriceText } from '@/entities/product';
-import { cn } from '@/shared/ui';
-import { useProductStore } from '../model';
-import { DoorCasingIcon, DoorFrameIcon, DoorIcon } from '@/shared/icons';
 import { ReactElement } from 'react';
+import Image from 'next/image';
+
+import { CategoryType, ProductType, ProductApiResponse } from '@/shared/types';
+import { cn } from '@/shared/ui';
+import { DoorCasingIcon, DoorFrameIcon, DoorIcon } from '@/shared/icons';
+import { MOGILEV_DOORS_SLUG } from '@/shared/constants';
+
+import { getPriceTextByVariant, getPriceText } from '@/entities/product';
+
+import { useProductStore } from '../model';
 
 interface PriceDetailsProps {
 	product: ProductApiResponse;
@@ -47,27 +52,36 @@ export const PriceDetails = ({ product }: PriceDetailsProps) => {
 				'w-full': !isInteriorType,
 			})}
 		>
-			<div className="flex items-center sm:items-end">
-				<div className="mr-3 text-foreground">
+			<div className="relative flex items-center sm:items-end">
+				<div className="text-foreground mr-3">
 					{PRICE_DESCRIPTION[product.category.categoryType][product.productType]}:
 				</div>
-				<div className="text-3xl font-bold leading-none text-primary-accent">
+				<div className="text-primary-accent text-3xl leading-none font-bold">
 					{priceText}
 				</div>
+				{product.category.slug === MOGILEV_DOORS_SLUG && (
+					<Image
+						className="absolute top-1/2 -right-3.5 -translate-y-1/2"
+						src="/sales/credit4.png"
+						width={100}
+						height={80}
+						alt="Ctedit 4%"
+					/>
+				)}
 			</div>
 			{isInteriorType &&
 				(product.productType === 'full' || product.productType === 'fullSample') && (
-					<div className="flex flex-wrap items-center justify-between gap-2 text-muted-foreground">
+					<div className="text-muted-foreground flex flex-wrap items-center justify-between gap-2">
 						<figure className="flex items-center">
-							<DoorIcon className="mr-2 h-10 w-10 text-primary" />
+							<DoorIcon className="text-primary mr-2 h-10 w-10" />
 							<figcaption>Полотно</figcaption>
 						</figure>
 						<figure className="flex items-center">
-							<DoorFrameIcon className="mr-2 h-10 w-10 text-primary" />
+							<DoorFrameIcon className="text-primary mr-2 h-10 w-10" />
 							<figcaption>Коробка (2.5шт)</figcaption>
 						</figure>
 						<figure className="flex items-center">
-							<DoorCasingIcon className="mr-2 h-10 w-10 text-primary" />
+							<DoorCasingIcon className="text-primary mr-2 h-10 w-10" />
 							<figcaption>
 								Наличник ({product.productType === 'full' ? 5 : 2.5}шт)
 							</figcaption>
