@@ -57,9 +57,9 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 							src={product.imgUrl}
 							className="h-auto w-full"
 							sizes="100vw"
-							width={600}
+							width={product.category.categoryType === 'interiorDoors' ? 250 : 300}
 							height={
-								product.category.categoryType === 'interiorDoors' ? 1200 : 600
+								product.category.categoryType === 'interiorDoors' ? 550 : 350
 							}
 							alt="Product image"
 							placeholder="blur"
