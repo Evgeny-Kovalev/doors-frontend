@@ -8,6 +8,7 @@ import { MOGILEV_DOORS_SLUG } from '@/shared/constants';
 import { FavoriteToggleButton } from '@/features/favorites';
 
 import { getPriceText } from '../lib';
+import { ProductBadge } from './ProductBadge';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
 	product: ProductApiResponse;
@@ -31,13 +32,7 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 				<Card className={cn('rounded-t-none', className)} {...props}>
 					<CardContent className="relative p-0">
 						{product.category.slug === MOGILEV_DOORS_SLUG && (
-							<Image
-								className="absolute bottom-2 left-2"
-								src="/sales/credit4.png"
-								width={70}
-								height={35}
-								alt="Ctedit 4%"
-							/>
+							<ProductBadge className="absolute bottom-1.5 left-1.5" size="sm" />
 						)}
 						<div className="absolute top-2 left-1 flex flex-col gap-1">
 							{tags.map((t) => (

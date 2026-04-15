@@ -1,12 +1,10 @@
 'use client';
 
 import { ReactElement } from 'react';
-import Image from 'next/image';
 
 import { CategoryType, ProductType, ProductApiResponse } from '@/shared/types';
 import { cn } from '@/shared/ui';
 import { DoorCasingIcon, DoorFrameIcon, DoorIcon } from '@/shared/icons';
-import { MOGILEV_DOORS_SLUG } from '@/shared/constants';
 
 import { getPriceTextByVariant, getPriceText } from '@/entities/product';
 
@@ -59,15 +57,6 @@ export const PriceDetails = ({ product }: PriceDetailsProps) => {
 				<div className="text-primary-accent text-3xl leading-none font-bold">
 					{priceText}
 				</div>
-				{product.category.slug === MOGILEV_DOORS_SLUG && (
-					<Image
-						className="absolute top-1/2 -right-3.5 -translate-y-1/2"
-						src="/sales/credit4.png"
-						width={100}
-						height={80}
-						alt="Ctedit 4%"
-					/>
-				)}
 			</div>
 			{isInteriorType &&
 				(product.productType === 'full' || product.productType === 'fullSample') && (
