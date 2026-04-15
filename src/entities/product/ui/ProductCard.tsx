@@ -30,7 +30,7 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 			<Link href={'/products/' + product.slug}>
 				<Card className={cn('rounded-t-none', className)} {...props}>
 					<CardContent className="relative p-0">
-						{product.slug === MOGILEV_DOORS_SLUG && (
+						{product.category.slug === MOGILEV_DOORS_SLUG && (
 							<Image
 								className="absolute bottom-2 left-2"
 								src="/sales/credit4.png"
