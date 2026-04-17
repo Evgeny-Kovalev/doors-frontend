@@ -11,13 +11,8 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: '*',
-				pathname: '/**',
-			},
-			{
-				protocol: 'http',
-				hostname: '*',
-				pathname: '/**',
+				hostname: 'xn--80akudsge.xn--90ais',
+				pathname: '/images/**',
 			},
 		],
 	},
