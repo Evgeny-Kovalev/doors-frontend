@@ -3,12 +3,12 @@ import Link from 'next/link';
 
 import { ProductApiResponse, TagApiResponse, TagKeys } from '@/shared/types';
 import { Button, cn, Card, CardContent, CardFooter, CardTitle, Badge } from '@/shared/ui';
-import { MOGILEV_DOORS_SLUG } from '@/shared/constants';
 
 import { FavoriteToggleButton } from '@/features/favorites';
 
 import { getPriceText } from '../lib';
 import { ProductBadge } from './ProductBadge';
+import { isCredit4ByCategorySlug } from '@/entities/category';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
 	product: ProductApiResponse;
@@ -22,6 +22,8 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 		return acc;
 	}, []);
 
+	const isCredit4 = isCredit4ByCategorySlug(product.category.slug);
+
 	return (
 		<div className="relative">
 			<FavoriteToggleButton
@@ -31,7 +33,7 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 			<Link href={'/products/' + product.slug}>
 				<Card className={cn('rounded-t-none', className)} {...props}>
 					<CardContent className="relative p-0">
-						{product.category.slug === MOGILEV_DOORS_SLUG && (
+						{isCredit4 && (
 							<ProductBadge className="absolute bottom-1.5 left-1.5" size="sm" />
 						)}
 						<div className="absolute top-2 left-1 flex flex-col gap-1">

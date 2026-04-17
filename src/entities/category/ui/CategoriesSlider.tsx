@@ -1,7 +1,9 @@
 'use client';
 
+import { useMemo } from 'react';
+import WheelGesturesPlugin from 'embla-carousel-wheel-gestures';
+
 import { CategoryApiResponse } from '@/shared/types';
-import CategoryItem from './CategoryItem';
 import {
 	Carousel,
 	CarouselContent,
@@ -10,8 +12,8 @@ import {
 	CarouselPrevious,
 	cn,
 } from '@/shared/ui';
-import WheelGesturesPlugin from 'embla-carousel-wheel-gestures';
-import { useMemo } from 'react';
+
+import { CategoryCard } from './CategoryCard';
 
 interface CategoriesSliderProps extends React.HTMLAttributes<HTMLDivElement> {
 	categories: CategoryApiResponse[];
@@ -39,7 +41,7 @@ export const CategoriesSlider = ({
 						key={c.id}
 						className={cn('basis-1/2 md:basis-1/3 lg:basis-1/4')}
 					>
-						<CategoryItem category={c} />
+						<CategoryCard category={c} orientation="vertical" />
 					</CarouselItem>
 				))}
 			</CarouselContent>

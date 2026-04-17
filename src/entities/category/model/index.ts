@@ -1,4 +1,5 @@
 import { CategoryApiResponse } from '@/shared/types';
+import { MOGILEV_DOORS_SLUG } from '@/shared/constants';
 
 export type CategoryTreeNode = CategoryApiResponse & { children: CategoryTreeNode[] };
 
@@ -33,4 +34,10 @@ export const mapCategoryTree = <T>(
 	mapFn: (node: CategoryTreeNode, mappedChildren: T[]) => T,
 ): T[] => {
 	return nodes.map((node) => mapFn(node, mapCategoryTree(node.children, mapFn)));
+};
+
+export const isCredit4ByCategorySlug = (slug: string) => {
+	const CREDIT4_SLUGS = [MOGILEV_DOORS_SLUG];
+
+	return CREDIT4_SLUGS.some((s) => s === slug);
 };

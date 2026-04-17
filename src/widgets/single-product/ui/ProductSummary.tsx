@@ -1,12 +1,17 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
+import { DoorClosed } from 'lucide-react';
+
 import { CategoryApiResponse, ProductApiResponse } from '@/shared/types';
 import { Badge, Box, Button, cn } from '@/shared/ui';
-import { AttributeList } from './AttributeList';
-import { PriceDetails } from './PriceDetails';
-import { Fragment } from 'react';
+
+import { ProductBadge } from '@/entities/product';
+import { isCredit4ByCategorySlug } from '@/entities/category';
 import { CallBackButton, CallBackDialog } from '@/features/callback';
-import { DoorClosed } from 'lucide-react';
 import { InteriorProductViewDialog } from '@/features/product';
+
+import { PriceDetails } from './PriceDetails';
+import { AttributeList } from './AttributeList';
 
 type Props = {
 	product: ProductApiResponse;
@@ -17,10 +22,11 @@ export const ProductSummary = ({ product, categories }: Props) => {
 	const categoriesArray = categories || [product.category];
 
 	const isInteriorDoor = product.category.categoryType === 'interiorDoors';
+	const isCredit4 = isCredit4ByCategorySlug(product.category.slug);
 
 	return (
 		<Box className="flex flex-col gap-5">
-			<h1 className="text-2xl  sm:text-3xl">{product.name}</h1>
+			<h1 className="text-2xl sm:text-3xl">{product.name}</h1>
 			<h2 className="sr-only">
 				Дверь{' '}
 				{product.category.categoryType === 'exteriorDoors'
@@ -33,15 +39,16 @@ export const ProductSummary = ({ product, categories }: Props) => {
 				className={cn(
 					'grid gap-2',
 					isInteriorDoor ? 'grid-cols-1 xl:grid-cols-2' : 'grid-cols-1',
+					!isInteriorDoor && isCredit4 && 'grid-cols-1 items-center xl:grid-cols-2',
 				)}
 			>
 				{isInteriorDoor && (
 					<InteriorProductViewDialog product={product}>
 						<Button
 							variant="outline"
-							className="w-full border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-primary-foreground"
+							className="border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-primary-foreground w-full"
 						>
-							<DoorClosed size={20} className="mr-2 " />
+							<DoorClosed size={20} className="mr-2" />
 							Посмотреть в интерьере
 							<Badge className="ml-2" variant="destructive">
 								NEW
@@ -49,6 +56,7 @@ export const ProductSummary = ({ product, categories }: Props) => {
 						</Button>
 					</InteriorProductViewDialog>
 				)}
+				{isCredit4 && <ProductBadge />}
 				<CallBackDialog>
 					<CallBackButton
 						className="w-full justify-self-center"
