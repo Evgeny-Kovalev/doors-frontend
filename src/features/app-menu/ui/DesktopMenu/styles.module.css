@@ -1,4 +1,0 @@
-.nav li:hover > .submenu,
-.nav li:focus-within > .submenu {
-	display: block;
-}

@@ -3,7 +3,6 @@ import { cn } from '@/shared/ui';
 import { CategoryApiResponse } from '@/shared/types';
 
 import { MenuList } from './MenuList';
-import styles from './styles.module.css';
 import { mapCategoriesToMenuItems } from '../../model';
 import { IMenuItem } from '../../types';
 
@@ -30,12 +29,7 @@ export const DesktopMenu = ({ categories }: DesktopMenuProps) => {
 	];
 
 	return (
-		<nav
-			className={cn(
-				styles.nav,
-				'sticky top-0 z-20 hidden bg-primary shadow-lg lg:block',
-			)}
-		>
+		<nav className={cn('bg-primary sticky top-0 z-20 hidden shadow-lg lg:block')}>
 			<div className="container">
 				<MenuList className="flex gap-5" items={menuItems} />
 			</div>
