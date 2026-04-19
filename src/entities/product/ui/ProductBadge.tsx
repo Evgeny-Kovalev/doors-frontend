@@ -1,6 +1,9 @@
+import { ComponentProps } from 'react';
+import Link from 'next/link';
+
 import { cn } from '@/shared/ui';
 
-interface ProductBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ProductBadgeProps extends Omit<ComponentProps<typeof Link>, 'href'> {
 	size?: 'sm';
 }
 
@@ -8,10 +11,12 @@ export const ProductBadge = ({ className, size, ...props }: ProductBadgeProps) =
 	const isSm = size === 'sm';
 
 	return (
-		<div
+		<Link
+			href="/news/credit4"
 			className={cn(
-				'flex flex-col gap-0 rounded-2xl bg-red-600 px-4 py-1 text-center text-white shadow',
+				'flex flex-col gap-0 rounded-2xl bg-red-600 px-4 py-1 text-center text-white shadow transition-[scale,box-shadow] hover:shadow-xl',
 				{ 'rounded-lg px-1 py-0': isSm },
+				isSm ? 'hover:scale-105' : 'hover:scale-[102%]',
 				className,
 			)}
 			{...props}
@@ -34,6 +39,6 @@ export const ProductBadge = ({ className, size, ...props }: ProductBadgeProps) =
 			>
 				На родныя товары
 			</span>
-		</div>
+		</Link>
 	);
 };
