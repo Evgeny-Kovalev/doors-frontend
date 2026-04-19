@@ -85,3 +85,16 @@ export type TagApiResponse = {
 	key: TagKeys;
 	label: string;
 };
+
+export type NewsType = 'news' | 'promotion';
+
+export interface NewsPreviewApiResponse {
+	id: number;
+	slug: string;
+	title: string;
+	description: string;
+	coverImageUrl: string;
+	publishedAt: string;
+	type: NewsType;
+	markdownUrl: string;
+}
