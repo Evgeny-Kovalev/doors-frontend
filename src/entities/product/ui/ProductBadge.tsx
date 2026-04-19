@@ -1,5 +1,6 @@
 import { ComponentProps } from 'react';
 import Link from 'next/link';
+import { Pointer } from 'lucide-react';
 
 import { cn } from '@/shared/ui';
 
@@ -14,7 +15,7 @@ export const ProductBadge = ({ className, size, ...props }: ProductBadgeProps) =
 		<Link
 			href="/news/credit4"
 			className={cn(
-				'flex flex-col gap-0 rounded-2xl bg-red-600 px-4 py-1 text-center text-white shadow transition-[scale,box-shadow] hover:shadow-xl',
+				'group relative flex flex-col gap-0 rounded-2xl bg-red-600 px-4 py-1 text-center text-white shadow transition-[scale,box-shadow] hover:shadow-xl',
 				{ 'rounded-lg px-1 py-0': isSm },
 				isSm ? 'hover:scale-105' : 'hover:scale-[102%]',
 				className,
@@ -39,6 +40,15 @@ export const ProductBadge = ({ className, size, ...props }: ProductBadgeProps) =
 			>
 				На родныя товары
 			</span>
+			{!isSm && (
+				<span className="pointer-events-none absolute top-3.5 right-3.5">
+					<span className="animation-duration-[1.8s] absolute inset-0 animate-ping rounded-full bg-white/30" />
+					<Pointer
+						size={16}
+						className="animation-duration-[1.8s] relative z-10 animate-pulse transition-transform group-hover:scale-90"
+					/>
+				</span>
+			)}
 		</Link>
 	);
 };
