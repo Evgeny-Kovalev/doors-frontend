@@ -53,7 +53,7 @@ export default async function Page(props: PageProps) {
 
 	const breadcrumbsItems = [
 		{ label: 'Главная', href: '/' },
-		{ label: 'Новости и акции', href: '/news' },
+		{ label: 'Акции и новости', href: '/news' },
 		{ label: newsItem.title, href: `/news/${newsItem.slug}` },
 	];
 
