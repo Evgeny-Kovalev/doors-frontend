@@ -36,20 +36,22 @@ export default function MainSlider({}: MainSliderProps) {
 								src={imgUrl}
 								className="h-full w-full object-cover"
 								alt="Slider item"
-								width={1400}
-								height={700}
+								width={1200}
+								height={675}
 								fetchPriority="high"
 								priority
+								placeholder="blur"
+								blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
 							/>
 							{title && (
-								<div className="absolute bottom-0 left-1/2 top-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-linear-to-t from-black/90 to-transparent p-4 min-[510px]:p-5 xl:p-8">
-									<span className="-mb-1 whitespace-pre-line text-2xl font-bold uppercase text-white min-[510px]:text-4xl md:text-4xl xl:text-5xl">
+								<div className="absolute top-1/2 bottom-0 left-1/2 flex w-full -translate-x-1/2 items-end justify-between gap-2 bg-linear-to-t from-black/90 to-transparent p-4 min-[510px]:p-5 xl:p-8">
+									<span className="-mb-1 text-2xl font-bold whitespace-pre-line text-white uppercase min-[510px]:text-4xl md:text-4xl xl:text-5xl">
 										{title}
 									</span>
 									{urlTo && (
 										<Button
 											asChild
-											className="h-6 rounded-lg px-3 text-xs min-[510px]:px-5 min-[510px]:py-4 min-[510px]:text-base xl:px-6 xl:py-5 xl:text-lg "
+											className="h-6 rounded-lg px-3 text-xs min-[510px]:px-5 min-[510px]:py-4 min-[510px]:text-base xl:px-6 xl:py-5 xl:text-lg"
 										>
 											<Link href={urlTo}>
 												Выбрать
@@ -65,11 +67,11 @@ export default function MainSlider({}: MainSliderProps) {
 			</CarouselContent>
 			<CarouselPrevious
 				variant="default"
-				className="left-[10px] top-1/2 -translate-x-1/2 md:left-0"
+				className="top-1/2 left-[10px] -translate-x-1/2 md:left-0"
 			/>
 			<CarouselNext
 				variant="default"
-				className="right-[10px] top-1/2 translate-x-1/2  md:right-0"
+				className="top-1/2 right-[10px] translate-x-1/2 md:right-0"
 			/>
 		</Carousel>
 	);

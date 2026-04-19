@@ -51,11 +51,11 @@ export const MAIN_PAGE = {
 		items: [
 			{
 				urlTo: null,
-				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_small_1.webp`,
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banners/sm1.webp`,
 			},
 			{
 				urlTo: null,
-				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banner_small_2.webp`,
+				imgUrl: `${process.env.NEXT_PUBLIC_IMAGES_URL}/banners/sm2.webp`,
 			},
 		],
 	},
