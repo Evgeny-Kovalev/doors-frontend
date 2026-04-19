@@ -50,7 +50,7 @@ export default async function Home() {
 				<section>
 					<div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 						{favoriteCategories.categories.map((cat) => (
-							<CategoryCard key={cat.id} category={cat} />
+							<CategoryCard key={cat.id} category={cat}  orientation='horizontal'/>
 						))}
 					</div>
 				</section>
