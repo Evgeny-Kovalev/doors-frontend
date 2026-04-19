@@ -123,6 +123,7 @@ export default function RootLayout({
 				<Portal>
 					<ScrollToTopButton className="fixed right-5 bottom-5 z-10" />
 					<Button
+						aria-label="Избранные товары"
 						className="fixed bottom-3 left-3 z-10 size-12 rounded-full p-1"
 						asChild
 					>
