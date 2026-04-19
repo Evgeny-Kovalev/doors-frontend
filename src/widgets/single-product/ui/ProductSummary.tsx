@@ -35,34 +35,42 @@ export const ProductSummary = ({ product, categories }: Props) => {
 			</h2>
 			<AttributeList variants={product.variants} />
 			<PriceDetails product={product} />
-			<div
-				className={cn(
-					'grid gap-2',
-					isInteriorDoor ? 'grid-cols-1 xl:grid-cols-2' : 'grid-cols-1',
-					!isInteriorDoor && isCredit4 && 'grid-cols-1 items-center xl:grid-cols-2',
+			<div className="grid grid-cols-1 items-center gap-2 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+				<div className="lg:col-span-2 xl:col-span-1">
+					{isInteriorDoor ? (
+						<InteriorProductViewDialog product={product}>
+							<Button
+								variant="outline"
+								className="border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-primary-foreground w-full"
+							>
+								<DoorClosed size={20} className="mr-2" />
+								Посмотреть в интерьере
+								<Badge className="ml-2" variant="destructive">
+									NEW
+								</Badge>
+							</Button>
+						</InteriorProductViewDialog>
+					) : (
+						isCredit4 && <ProductBadge className={cn('')} />
+					)}
+				</div>
+
+				<div
+					className={cn(
+						'lg:col-span-2 xl:col-span-1',
+						!isInteriorDoor && !isCredit4 && 'col-span-2 xl:col-span-2',
+					)}
+				>
+					<CallBackDialog>
+						<CallBackButton
+							className="w-full justify-self-center"
+							title="Заказать обратный звонок"
+						/>
+					</CallBackDialog>
+				</div>
+				{isInteriorDoor && isCredit4 && (
+					<ProductBadge className={cn('mx-auto w-1/2 md:col-span-2')} />
 				)}
-			>
-				{isInteriorDoor && (
-					<InteriorProductViewDialog product={product}>
-						<Button
-							variant="outline"
-							className="border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-primary-foreground w-full"
-						>
-							<DoorClosed size={20} className="mr-2" />
-							Посмотреть в интерьере
-							<Badge className="ml-2" variant="destructive">
-								NEW
-							</Badge>
-						</Button>
-					</InteriorProductViewDialog>
-				)}
-				{isCredit4 && <ProductBadge />}
-				<CallBackDialog>
-					<CallBackButton
-						className="w-full justify-self-center"
-						title="Заказать обратный звонок"
-					/>
-				</CallBackDialog>
 			</div>
 			<div>
 				<span className="font-bold">

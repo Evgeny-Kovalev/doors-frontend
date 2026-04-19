@@ -37,7 +37,7 @@ export const mapCategoryTree = <T>(
 };
 
 export const isCredit4ByCategorySlug = (slug: string) => {
-	const CREDIT4_SLUGS = [MOGILEV_DOORS_SLUG];
+	const CREDIT4_SLUGS = [MOGILEV_DOORS_SLUG, 'stark', 'contur'];
 
 	return CREDIT4_SLUGS.some((s) => s === slug);
 };
