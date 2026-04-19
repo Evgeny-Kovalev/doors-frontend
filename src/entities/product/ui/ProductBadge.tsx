@@ -45,7 +45,7 @@ export const ProductBadge = ({ className, size, ...props }: ProductBadgeProps) =
 					<span className="animation-duration-[1.8s] absolute inset-0 animate-ping rounded-full bg-white/30" />
 					<Pointer
 						size={16}
-						className="animation-duration-[1.8s] relative z-10 animate-pulse transition-transform group-hover:scale-90"
+						className="animation-duration-[1.8s] relative animate-pulse transition-transform group-hover:scale-90"
 					/>
 				</span>
 			)}

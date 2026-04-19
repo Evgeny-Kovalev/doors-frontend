@@ -38,7 +38,7 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 				/>
 				<CardContent className="relative p-0">
 					{isCredit4 && (
-						<ProductBadge className="absolute bottom-1.5 left-1.5 z-20" size="sm" />
+						<ProductBadge className="absolute bottom-1.5 left-1.5 z-10" size="sm" />
 					)}
 					<div className="absolute top-2 left-1 flex flex-col gap-1">
 						{tags.map((t) => (
