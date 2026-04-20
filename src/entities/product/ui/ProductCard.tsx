@@ -27,7 +27,7 @@ export const ProductCard = ({ product, className, ...props }: ProductCardProps) 
 	return (
 		<div className="relative">
 			<FavoriteToggleButton
-				className="absolute top-2 right-2 z-10"
+				className="absolute top-2 right-2 z-20"
 				product={product}
 			/>
 			<Card className={cn('relative rounded-t-none', className)} {...props}>
