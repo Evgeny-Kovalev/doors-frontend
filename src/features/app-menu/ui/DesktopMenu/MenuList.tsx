@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 
-import { cn } from '@/shared/ui';
+import { Badge, cn } from '@/shared/ui';
+
+import { isCredit4ByCategorySlug } from '@/entities/category';
 
 import { IMenuItem } from '../../types';
 
@@ -25,6 +27,8 @@ export const MenuList = ({
 };
 
 const MenuItem = ({ item, depthLevel }: { item: IMenuItem; depthLevel: number }) => {
+	const isCredit4 = isCredit4ByCategorySlug(item.slug);
+
 	return (
 		<li
 			className={cn('relative focus-within:[&>ul]:block hover:[&>ul]:block', {
@@ -39,7 +43,12 @@ const MenuItem = ({ item, depthLevel }: { item: IMenuItem; depthLevel: number })
 				})}
 				href={item.link}
 			>
-				{item.label}
+				{
+					<div className="flex items-center justify-start gap-1">
+						<div>{item.label}</div>
+						{depthLevel > 1 && isCredit4 && <Badge variant="red">4%</Badge>}
+					</div>
+				}
 				{depthLevel > 1 && item.children && (
 					<ChevronRight className="text-gray-400" />
 				)}

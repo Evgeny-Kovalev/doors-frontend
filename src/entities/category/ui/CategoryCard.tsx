@@ -28,7 +28,7 @@ export const CategoryCard = ({ category, orientation }: CategoryCardProps) => {
 						priority
 					/>
 					{isCredit4 && (
-						<Badge className="absolute top-2 right-2 bg-red-600 hover:bg-red-600">
+						<Badge variant="red" className="absolute top-2 right-2">
 							Кредит&nbsp;4%&nbsp;до&nbsp;24&nbsp;мес.
 						</Badge>
 					)}
@@ -46,7 +46,10 @@ export const CategoryCard = ({ category, orientation }: CategoryCardProps) => {
 							height={100}
 						/>
 						{isCredit4 && (
-							<Badge className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 animate-bounce bg-red-600 hover:bg-red-600">
+							<Badge
+								variant="red"
+								className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 animate-bounce"
+							>
 								Кредит&nbsp;4%
 							</Badge>
 						)}

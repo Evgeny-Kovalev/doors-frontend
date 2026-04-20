@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import { MoveLeft, ChevronRight } from 'lucide-react';
 
+import { Badge } from '@/shared/ui';
+
+import { isCredit4ByCategorySlug } from '@/entities/category';
+
 import { useMobileMenuStore } from '../../hooks/useMobileMenuStore';
-import Link from 'next/link';
 import { IMenuItem } from '../../types';
 
 interface MobileCategoryNavProps {
@@ -66,31 +70,36 @@ export default function CategoryMobileNav({ items }: MobileCategoryNavProps) {
 								<Link
 									href={selectedItem.link}
 									onClick={toggleMobileMenu}
-									className="block border-b px-4 py-3 text-primary"
+									className="text-primary block border-b px-4 py-3"
 								>
 									Посмотреть все товары
 								</Link>
 							</li>
 						)}
 						{item.map((m) => {
+							const isCredit4 = isCredit4ByCategorySlug(m.slug);
 							return m.children ? (
 								<li className="border-b" key={m.label}>
 									<button
 										className="flex w-full cursor-pointer items-center justify-between px-4 py-3"
 										onClick={() => selectLevel(level + 1, m, m.children)}
 									>
-										{m.label}
+										<div className="flex items-center gap-2">
+											<span>{m.label}</span>
+											{isCredit4 && <Badge variant="red">4%</Badge>}
+										</div>
 										<ChevronRight height={20} className="text-gray-400" />
 									</button>
 								</li>
 							) : (
 								<li className="border-b" key={m.label}>
 									<Link
-										className="block px-4 py-3"
+										className="flex items-center gap-2 px-4 py-3"
 										onClick={toggleMobileMenu}
 										href={m.link}
 									>
-										{m.label}
+										<span>{m.label}</span>
+										{isCredit4 && <Badge variant="red">4%</Badge>}
 									</Link>
 								</li>
 							);
