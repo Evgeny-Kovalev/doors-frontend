@@ -89,7 +89,7 @@ export default async function Page(props: PageProps) {
 						blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8+vx1PQAIqAM4jZDFJQAAAABJRU5ErkJggg=="
 					/>
 				</header>
-				<div className="px-5 md:px-8">
+				<div className="px-2 sm:px-5 md:px-8">
 					<MarkdownContent content={content} />
 				</div>
 			</div>
