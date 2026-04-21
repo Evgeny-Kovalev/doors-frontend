@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
+import { Loader } from 'lucide-react';
 
 import { ProductApiResponse } from '@/shared/types';
 import {
@@ -34,6 +35,7 @@ export const ProductGallery = ({ product }: Props) => {
 	const [emblaMainApi, setEmblaMainApi] = useState<CarouselApi>();
 	const [emblaThumbsApi, setEmblaThumbsApi] = useState<CarouselApi>();
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+	const [isLightboxImgLoading, setIsLightboxImgLoading] = useState(true);
 
 	const mainVariantIndex = product.variants.findIndex(
 		(v) => v.imgUrl === product.imgUrl,
@@ -73,6 +75,11 @@ export const ProductGallery = ({ product }: Props) => {
 		const index = sortedVariants.findIndex((v) => activeVariant.id === v.id);
 		emblaMainApi.scrollTo(index === -1 ? 0 : index);
 	}, [activeVariant, sortedVariants, emblaMainApi]);
+
+	useEffect(() => {
+		if (!isLightboxOpen || !activeVariant?.imgUrl) return;
+		setIsLightboxImgLoading(true);
+	}, [isLightboxOpen, activeVariant?.imgUrl]);
 
 	const wheelGesturesPlugin = useMemo(() => WheelGesturesPlugin(), []);
 
@@ -165,15 +172,26 @@ export const ProductGallery = ({ product }: Props) => {
 						Посмотреть в увеличенном виде
 					</DialogDescription>
 					{activeVariant && (
-						<Image
-							src={activeVariant.imgUrl}
-							alt="Product image"
-							width={1000}
-							height={1000}
-							className="max-h-[calc(100dvh-36px)] w-auto max-w-[calc(100dvw-36px)]"
-							priority
-							onClick={() => setIsLightboxOpen(false)}
-						/>
+						<div className="relative">
+							{isLightboxImgLoading && (
+								<div
+									className="pointer-events-none absolute inset-0 z-10 grid place-items-center"
+									aria-hidden="true"
+								>
+									<Loader className="animate-[spin_3s_linear_infinite] text-gray-300" />
+								</div>
+							)}
+							<Image
+								src={activeVariant.imgUrl}
+								alt="Product image"
+								width={1000}
+								height={1000}
+								className="max-h-[calc(100dvh-36px)] min-h-[calc(100dvh-36px)] w-auto max-w-[calc(100dvw-36px)] object-contain"
+								priority
+								onClick={() => setIsLightboxOpen(false)}
+								onLoad={() => setIsLightboxImgLoading(false)}
+							/>
+						</div>
 					)}
 				</DialogContent>
 			</Dialog>
